@@ -2,8 +2,8 @@
 <search>
   <entry>
     <title>《机器学习》第四章-决策树</title>
-    <url>/2022/05/27/%E3%80%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%8B%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%86%B3%E7%AD%96%E6%A0%91/</url>
-    <content><![CDATA[<h1 id="第四章-决策树"><a href="#第四章-决策树" class="headerlink" title="第四章 决策树"></a>第四章 决策树</h1><h2 id="4-1-决策树算法流程"><a href="#4-1-决策树算法流程" class="headerlink" title="4.1 决策树算法流程"></a>4.1 决策树算法流程</h2><p><img src="/2022/05/27/%E3%80%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%8B%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%86%B3%E7%AD%96%E6%A0%91/决策树算法.png" alt="决策树算法"></p>
+    <url>/zhangjunlong.github.io/2022/05/27/%E3%80%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%8B%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%86%B3%E7%AD%96%E6%A0%91/</url>
+    <content><![CDATA[<h1 id="第四章-决策树"><a href="#第四章-决策树" class="headerlink" title="第四章 决策树"></a>第四章 决策树</h1><h2 id="4-1-决策树算法流程"><a href="#4-1-决策树算法流程" class="headerlink" title="4.1 决策树算法流程"></a>4.1 决策树算法流程</h2><p><img src="/zhangjunlong.github.io/zhangjunlong.github.io/2022/05/27/%E3%80%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%8B%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%86%B3%E7%AD%96%E6%A0%91/决策树算法.png" alt="决策树算法"></p>
 <p>说明：</p>
 <ul>
 <li>第12行应该是continue？属性a*的每一个值都要生成子节点吧！</li>
