@@ -99,114 +99,6 @@ Ent(\widetilde{D}) = -\sum_{k=1}^{|y|}\widetilde{p}_klog_2\widetilde{p}_k</scrip
       </tags>
   </entry>
   <entry>
-    <title>巴拉巴西《网络科学》第〇章</title>
-    <url>/zhangjunlong.github.io/2023/04/03/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E3%80%87%E7%AB%A0/</url>
-    <content><![CDATA[<h1 id="0-4-网络科学的特性"><a href="#0-4-网络科学的特性" class="headerlink" title="0.4 网络科学的特性"></a>0.4 网络科学的特性</h1><ol>
-<li><strong>多学科特性</strong>：多学科关注点不同可以催发网络科学的不同分支，如社会网络领域关注“介数中心度”；同时不同网络领域所采用的方法可以共享，如计算机网络中的图划分问题算法被应用于医药领域的疾病模块识别和大规模社会网络的社区识别。</li>
-<li><strong>数据驱动的实证特性</strong>：网络科学源于图论，但区别于之，在于网络科学的实证特性，关注的是数据、功能和效用，不满足于描述某个网络性质的抽象数学工具，而是要用真实数据进行测试，依据它在揭示系统性质和行为方面提供的洞察力来判断其价值。</li>
-<li><strong>定量和数学特性</strong>：网络科学借助了图论的形式化方法来研究网络，借助了统计物理学的概念化框架来应对随机型和追求普适的指导原则。除此之外还借助了控制论（网络的控制原理）、信息论（从不完整和有噪声的数据集中抽取信息）。</li>
-<li><strong>计算特性</strong>：借助算法、数据库管理和数据挖掘等的方法。</li>
-</ol>
-<h1 id="0-5-社会影响"><a href="#0-5-社会影响" class="headerlink" title="0.5 社会影响"></a>0.5 社会影响</h1><ul>
-<li>经济：从网络搜索到社交网络。</li>
-<li>健康：从药物设计到代谢工程。<ul>
-<li>描绘基因、蛋白质、代谢体和其它细胞组成成分之间相互作用的地图。</li>
-<li>网络生物学、网络医药学。</li>
-<li>细胞网络用于研制药物。<ul>
-<li>GeneGo和Genomatica</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>安全：打击犯罪<ul>
-<li>利用社交网络寻找萨达姆·侯赛因。</li>
-<li>利用手机通话网络寻找嫌疑人。</li>
-<li>军事行动背后也是网络。</li>
-<li>第一个网络课程开设在<strong>美国军事学院（西点军校）</strong>。</li>
-<li>FBI利用网络监视所有人。</li>
-</ul>
-</li>
-<li><p>传染病：从预测到对抗致命病毒</p>
-<ul>
-<li>2009对禽流感成功预测。</li>
-<li>包括社会病毒、手机病毒等也能用网络来预测。<blockquote>
-<p>Seasonal transmission potential and activity peaks of the new influenza A(H1N1): a Monte Carlo likelihood analysis based on human mobility - BMC Medicine - 2009 </p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>神经科学：绘制大脑地图</p>
-<ul>
-<li>美国国家卫生研究院在2010年启动了Connectome计划，旨在研制能够绘制哺乳动物大脑神经元级的地图。<ul>
-<li>看看nia美国，敢于挑战真正有价值的难题，我们就很少有人或者有决策者能拍板去做这些，可能是科研环境的问题吧。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>管理：揭示组织机构的内部结构<ul>
-<li>管理主要依靠正式的行政管理系统，但是人与人之间通过交流关系行程的非正式网络对于一个组织的成功起着重要的作用。</li>
-<li>准确绘制出组织内部的关系网络可以暴露出关键单元之间的潜在的交互确实，也有助于识别出将不同部门和产品连接起来的重要的任务，同时也能发现组织内部存在的管理问题。<ul>
-<li>网络的思维在管理和社交中能够让我们清晰地认识并把握全局。</li>
-</ul>
-</li>
-<li>Maven 7、Activate Networks、Orgnet等许多公司提供工具和方法来绘制出组织的真实结构。<ul>
-<li>Maven 7开发了一个Orgmapper软件，用于管理公司人员关系，分析领导力、影响力、枢纽节点、桥节点等等，感觉很高级啊，<u>留个坑</u>，之后有空了研究研究这个软件的功能。</li>
-<li><a href="https://orgmapper.com/">OrgMapper官网</a><br><img src="/zhangjunlong.github.io/2023/04/03/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E3%80%87%E7%AB%A0/OrgMapper.png" alt="OrgMapper示意图"></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h1 id="0-6-科学影响"><a href="#0-6-科学影响" class="headerlink" title="0.6 科学影响"></a>0.6 科学影响</h1><p>在复杂性科学中的地位：</p>
-<ul>
-<li>扯远点：<ul>
-<li>20世纪六七十年代，复杂系统由三篇论文主导，分别是：<ul>
-<li>①Edward Lorenz于1963年在混沌方面的工作；</li>
-<li>②Kenneth G. Wilson提出的重整化群；</li>
-<li>③Samuel F. Edwards在自旋玻璃方面的工作。</li>
-</ul>
-</li>
-<li>20世纪八十年带，复杂系统的研究焦点转移到了模式行程上面，以下为关键工作：<ul>
-<li>①Benoit Mandelbrot发表了关于分形的著作；</li>
-<li>②Thomas Witten和Len Sander提出的受限扩散凝聚模型；</li>
-<li>③John Hopfield在神经网络方面的工作；</li>
-<li>④Per Bak、汤超和Kurt Wisenfeld在自组织临界性方面的工作。</li>
-</ul>
-</li>
-<li><u>以上的经典工作论文已经存入zotero中，闲暇时可以看看，不作为工作重点，只用来拓宽思路。</u></li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>复杂性科学</category>
-        <category>复杂网络</category>
-        <category>读书笔记</category>
-        <category>Albert-László Barabási, Network Science</category>
-      </categories>
-      <tags>
-        <tag>复杂性科学</tag>
-        <tag>复杂网络</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>《货币金融学》第二章</title>
-    <url>/zhangjunlong.github.io/2023/04/01/%E3%80%8A%E8%B4%A7%E5%B8%81%E9%87%91%E8%9E%8D%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0/</url>
-    <content><![CDATA[<h1 id="《货币金融学》第二章——"><a href="#《货币金融学》第二章——" class="headerlink" title="《货币金融学》第二章——"></a>《货币金融学》第二章——</h1><p>哈哈哈哈哈哈 hda d</p>
-<p>底阀</p>
-<p>s</p>
-]]></content>
-      <categories>
-        <category>经济金融</category>
-        <category>货币金融</category>
-        <category>读书笔记</category>
-        <category>Frederic Stanley Mishkin 《货币金融学》</category>
-      </categories>
-      <tags>
-        <tag>金融</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>《货币金融学》第一章</title>
     <url>/zhangjunlong.github.io/2023/03/29/%E3%80%8A%E8%B4%A7%E5%B8%81%E9%87%91%E8%9E%8D%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%B8%80%E7%AB%A0/</url>
     <content><![CDATA[<h1 id="《货币金融学》第一章——为什么研究货币、银行与金融市场"><a href="#《货币金融学》第一章——为什么研究货币、银行与金融市场" class="headerlink" title="《货币金融学》第一章——为什么研究货币、银行与金融市场"></a>《货币金融学》第一章——为什么研究货币、银行与金融市场</h1><p>第一章主要从“为什么”的角度讲一些基本概念。</p>
@@ -386,6 +278,114 @@ x_{growth\space rate}=\frac{x_t-x_{t-1}}{x_{t-1}}\times100\%</script><ul>
       </categories>
       <tags>
         <tag>金融</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>《货币金融学》第二章</title>
+    <url>/zhangjunlong.github.io/2023/04/01/%E3%80%8A%E8%B4%A7%E5%B8%81%E9%87%91%E8%9E%8D%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0/</url>
+    <content><![CDATA[<h1 id="《货币金融学》第二章——"><a href="#《货币金融学》第二章——" class="headerlink" title="《货币金融学》第二章——"></a>《货币金融学》第二章——</h1><p>哈哈哈哈哈哈 hda d</p>
+<p>底阀</p>
+<p>s</p>
+]]></content>
+      <categories>
+        <category>经济金融</category>
+        <category>货币金融</category>
+        <category>读书笔记</category>
+        <category>Frederic Stanley Mishkin 《货币金融学》</category>
+      </categories>
+      <tags>
+        <tag>金融</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>巴拉巴西《网络科学》第〇章</title>
+    <url>/zhangjunlong.github.io/2023/04/03/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E3%80%87%E7%AB%A0/</url>
+    <content><![CDATA[<h1 id="0-4-网络科学的特性"><a href="#0-4-网络科学的特性" class="headerlink" title="0.4 网络科学的特性"></a>0.4 网络科学的特性</h1><ol>
+<li><strong>多学科特性</strong>：多学科关注点不同可以催发网络科学的不同分支，如社会网络领域关注“介数中心度”；同时不同网络领域所采用的方法可以共享，如计算机网络中的图划分问题算法被应用于医药领域的疾病模块识别和大规模社会网络的社区识别。</li>
+<li><strong>数据驱动的实证特性</strong>：网络科学源于图论，但区别于之，在于网络科学的实证特性，关注的是数据、功能和效用，不满足于描述某个网络性质的抽象数学工具，而是要用真实数据进行测试，依据它在揭示系统性质和行为方面提供的洞察力来判断其价值。</li>
+<li><strong>定量和数学特性</strong>：网络科学借助了图论的形式化方法来研究网络，借助了统计物理学的概念化框架来应对随机型和追求普适的指导原则。除此之外还借助了控制论（网络的控制原理）、信息论（从不完整和有噪声的数据集中抽取信息）。</li>
+<li><strong>计算特性</strong>：借助算法、数据库管理和数据挖掘等的方法。</li>
+</ol>
+<h1 id="0-5-社会影响"><a href="#0-5-社会影响" class="headerlink" title="0.5 社会影响"></a>0.5 社会影响</h1><ul>
+<li>经济：从网络搜索到社交网络。</li>
+<li>健康：从药物设计到代谢工程。<ul>
+<li>描绘基因、蛋白质、代谢体和其它细胞组成成分之间相互作用的地图。</li>
+<li>网络生物学、网络医药学。</li>
+<li>细胞网络用于研制药物。<ul>
+<li>GeneGo和Genomatica</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>安全：打击犯罪<ul>
+<li>利用社交网络寻找萨达姆·侯赛因。</li>
+<li>利用手机通话网络寻找嫌疑人。</li>
+<li>军事行动背后也是网络。</li>
+<li>第一个网络课程开设在<strong>美国军事学院（西点军校）</strong>。</li>
+<li>FBI利用网络监视所有人。</li>
+</ul>
+</li>
+<li><p>传染病：从预测到对抗致命病毒</p>
+<ul>
+<li>2009对禽流感成功预测。</li>
+<li>包括社会病毒、手机病毒等也能用网络来预测。<blockquote>
+<p>Seasonal transmission potential and activity peaks of the new influenza A(H1N1): a Monte Carlo likelihood analysis based on human mobility - BMC Medicine - 2009 </p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>神经科学：绘制大脑地图</p>
+<ul>
+<li>美国国家卫生研究院在2010年启动了Connectome计划，旨在研制能够绘制哺乳动物大脑神经元级的地图。<ul>
+<li>看看nia美国，敢于挑战真正有价值的难题，我们就很少有人或者有决策者能拍板去做这些，可能是科研环境的问题吧。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>管理：揭示组织机构的内部结构<ul>
+<li>管理主要依靠正式的行政管理系统，但是人与人之间通过交流关系行程的非正式网络对于一个组织的成功起着重要的作用。</li>
+<li>准确绘制出组织内部的关系网络可以暴露出关键单元之间的潜在的交互确实，也有助于识别出将不同部门和产品连接起来的重要的任务，同时也能发现组织内部存在的管理问题。<ul>
+<li>网络的思维在管理和社交中能够让我们清晰地认识并把握全局。</li>
+</ul>
+</li>
+<li>Maven 7、Activate Networks、Orgnet等许多公司提供工具和方法来绘制出组织的真实结构。<ul>
+<li>Maven 7开发了一个Orgmapper软件，用于管理公司人员关系，分析领导力、影响力、枢纽节点、桥节点等等，感觉很高级啊，<u>留个坑</u>，之后有空了研究研究这个软件的功能。</li>
+<li><a href="https://orgmapper.com/">OrgMapper官网</a><br><img src="/zhangjunlong.github.io/2023/04/03/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E3%80%87%E7%AB%A0/OrgMapper.png" alt="OrgMapper示意图"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="0-6-科学影响"><a href="#0-6-科学影响" class="headerlink" title="0.6 科学影响"></a>0.6 科学影响</h1><p>在复杂性科学中的地位：</p>
+<ul>
+<li>扯远点：<ul>
+<li>20世纪六七十年代，复杂系统由三篇论文主导，分别是：<ul>
+<li>①Edward Lorenz于1963年在混沌方面的工作；</li>
+<li>②Kenneth G. Wilson提出的重整化群；</li>
+<li>③Samuel F. Edwards在自旋玻璃方面的工作。</li>
+</ul>
+</li>
+<li>20世纪八十年带，复杂系统的研究焦点转移到了模式行程上面，以下为关键工作：<ul>
+<li>①Benoit Mandelbrot发表了关于分形的著作；</li>
+<li>②Thomas Witten和Len Sander提出的受限扩散凝聚模型；</li>
+<li>③John Hopfield在神经网络方面的工作；</li>
+<li>④Per Bak、汤超和Kurt Wisenfeld在自组织临界性方面的工作。</li>
+</ul>
+</li>
+<li><u>以上的经典工作论文已经存入zotero中，闲暇时可以看看，不作为工作重点，只用来拓宽思路。</u></li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>复杂性科学</category>
+        <category>复杂网络</category>
+        <category>读书笔记</category>
+        <category>Albert-László Barabási, Network Science</category>
+      </categories>
+      <tags>
+        <tag>复杂性科学</tag>
+        <tag>复杂网络</tag>
       </tags>
   </entry>
 </search>
