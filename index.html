@@ -159,7 +159,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.cooldragon.top/2023/04/03/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E3%80%87%E7%AB%A0/">
+    <link itemprop="mainEntityOfPage" href="https://blog.cooldragon.top/2023/04/04/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -173,7 +173,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/04/03/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E3%80%87%E7%AB%A0/" class="post-title-link" itemprop="url">巴拉巴西《网络科学》第〇章</a>
+            <a href="/2023/04/04/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0/" class="post-title-link" itemprop="url">巴拉巴西《网络科学》第二章</a>
         </h2>
 
         <div class="post-meta">
@@ -184,8 +184,213 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-04-03 20:42:20 / 修改时间：20:45:11" itemprop="dateCreated datePublished" datetime="2023-04-03T20:42:20+08:00">2023-04-03</time>
+              <time title="创建时间：2023-04-04 21:41:00 / 修改时间：21:44:04" itemprop="dateCreated datePublished" datetime="2023-04-04T21:41:00+08:00">2023-04-04</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%8D%E6%9D%82%E6%80%A7%E7%A7%91%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">复杂性科学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%8D%E6%9D%82%E6%80%A7%E7%A7%91%E5%AD%A6/%E5%A4%8D%E6%9D%82%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">复杂网络</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%8D%E6%9D%82%E6%80%A7%E7%A7%91%E5%AD%A6/%E5%A4%8D%E6%9D%82%E7%BD%91%E7%BB%9C/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%8D%E6%9D%82%E6%80%A7%E7%A7%91%E5%AD%A6/%E5%A4%8D%E6%9D%82%E7%BD%91%E7%BB%9C/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/Albert-Laszlo-Barabasi-Network-Science/" itemprop="url" rel="index"><span itemprop="name">Albert-László Barabási, Network Science</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="http://networksciencebook.com/chapter/2">Albert-László Barabási, Network Science, Chapter 2</a></p>
+<h1 id="2-1-哥尼斯堡七桥问题（The-Bridges-of-Konigsberg）"><a href="#2-1-哥尼斯堡七桥问题（The-Bridges-of-Konigsberg）" class="headerlink" title="2.1. 哥尼斯堡七桥问题（The Bridges of Königsberg）"></a>2.1. 哥尼斯堡七桥问题（The Bridges of Königsberg）</h1><p>不多说了，很熟悉了，配一张卫星地图，历史上的七桥问题所在的哥尼斯堡现在为俄罗斯加里宁格勒，不是德国的那个。<br>![[七桥问题.png]]</p>
+<h1 id="2-2-网络和图（Networks-and-Graphs）"><a href="#2-2-网络和图（Networks-and-Graphs）" class="headerlink" title="2.2. 网络和图（Networks and Graphs）"></a>2.2. 网络和图（Networks and Graphs）</h1><p>也比较熟悉了，二者有概念称呼上的不同：<br>| Network Science | Graph Theory | GIS     |<br>| ———————- | —————— | ———- |<br>| Network         | Graph        | Polygon |<br>| Node            | Vertex       | Point   |<br>| Link            | Edge         | Edge    |</p>
+<p>常见的网络：</p>
+<p><table>
+    <thead>
+      <tr>
+        <th>Network</th>
+        <th>Nodes</th>
+        <th>Links</th>
+        <th>Directed / Undirected</th>
+        <th>N</th>
+        <th>L</th>
+        <th>‹K›</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Internet</td><td>Routers</td><td>Internet connections</td><td>Undirected</td><td>192,244</td><td>609,066</td><td>6.34</td>
+      </tr>
+      <tr>
+        <td>WWW</td><td>Webpages</td><td>Links</td><td>Directed</td><td>325,729</td><td>1,497,134</td><td>4.60</td>
+      </tr>
+      <tr>
+        <td>Power Grid</td><td>Power plants, transformers</td><td>Cables</td><td>Undirected</td><td>4,941</td><td>6,594</td><td>2.67</td>
+      </tr>
+      <tr>
+        <td>Mobile-Phone Calls</td><td>Subscribers</td><td>Calls</td><td>Directed</td><td>36,595</td><td>91,826</td><td>2.51</td>
+      </tr>
+      <tr>
+        <td>Email</td><td>Email addresses</td><td>Emails</td><td>Directed</td><td>57,194</td><td>103,731</td><td>1.81</td>
+      </tr>
+      <tr>
+        <td>Science Collaboration</td><td>Scientists</td><td>Co-authorships</td><td>Undirected</td><td>23,133</td><td>93,437</td><td>8.08</td>
+      </tr>
+      <tr>
+        <td>Actor Network</td><td>Actors</td><td>Co-acting</td><td>Undirected</td><td>702,388</td><td>29,397,908</td><td>83.71</td>
+      </tr>
+      <tr>
+        <td>Citation Network</td><td>Papers</td><td>Citations</td><td>Directed</td><td>449,673</td><td>4,689,479</td><td>10.43</td>
+      </tr>
+      <tr>
+        <td>E. Coli Metabolism</td><td>Metabolites</td><td>Chemical reactions</td><td>Directed</td><td>1,039</td><td>5,802</td><td>5.58</td>
+      </tr>
+      <tr>
+        <td>Protein Interactions</td><td>Proteins</td><td>Binding interactions</td><td>Undirected</td><td>2,018</td><td>2,930</td><td>2.90</td>
+      </tr>
+    </tbody>
+  </table></p>
+<h1 id="2-3-度、平均度和度分布（Degree-Average-Degree-and-Degree-Distribution）"><a href="#2-3-度、平均度和度分布（Degree-Average-Degree-and-Degree-Distribution）" class="headerlink" title="2.3. 度、平均度和度分布（Degree, Average Degree and Degree Distribution）"></a>2.3. 度、平均度和度分布（Degree, Average Degree and Degree Distribution）</h1><p>$k_i$为第$i$个节点的度。<br><strong>连接数</strong>：</p>
+<script type="math/tex; mode=display">
+L=\frac12\sum_{i=1}^Nk_i</script><p><strong>平均度</strong>：</p>
+<script type="math/tex; mode=display">
+\langle k \rangle=\frac1N\sum_{i=1}^Nk_i=\frac{2L}{N}</script><p><strong>对于有向图</strong>：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+k_i=k_i^{in}+k_i^{out}\\
+L=\sum_{i=1}^Nk_i^{in}=\sum_{i=1}^Nk_i^{out}\\
+\langle k_i^{in} \rangle = \langle k_i^{out} \rangle=\frac L N
+\end{align}</script><p><strong>度分布</strong>：<br>$p_k$表示随机在网络中随机选取一个节点，它的度为$k$的概率，则满足：</p>
+<script type="math/tex; mode=display">
+\sum_{k=0}^{\infty}p_k=1</script><p><strong>则度为$k$的节点个数为</strong>：</p>
+<script type="math/tex; mode=display">
+N_k=p_kN</script><p><strong>平均度可以表示为</strong>：</p>
+<script type="math/tex; mode=display">
+\langle k \rangle=\sum_{k=0}^{\infty}kp_k</script><p><em>度分布很重要</em></p>
+<h1 id="2-4-邻接矩阵（Adjacency-Matrix）"><a href="#2-4-邻接矩阵（Adjacency-Matrix）" class="headerlink" title="2.4. 邻接矩阵（Adjacency Matrix）"></a>2.4. 邻接矩阵（Adjacency Matrix）</h1><p><strong>定义</strong>：一个图的邻接矩阵是指这样一个$N\times N$的矩阵$\pmb A$，其元素$A_{ij}$满足：</p>
+<script type="math/tex; mode=display">
+A_{ij}=
+\left \{ 
+\begin{aligned}
+1&, \space if \space there \space is \space a \space link\space  pointing\space  \pmb{from\space  node \space j \space to \space node \space i}.\\
+0&,\space if\space  nodes\space  i\space  and\space  j\space  are\space  not\space  connected\space  to\space  each\space  other.
+\end{aligned}
+\right.</script><ul>
+<li>无向图的邻接矩阵是对称的；</li>
+<li>有向图不是对称的；</li>
+<li>无自环图的邻接矩阵对角线为0。</li>
+</ul>
+<p>根据邻接矩阵，我们可以将度的性质表示出来：</p>
+<ul>
+<li>节点的度：$k<em>i=\sum</em>{j=1}^{N}A_{ij}$<ul>
+<li>对于有向图而言：<ul>
+<li>$k<em>i^{out}=\sum</em>{j=1}^{N}A_{ji}$</li>
+<li>$k<em>i^{in}=\sum</em>{j=1}^{N}A_{ij}$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>总连接数：$2L=2\sum<em>{i=1}^{N}k_i^{in}=2\sum</em>{i=1}^{N}k<em>i^{out}=\sum</em>{ij}^{N}A_{ij}$</li>
+</ul>
+<p><em>邻接矩阵更重要！</em></p>
+<h1 id="2-5-真实的网络是稀疏的（Real-Networks-are-Sparse）"><a href="#2-5-真实的网络是稀疏的（Real-Networks-are-Sparse）" class="headerlink" title="2.5. 真实的网络是稀疏的（Real Networks are Sparse）"></a>2.5. 真实的网络是稀疏的（Real Networks are Sparse）</h1><p>对于一个含有$N$个节点的网络来说，如果其有向，则最大连边数为$N(N-1)$，如果其无向，则最大连边数为$\frac{N(N-1)}2$。<br>对于万维网（WWW）来说，其拥有325,729个页面，完全图需要$10^{12}$个连接，而实际上只有1,497,134个，只有不到0.000001%。</p>
+<h1 id="2-6-加权网络（Weighted-Networks）"><a href="#2-6-加权网络（Weighted-Networks）" class="headerlink" title="2.6. 加权网络（Weighted Networks）"></a>2.6. 加权网络（Weighted Networks）</h1><p>连边带权：$A<em>{ij}=w</em>{ij}$。</p>
+<blockquote>
+<p>麦特卡菲定律（Metcalfe’s Law）：网络构建的成本随着节点的数目线性增长，而收益却是二次曲线。<br>有一定道理，不过大多数网络是稀疏的，所以收益是线性的；同时网络中并非所有的连接都是等同的，大多数的连接很少被使用，也就是权重较低。</p>
+</blockquote>
+<h1 id="2-7-二部图（Bipartite-Networks）"><a href="#2-7-二部图（Bipartite-Networks）" class="headerlink" title="2.7. 二部图（Bipartite Networks）"></a>2.7. 二部图（Bipartite Networks）</h1><p><strong>定义</strong>：二部图是指这样的图，可以将其节点集合划分为两个不重叠的非空子集$U$和$V$，其中同一集合内的节点之间没有边相连，只有属于不同集合的节点之间可能存在边相连。</p>
+<ul>
+<li><strong>二部图的投影</strong>：二部图的投影是针对其中的一个集合的一张图，若该集合中的两个点在二部图中有公共的邻居，那么在投影中这两个点相连。</li>
+<li><img src="/2023/04/04/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0/二部图投影.jpg" alt="二部图投影"><br>人类疾病图（Human Disease Network, or deseaseome)：</li>
+<li>人类疾病图是一个二部图，两个子集分别为疾病和基因，可以投影为两个图：<ul>
+<li>疾病图：节点为疾病，两个疾病如果有边相连，就说明它们有共同的影响基因。</li>
+<li>基因图：节点为基因，如果两个基因与同一个疾病有关，则有边相连。<br><img src="/2023/04/04/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0/HumanDiseaseNetwork.jpeg" alt="HumanDiseaseNetwork"><br>类似地，可以定义<strong>多部图（multipartite networks)</strong>，比如“食谱—原料—成分”图。</li>
+</ul>
+</li>
+</ul>
+<h1 id="2-8-路径和距离"><a href="#2-8-路径和距离" class="headerlink" title="2.8. 路径和距离"></a>2.8. 路径和距离</h1><p>注意区分欧拉路径和哈密顿路径：</p>
+<ul>
+<li>欧拉路径（Eulerian Path）指的是经过每个边一次；</li>
+<li>哈密顿路径（Hamiltonian Path）指的是经过每个节点一次。<br>最短路径如何计算？</li>
+<li>路径的计算可以使用BFS广度优先算法计算；</li>
+<li>路径的数目可以通过对邻接矩阵进行乘方运算：<blockquote>
+<p><strong>命题</strong>：从节点$i$到节点$j$的距离为$d$的路径数目为$A^d<em>{ij}$，表示邻接矩阵$A$的$d$次方的第$ij$元素。<br><strong>证明：</strong><br>令$N</em>{ij}^{(d)}$表示从$i$到$j$的长度为$d$的路径数目，只需证明：$N<em>{ij}^{(d)}=A</em>{ij}^{d}$。<br>对距离$d$采用数学归纳法：<br>首先对于$d=1$，$A<em>{ij}$定义即为证明，固有$N</em>{ij}^{(1)}=A<em>{ij}^{1}$。<br>以下考虑$d\ge 2$：<br>考虑从节点$i$到节点$j$的长度为$d$的路径的最后一步，根据加法原理和乘法原理：<br>$N</em>{ij}^{(d)}=\sum<em>{k=1}^N N</em>{ik}^{(d-1)}N<em>{jk}^{(1)}=\sum</em>{k=1}^N A<em>{ik}^{d-1}A</em>{jk}^{1}=A_{ij}^{d}$<br>证毕。</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>网络的直径（Network Diameter）</strong>：网络中两节点最短距离的最大值。<br><strong>网络的平均距离（Average Path Length）</strong>：网络中两两节点最短距离的平均值：$\langle d \rangle=\frac 1 {N(N-1)}\sum<em>{i,j=1,N;i\neq j}d</em>{ij}$<br><strong>网络的距离分布（Distance Distribution）</strong>：距离为$d$的点对的概率。</p>
+<h1 id="2-9-连通性（Connectedness）"><a href="#2-9-连通性（Connectedness）" class="headerlink" title="2.9. 连通性（Connectedness）"></a>2.9. 连通性（Connectedness）</h1><p>关注寻找网络连通分支的算法。</p>
+<h1 id="2-10-集聚系数（Clustering-Coefficient）"><a href="#2-10-集聚系数（Clustering-Coefficient）" class="headerlink" title="2.10. 集聚系数（Clustering Coefficient）"></a>2.10. 集聚系数（Clustering Coefficient）</h1><p><strong>定义</strong>：</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.cooldragon.top/2023/04/03/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%B8%80%E7%AB%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="巍耀">
+      <meta itemprop="description" content="坐中安得弄琴牙">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="潇洒多拉格">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/04/03/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%B8%80%E7%AB%A0/" class="post-title-link" itemprop="url">巴拉巴西《网络科学》第〇章</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-04-03 20:42:20" itemprop="dateCreated datePublished" datetime="2023-04-03T20:42:20+08:00">2023-04-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-04 21:41:44" itemprop="dateModified" datetime="2023-04-04T21:41:44+08:00">2023-04-04</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -269,7 +474,7 @@
 </li>
 <li>Maven 7、Activate Networks、Orgnet等许多公司提供工具和方法来绘制出组织的真实结构。<ul>
 <li>Maven 7开发了一个Orgmapper软件，用于管理公司人员关系，分析领导力、影响力、枢纽节点、桥节点等等，感觉很高级啊，<u>留个坑</u>，之后有空了研究研究这个软件的功能。</li>
-<li><a target="_blank" rel="noopener" href="https://orgmapper.com/">OrgMapper官网</a><br><img src="/2023/04/03/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E3%80%87%E7%AB%A0/OrgMapper.png" alt="OrgMapper示意图"></li>
+<li><a target="_blank" rel="noopener" href="https://orgmapper.com/">OrgMapper官网</a><br><img src="/2023/04/03/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%B8%80%E7%AB%A0/OrgMapper.png" alt="OrgMapper示意图"></li>
 </ul>
 </li>
 </ul>
@@ -879,7 +1084,7 @@ Ent(\widetilde{D}) = -\sum_{k=1}^{|y|}\widetilde{p}_klog_2\widetilde{p}_k</scrip
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
