@@ -5,38 +5,38 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 6.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/zhangjunlong.github.io/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/zhangjunlong.github.io/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/zhangjunlong.github.io/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/zhangjunlong.github.io/images/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/zhangjunlong.github.io/css/main.css">
+<link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/zhangjunlong.github.io/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"zhangjunlong-gis.github.io","root":"/zhangjunlong.github.io/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"blog.cooldragon.top","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="0.4 网络科学的特性 多学科特性：多学科关注点不同可以催发网络科学的不同分支，如社会网络领域关注“介数中心度”；同时不同网络领域所采用的方法可以共享，如计算机网络中的图划分问题算法被应用于医药领域的疾病模块识别和大规模社会网络的社区识别。 数据驱动的实证特性：网络科学源于图论，但区别于之，在于网络科学的实证特性，关注的是数据、功能和效用，不满足于描述某个网络性质的抽象数学工具，而是要用真实数据进">
 <meta property="og:type" content="article">
 <meta property="og:title" content="巴拉巴西《网络科学》第〇章">
-<meta property="og:url" content="https://zhangjunlong-gis.github.io/zhangjunlong.github.io/2023/04/03/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E3%80%87%E7%AB%A0/index.html">
+<meta property="og:url" content="https://blog.cooldragon.top/2023/04/03/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E3%80%87%E7%AB%A0/index.html">
 <meta property="og:site_name" content="潇洒多拉格">
 <meta property="og:description" content="0.4 网络科学的特性 多学科特性：多学科关注点不同可以催发网络科学的不同分支，如社会网络领域关注“介数中心度”；同时不同网络领域所采用的方法可以共享，如计算机网络中的图划分问题算法被应用于医药领域的疾病模块识别和大规模社会网络的社区识别。 数据驱动的实证特性：网络科学源于图论，但区别于之，在于网络科学的实证特性，关注的是数据、功能和效用，不满足于描述某个网络性质的抽象数学工具，而是要用真实数据进">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://zhangjunlong-gis.github.io/zhangjunlong.github.io/zhangjunlong.github.io/2023/04/03/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E3%80%87%E7%AB%A0/OrgMapper.png">
+<meta property="og:image" content="https://blog.cooldragon.top/2023/04/03/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E3%80%87%E7%AB%A0/OrgMapper.png">
 <meta property="article:published_time" content="2023-04-03T12:42:20.000Z">
 <meta property="article:modified_time" content="2023-04-03T12:45:11.444Z">
 <meta property="article:author" content="巍耀">
 <meta property="article:tag" content="复杂性科学">
 <meta property="article:tag" content="复杂网络">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://zhangjunlong-gis.github.io/zhangjunlong.github.io/zhangjunlong.github.io/2023/04/03/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E3%80%87%E7%AB%A0/OrgMapper.png">
+<meta name="twitter:image" content="https://blog.cooldragon.top/2023/04/03/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E3%80%87%E7%AB%A0/OrgMapper.png">
 
-<link rel="canonical" href="https://zhangjunlong-gis.github.io/zhangjunlong.github.io/2023/04/03/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E3%80%87%E7%AB%A0/">
+<link rel="canonical" href="https://blog.cooldragon.top/2023/04/03/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E3%80%87%E7%AB%A0/">
 
 
 <script id="page-configurations">
@@ -98,7 +98,7 @@
 
   <div class="site-meta">
 
-    <a href="/zhangjunlong.github.io/" class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <h1 class="site-title">潇洒多拉格</h1>
       <span class="logo-line-after"><i></i></span>
@@ -119,22 +119,22 @@
   <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/zhangjunlong.github.io/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/zhangjunlong.github.io/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/zhangjunlong.github.io/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/zhangjunlong.github.io/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
   </ul>
@@ -165,10 +165,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zhangjunlong-gis.github.io/zhangjunlong.github.io/2023/04/03/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E3%80%87%E7%AB%A0/">
+    <link itemprop="mainEntityOfPage" href="https://blog.cooldragon.top/2023/04/03/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E3%80%87%E7%AB%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/zhangjunlong.github.io/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="巍耀">
       <meta itemprop="description" content="坐中安得弄琴牙">
     </span>
@@ -197,19 +197,19 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/zhangjunlong.github.io/categories/%E5%A4%8D%E6%9D%82%E6%80%A7%E7%A7%91%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">复杂性科学</span></a>
+                  <a href="/categories/%E5%A4%8D%E6%9D%82%E6%80%A7%E7%A7%91%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">复杂性科学</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/zhangjunlong.github.io/categories/%E5%A4%8D%E6%9D%82%E6%80%A7%E7%A7%91%E5%AD%A6/%E5%A4%8D%E6%9D%82%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">复杂网络</span></a>
+                  <a href="/categories/%E5%A4%8D%E6%9D%82%E6%80%A7%E7%A7%91%E5%AD%A6/%E5%A4%8D%E6%9D%82%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">复杂网络</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/zhangjunlong.github.io/categories/%E5%A4%8D%E6%9D%82%E6%80%A7%E7%A7%91%E5%AD%A6/%E5%A4%8D%E6%9D%82%E7%BD%91%E7%BB%9C/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
+                  <a href="/categories/%E5%A4%8D%E6%9D%82%E6%80%A7%E7%A7%91%E5%AD%A6/%E5%A4%8D%E6%9D%82%E7%BD%91%E7%BB%9C/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/zhangjunlong.github.io/categories/%E5%A4%8D%E6%9D%82%E6%80%A7%E7%A7%91%E5%AD%A6/%E5%A4%8D%E6%9D%82%E7%BD%91%E7%BB%9C/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/Albert-Laszlo-Barabasi-Network-Science/" itemprop="url" rel="index"><span itemprop="name">Albert-László Barabási, Network Science</span></a>
+                  <a href="/categories/%E5%A4%8D%E6%9D%82%E6%80%A7%E7%A7%91%E5%AD%A6/%E5%A4%8D%E6%9D%82%E7%BD%91%E7%BB%9C/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/Albert-Laszlo-Barabasi-Network-Science/" itemprop="url" rel="index"><span itemprop="name">Albert-László Barabási, Network Science</span></a>
                 </span>
             </span>
 
@@ -274,7 +274,7 @@
 </li>
 <li>Maven 7、Activate Networks、Orgnet等许多公司提供工具和方法来绘制出组织的真实结构。<ul>
 <li>Maven 7开发了一个Orgmapper软件，用于管理公司人员关系，分析领导力、影响力、枢纽节点、桥节点等等，感觉很高级啊，<u>留个坑</u>，之后有空了研究研究这个软件的功能。</li>
-<li><a target="_blank" rel="noopener" href="https://orgmapper.com/">OrgMapper官网</a><br><img src="/zhangjunlong.github.io/zhangjunlong.github.io/2023/04/03/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E3%80%87%E7%AB%A0/OrgMapper.png" alt="OrgMapper示意图"></li>
+<li><a target="_blank" rel="noopener" href="https://orgmapper.com/">OrgMapper官网</a><br><img src="/2023/04/03/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E3%80%87%E7%AB%A0/OrgMapper.png" alt="OrgMapper示意图"></li>
 </ul>
 </li>
 </ul>
@@ -309,8 +309,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/zhangjunlong.github.io/tags/%E5%A4%8D%E6%9D%82%E6%80%A7%E7%A7%91%E5%AD%A6/" rel="tag"># 复杂性科学</a>
-              <a href="/zhangjunlong.github.io/tags/%E5%A4%8D%E6%9D%82%E7%BD%91%E7%BB%9C/" rel="tag"># 复杂网络</a>
+              <a href="/tags/%E5%A4%8D%E6%9D%82%E6%80%A7%E7%A7%91%E5%AD%A6/" rel="tag"># 复杂性科学</a>
+              <a href="/tags/%E5%A4%8D%E6%9D%82%E7%BD%91%E7%BB%9C/" rel="tag"># 复杂网络</a>
           </div>
 
         
@@ -319,7 +319,7 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/zhangjunlong.github.io/2023/04/01/%E3%80%8A%E8%B4%A7%E5%B8%81%E9%87%91%E8%9E%8D%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0/" rel="prev" title="《货币金融学》第二章">
+    <a href="/2023/04/01/%E3%80%8A%E8%B4%A7%E5%B8%81%E9%87%91%E8%9E%8D%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0/" rel="prev" title="《货币金融学》第二章">
       <i class="fa fa-chevron-left"></i> 《货币金融学》第二章
     </a></div>
       <div class="post-nav-item"></div>
@@ -393,20 +393,20 @@
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/zhangjunlong.github.io/archives/">
+          <a href="/archives/">
         
           <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-            <a href="/zhangjunlong.github.io/categories/">
+            <a href="/categories/">
           
         <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-            <a href="/zhangjunlong.github.io/tags/">
+            <a href="/tags/">
           
         <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">标签</span></a>
@@ -458,20 +458,20 @@
   </div>
 
   
-  <script src="/zhangjunlong.github.io/lib/anime.min.js"></script>
-  <script src="/zhangjunlong.github.io/lib/pjax/pjax.min.js"></script>
-  <script src="/zhangjunlong.github.io/lib/velocity/velocity.min.js"></script>
-  <script src="/zhangjunlong.github.io/lib/velocity/velocity.ui.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
-<script src="/zhangjunlong.github.io/js/utils.js"></script>
+<script src="/js/utils.js"></script>
 
-<script src="/zhangjunlong.github.io/js/motion.js"></script>
-
-
-<script src="/zhangjunlong.github.io/js/schemes/pisces.js"></script>
+<script src="/js/motion.js"></script>
 
 
-<script src="/zhangjunlong.github.io/js/next-boot.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
 
   <script>
 var pjax = new Pjax({
