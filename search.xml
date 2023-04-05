@@ -6,286 +6,6 @@
     <content><![CDATA[<h1 id="欢迎！Welcome！"><a href="#欢迎！Welcome！" class="headerlink" title="欢迎！Welcome！"></a>欢迎！Welcome！</h1><font size="20">哈喽，这个博客用于记录CoolDragon的一些读书笔记和浅薄思考。</font>]]></content>
   </entry>
   <entry>
-    <title>《机器学习》第四章-决策树</title>
-    <url>/2022/05/27/%E3%80%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%8B%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%86%B3%E7%AD%96%E6%A0%91/</url>
-    <content><![CDATA[<h1 id="第四章-决策树"><a href="#第四章-决策树" class="headerlink" title="第四章 决策树"></a>第四章 决策树</h1><h2 id="4-1-决策树算法流程"><a href="#4-1-决策树算法流程" class="headerlink" title="4.1 决策树算法流程"></a>4.1 决策树算法流程</h2><p><img src="/2022/05/27/%E3%80%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%8B%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%86%B3%E7%AD%96%E6%A0%91/决策树算法.png" alt="决策树算法"></p>
-<p>说明：</p>
-<ul>
-<li>第12行应该是continue？属性a*的每一个值都要生成子节点吧！</li>
-<li>关键是第8行，从A中选择最优划分属性。</li>
-</ul>
-<h2 id="4-2-划分选择"><a href="#4-2-划分选择" class="headerlink" title="4.2 划分选择"></a>4.2 划分选择</h2><p>总目标：提高节点的纯度，本质上也反映了奥卡姆剃刀原则，即越简单的越好。</p>
-<h3 id="4-2-1-方案一：基于信息增益"><a href="#4-2-1-方案一：基于信息增益" class="headerlink" title="4.2.1 方案一：基于信息增益"></a>4.2.1 方案一：基于信息增益</h3><h4 id="信息熵："><a href="#信息熵：" class="headerlink" title="信息熵："></a>信息熵：</h4><script type="math/tex; mode=display">
-Ent(D)=-\sum_{k=1}^{|y|}p_klog_2p_k</script><p>其中，D代表当前样本，第k类样本所占的比例为$p_k$，若所有$p_k$都小于1，则$Ent(D)$取正数，假设只有一类样本，即至纯，那么信息熵为0，最小，因此也说明了信息熵越大则越杂乱越不纯。</p>
-<h4 id="信息增益："><a href="#信息增益：" class="headerlink" title="信息增益："></a>信息增益：</h4><script type="math/tex; mode=display">
-Gain(D,a) = Ent(D)-\sum_{v=1}^{V}\frac{|D^v|}{|D|}Ent(D^v)</script><p>其中，a表示用属性a对样本集D进行划分，假设属性a的取值为$a^1,a^2,…,a^V$，$D^v$表示样本D中属性a取$a^v$的样本。</p>
-<p>说明：</p>
-<ul>
-<li>信息增益对可取值较多的属性有偏好，增益率可以将一定程度上消除这种偏好。</li>
-</ul>
-<h4 id="ID3决策树："><a href="#ID3决策树：" class="headerlink" title="ID3决策树："></a>ID3决策树：</h4><p>该决策树就是用最大化信息增益为准则选取最优划分属性，然后用<a href="#4-1">4.1</a>生成决策树。</p>
-<p>ID3，Iterative Dichotomiser，迭代二分类器</p>
-<h4 id="增益率："><a href="#增益率：" class="headerlink" title="增益率："></a>增益率：</h4><script type="math/tex; mode=display">
-Gain\_ratio(D,a)=\frac{Gain(D,a)}{IV(a)}\\
-\\
-IV(a)=-\sum^V_{v=1}\frac{|D^v|}{|D|}log_2\frac{|D^v|}{|D|}</script><p>其中IV表示intrinsic value，固有值的意思，可取值较多时，IV值也较大，IV值直观上看是属性a划分的信息熵。</p>
-<h4 id="C4-5决策树："><a href="#C4-5决策树：" class="headerlink" title="C4.5决策树："></a>C4.5决策树：</h4><p>该决策树利用了增益率来消除单纯信息增益带来的多取值属性的偏好，但也不是直接使用信息增益率，因为增益率毕竟只表示增益率，消除了增益本身的影响。</p>
-<p>该决策树先从候选划分属性中找出信息增益高于平均的属性，再从总选择增益率最高的。</p>
-<p>该决策树还进行了缺失值处理，<a href="#4-4-2">4.4.2</a></p>
-<h4 id="基尼指数："><a href="#基尼指数：" class="headerlink" title="基尼指数："></a>基尼指数：</h4><script type="math/tex; mode=display">
-\begin{align}
-Gini(D)&=\sum_{k=1}^{|y|}\sum_{k'\neq k}p_kp_{k'}\\
-&=1-\sum_{k=1}^{|y|}p_k^2
-\end{align}</script><p>直观上看，Gini反映了从样本中随机抽取两个样本，其标签不一致的概率，因此Gini越小，样本集纯度越高。</p>
-<p>类似信息增益，定义基尼指数：</p>
-<script type="math/tex; mode=display">
-Gini\_index(D,a)=\sum_{v=1}^V\frac{|D^v|}{|D|}Gini(D^v)</script><h4 id="CART决策树："><a href="#CART决策树：" class="headerlink" title="CART决策树："></a>CART决策树：</h4><p>该决策树就用了基尼指数作为选择最优划分属性的标注，然后用<a href="#4-1">4.1</a>的算法生成决策树。</p>
-<h2 id="4-3-剪枝处理-pruning"><a href="#4-3-剪枝处理-pruning" class="headerlink" title="4.3 剪枝处理(pruning)"></a>4.3 剪枝处理(pruning)</h2><p>目的：划分过细导致过拟合，因此剪枝用来避免过拟合。</p>
-<h3 id="4-3-1-预剪枝-prepruning"><a href="#4-3-1-预剪枝-prepruning" class="headerlink" title="4.3.1 预剪枝(prepruning):"></a>4.3.1 预剪枝(prepruning):</h3><p>一句话描述：正式生成分支之前，可以先使用测试集来测试一下生成分支之前和之后（将分支节点当作叶节点处理，标签用占比最大的标签）的性能，有提升则进行划分，否则不划分。</p>
-<p>说明：</p>
-<ul>
-<li>优点：可以提高运算效率，节省计算资源，一定程度可以避免过拟合；</li>
-<li>缺点：“试一下”的具体操作实际为贪心策略，无法保证继续划分下去之后性能一定下降。</li>
-</ul>
-<h3 id="4-3-2-后剪枝-postpruning"><a href="#4-3-2-后剪枝-postpruning" class="headerlink" title="4.3.2 后剪枝(postpruning)"></a>4.3.2 后剪枝(postpruning)</h3><p>一句话描述：在按照规则生成决策树后，按照节点生成的反向顺序，逐一判断节点取消分支是否能提高性能，直至根节点。</p>
-<p>说明：</p>
-<ul>
-<li>优点：欠拟合风险小，泛化性能优于预剪枝（从过程上看似乎不那么贪心）。</li>
-<li>缺点：慢。</li>
-</ul>
-<h2 id="4-4-连续值与缺失值"><a href="#4-4-连续值与缺失值" class="headerlink" title="4.4 连续值与缺失值"></a>4.4 连续值与缺失值</h2><h3 id="4-4-1-连续值"><a href="#4-4-1-连续值" class="headerlink" title="4.4.1 连续值"></a>4.4.1 连续值</h3><p>即连续属性而不是离散属性。</p>
-<h4 id="基本策略——二分法"><a href="#基本策略——二分法" class="headerlink" title="基本策略——二分法:"></a>基本策略——二分法:</h4><p>将样本集中的连续属性按照从小到大的顺序排列，取一个截断点，将样本分为两类，这样就形成了分支节点。问题转化成了截断点如何选取，而这个问题同样可以用最大化信息增益来解决。</p>
-<p>说明：</p>
-<ul>
-<li>与离散属性不同，连续属性可以重复使用。</li>
-</ul>
-<h3 id="4-4-2-缺失值"><a href="#4-4-2-缺失值" class="headerlink" title="4.4.2 缺失值"></a>4.4.2 缺失值</h3><p><span id="4-4-2"> </span>就是一些样本的属性数据不完整。面对这样样本集，有两个问题要解决：①如何选择最优属性；②如何对样本划分。</p>
-<p>基本思路：赋予样本以权值。</p>
-<p>给定训练集D和属性a，令$\widetilde{D}$表示D中在a上没有样本缺失的子集。</p>
-<p>假定a有V个可取值，${a^1,a^2,…,a^V}$，令$\widetilde{D}^v$表$\widetilde{D}$中属性a取$a^v$的样本子集。</p>
-<p>令$\widetilde{D}_k$表示$\widetilde{D}$中属于第k类的样本子集。</p>
-<p>定义:</p>
-<script type="math/tex; mode=display">
-\begin{align}
-
-\rho&=\frac{\sum_{\boldsymbol{x}\in\widetilde{D}}w_{\boldsymbol{x}}}{\sum_{\boldsymbol{x}\in D}w_{\boldsymbol{x}}}\\
-\widetilde{p}_k&=\frac{\sum_{\boldsymbol{x}\in\widetilde{D}_k}w_{\boldsymbol{x}}}{\sum_{\boldsymbol{x}\in \widetilde{D}}w_{\boldsymbol{x}}},1\le k\le|y|\\
-\widetilde{r}_v&=\frac{\sum_{\boldsymbol{x}\in\widetilde{D}^v}w_{\boldsymbol{x}}}{\sum_{\boldsymbol{x}\in \widetilde{D}}w_{\boldsymbol{x}}},1\le v\le V
-
-\end{align}</script><h4 id="4-4-2-1-最优属性的选择"><a href="#4-4-2-1-最优属性的选择" class="headerlink" title="4.4.2.1 最优属性的选择"></a>4.4.2.1 最优属性的选择</h4><p>同样基于信息增益:</p>
-<script type="math/tex; mode=display">
-\begin{align}
-
-Gain(D,a)&=\rho\times Gain(\widetilde{D},a)\\
-&=\rho\times (Ent(\widetilde{D})-\sum_{v=1}^{V}\widetilde{r}_vEnt(\widetilde{D}^v))
-\end{align}</script><p>其中</p>
-<script type="math/tex; mode=display">
-Ent(\widetilde{D}) = -\sum_{k=1}^{|y|}\widetilde{p}_klog_2\widetilde{p}_k</script><h4 id="4-4-2-2-样本划分"><a href="#4-4-2-2-样本划分" class="headerlink" title="4.4.2.2 样本划分"></a>4.4.2.2 样本划分</h4><p>对有缺失值的样本，则将样本划入所有子节点，且样本权值在属性值$a^v$对应的子节点中调整为$\widetilde{r}_v$。就是相当于以不同的概率划分到对应的属性值节点中，后续选择最优属性时，$\rho$值会变大。</p>
-<h2 id="4-5-多变量决策树"><a href="#4-5-多变量决策树" class="headerlink" title="4.5 多变量决策树"></a>4.5 多变量决策树</h2><p>对决策树的思想理解很重要，是从几何的观点出发。</p>
-<p>即决策树的每一个非叶节点，都对应坐标空间的一个或多个（分支≥3时）超平面。</p>
-<p>因此有了“斜决策树”（oblique decision tree），每个非叶节点是一个形如$\sum_{i=1}^dw_ia_t=t$的线性分类器，其中权重和常数可以通过学习而得。</p>
-<h3 id="4-5-1-典型多变量决策树"><a href="#4-5-1-典型多变量决策树" class="headerlink" title="4.5.1 典型多变量决策树"></a>4.5.1 典型多变量决策树</h3><p>OC1、感知机树</p>
-<h2 id="4-6-阅读材料"><a href="#4-6-阅读材料" class="headerlink" title="4.6 阅读材料"></a>4.6 阅读材料</h2><ul>
-<li>可以拓展阅读C4.5Rule。</li>
-<li>用信息增益、增益率和基尼指数就够了，其它改进的程度不大。</li>
-<li>多变量决策树可以和神经网络、感知机结合。</li>
-<li>决策树的增量学习算法：ID4、ID5R、ITI，增量学习可以有效地降低新样本加入后的训练时间开销，适合工业化，但是多步增量学习后的模型会与基于全部数据训练而得的模型有较大差别。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>计算机技术</category>
-        <category>机器学习</category>
-        <category>读书笔记</category>
-        <category>周志华：《机器学习》</category>
-      </categories>
-      <tags>
-        <tag>机器学习</tag>
-        <tag>计算机技术</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>《货币金融学》第一章</title>
-    <url>/2023/03/29/%E3%80%8A%E8%B4%A7%E5%B8%81%E9%87%91%E8%9E%8D%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%B8%80%E7%AB%A0/</url>
-    <content><![CDATA[<h1 id="《货币金融学》第一章——为什么研究货币、银行与金融市场"><a href="#《货币金融学》第一章——为什么研究货币、银行与金融市场" class="headerlink" title="《货币金融学》第一章——为什么研究货币、银行与金融市场"></a>《货币金融学》第一章——为什么研究货币、银行与金融市场</h1><p>第一章主要从“为什么”的角度讲一些基本概念。</p>
-<h2 id="1-为什么研究金融市场"><a href="#1-为什么研究金融市场" class="headerlink" title="1. 为什么研究金融市场"></a>1. 为什么研究金融市场</h2><h3 id="1-1-金融市场"><a href="#1-1-金融市场" class="headerlink" title="1.1. 金融市场"></a>1.1. 金融市场</h3><p><strong><u>金融市场</u></strong>(financial markets)，通俗地讲，在金融市场中，资金从有闲置货币的人手中转移到资金短缺的人手中；本质地讲，金融市场将资金从没有生产用途的人转移至有生产用途的人，<strong>从而提升了经济效率</strong>。</p>
-<p><strong><u>债券市场</u></strong>与<strong><u>股票市场</u></strong>都属于金融市场，但金融市场不仅包含这俩。</p>
-<h3 id="1-2-债券市场与利率"><a href="#1-2-债券市场与利率" class="headerlink" title="1.2. 债券市场与利率"></a>1.2. 债券市场与利率</h3><p><strong><u>证券</u></strong>(security，又称金融工具)是对发行人未来收入与<strong>资产</strong>(asset，金融索取权或隶属于所有权的财产权)。</p>
-<ul>
-<li><strong><u>债券</u></strong>是债务证券，它承诺在一个特定的时间段中进行定期支付，通俗地讲就是借钱。<ul>
-<li>债券市场可以帮助政府和企业筹集到所需要的资金，并且是决定利率的场所。</li>
-<li><strong><u>利率</u></strong>好懂，通常用年利率表示。<ul>
-<li>对个人而言，①一方面提高融资成本，从而迟缓个人的购买决策；②另一方面鼓励个人增加储蓄，因为可以获得更多的利息收入。</li>
-<li>从宏观角度，①利率影响消费者支出和储蓄的意愿，②也影响企业的投资决策。</li>
-<li>比如企业在高利率的情况下可能会选择推迟建设新工厂，从而对就业产生影响。</li>
-<li>书上希望<strong><em>解释过去35年间利率的重大变动，研究其趋势，可以作为一个小话题研究一下</em></strong>。</li>
-<li>不同种类的债券利率不同，有很大差别。</li>
-<li>联想到2023年上半年美联储加息导致银行破产，是否与这个概念有关。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="1-3-股票市场"><a href="#1-3-股票市场" class="headerlink" title="1.3. 股票市场"></a>1.3. 股票市场</h3><p><strong><u>普通股</u></strong>(common stock)，简称股票(stock)，代表持有者对公司的<strong>所有权</strong>，对公司收益和资产有索取权。</p>
-<ul>
-<li>企业通过发行股票来对其业务进行<strong>筹资</strong>。</li>
-<li>股票价格很重要，它可以让人发财和破产，书中采用道琼斯工业平均指数衡量股票价格。</li>
-</ul>
-<p><img src="/2023/03/29/%E3%80%8A%E8%B4%A7%E5%B8%81%E9%87%91%E8%9E%8D%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%B8%80%E7%AB%A0/Dow_Jones_Industrial_Average.png" alt="DJIA"></p>
-<ul>
-<li><p><strong><u>道琼斯工业指数</u></strong>(Dow Jones Industrial Average, DJIA)是由华尔街日报和道琼斯公司创建者查尔斯·道创造的几种股票市场指数之一。这个指数作为测量美国股票市场上工业构成的发展，是最悠久的美国市场指数之一。 平均指数包括美国30家最大、最知名的上市公司，具体名单可参见<a href="https://en.wikipedia.org/wiki/Dow_Jones_Industrial_Average">wiki</a>。</p>
-</li>
-<li><p>股票价格所带来的影响：</p>
-<ul>
-<li><p><strong>对个人来说：</strong>股票价格的巨大波动通过影响投资者的财富规模而作用于他们的支出意愿，<em>这句话是说股票涨了人们消费意愿更高吗？</em></p>
-</li>
-<li><p><strong>对企业来说：</strong>股票价格能够影响企业通过发行股票<strong>筹集到的资金规模</strong>，<strong>决定了他们用于投资的支出</strong>。</p>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="2-为什么研究金融机构和银行"><a href="#2-为什么研究金融机构和银行" class="headerlink" title="2. 为什么研究金融机构和银行"></a>2. 为什么研究金融机构和银行</h2><p><strong>银行和其它金融机构</strong>是金融市场能够运行的关键所在，他们将资金从储蓄者向有生产性投资机会的人转移。</p>
-<h3 id="2-1-金融体系的结构"><a href="#2-1-金融体系的结构" class="headerlink" title="2.1. 金融体系的结构"></a>2.1. 金融体系的结构</h3><ul>
-<li>金融体系是由<strong><u>银行、保险公司、共同基金、财务公司、投资银行</u></strong>等不同类型的<strong>私人金融机构</strong>构成的复杂系统，换句话说，金融体系由若干金融机构组成。<ul>
-<li>金融机构需要被政府严格监管，也体现了政治与金融体系最直接的联系。</li>
-</ul>
-</li>
-<li>这里提到了<strong><u>金融中介(financial intermediaries)</u></strong>。<ul>
-<li>金融中介很关键，第八章会有详细介绍。</li>
-<li>看后文好像金融机构就是金融中介？这两个概念有点纠缠，留个坑。</li>
-</ul>
-</li>
-</ul>
-<h3 id="2-2-银行与其它金融机构"><a href="#2-2-银行与其它金融机构" class="headerlink" title="2.2. 银行与其它金融机构"></a>2.2. 银行与其它金融机构</h3><ul>
-<li><strong>银行(bank)</strong>是<strong><u>吸收存款</u></strong>和<strong><u>发放贷款</u></strong>的金融机构。<ul>
-<li>细分为：<strong>商业银行</strong>、<strong>储蓄与贷款协会</strong>、<strong>互助储蓄银行</strong>与<strong>信用社</strong>。</li>
-<li>银行是经济中<strong>规模最大</strong>的金融中介机构（①中介？②规模？）。</li>
-</ul>
-</li>
-<li><p>其它金融机构也很重要，比如：<strong>保险公司</strong>、<strong>财务公司</strong>、<strong>养老基金</strong>、<strong>共同基金</strong>和<strong>投资银行</strong>（投资银行和银行有什么区别？），甚至发展势头远超银行。</p>
-</li>
-<li><p>第9章会介绍银行和金融机构为了获取利润是如何管理它们的资产和负债的。</p>
-</li>
-</ul>
-<h3 id="2-3-金融创新"><a href="#2-3-金融创新" class="headerlink" title="2.3. 金融创新"></a>2.3. 金融创新</h3><ul>
-<li><strong>金融创新(financial innovation)</strong>，指新的金融产品和服务的发展。<ul>
-<li><strong>电子金融(e-financial)</strong>，关注信息技术如何激发出新的金融产品，并促进金融服务以电子化设备的方式提供给广大客户。</li>
-</ul>
-</li>
-</ul>
-<h3 id="2-4-金融危机"><a href="#2-4-金融危机" class="headerlink" title="2.4. 金融危机"></a>2.4. 金融危机</h3><ul>
-<li><p><strong>金融危机(financial crisis)</strong>，是指金融市场出现混乱，伴随着<strong><u>资产价格的暴跌</u></strong>以及<strong><u>众多金融机构和非金融机构的破产</u></strong>，<strong><u>经济周期下滑会随之而来</u></strong>。</p>
-<ul>
-<li>是资本主义经济体的重要特征。</li>
-<li>2007年8月开始，美国爆发了大萧条以来最严重的金融危机。</li>
-</ul>
-</li>
-<li><p>补充：<strong>经济周期(business cycle, 又称商业周期、经济循环，台湾称景气循环)</strong></p>
-<ul>
-<li><a href="https://zh.wikipedia.org/zh-cn/景氣循環">中文维基</a>：是国内生产总值（GDP）在其长期增长趋势附近的上下移动。经济周期的长度是指包含一次繁荣和收缩的时间段。这些波动通常包含相对快速的经济增长时期（扩张或繁荣）和相对停滞或下降时期（收缩或衰退）之间的变化。</li>
-<li><a href="https://en.wikipedia.org/wiki/Business_cycle">英文维基</a>：Business cycles are intervals of <strong><u>expansion</u></strong> followed by <strong><u>recession</u></strong> in economic activity.</li>
-<li>讲货币的时候提到：<strong>产出上升时，找工作相对容易；产出下滑时，找工作则会比较困难</strong>。</li>
-<li>这一理论不一定符合实际，且有一定的历史背景，被众多学者探讨过，在此不展开，留作坑。</li>
-<li><img src="/2023/03/29/%E3%80%8A%E8%B4%A7%E5%B8%81%E9%87%91%E8%9E%8D%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%B8%80%E7%AB%A0/Business_cycle.jpg" alt="经济周期的各个阶段"></li>
-<li><img src="/2023/03/29/%E3%80%8A%E8%B4%A7%E5%B8%81%E9%87%91%E8%9E%8D%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%B8%80%E7%AB%A0/1920px-The_Forces_of_the_Business_Cycle,_1922.jpg" alt="根据马尔科姆·罗蒂划分的1922年的商业周期中的四个阶段"></li>
-</ul>
-</li>
-</ul>
-<h2 id="3-为什么研究货币和货币政策"><a href="#3-为什么研究货币和货币政策" class="headerlink" title="3. 为什么研究货币和货币政策"></a>3. 为什么研究货币和货币政策</h2><ul>
-<li><strong>货币(money)</strong>，也称<strong>货币供给(money supply)</strong>，是在商品或服务支付以及债务偿还中被广泛接受的东西。</li>
-</ul>
-<h3 id="3-1-货币与经济周期"><a href="#3-1-货币与经济周期" class="headerlink" title="3.1. 货币与经济周期"></a>3.1. 货币与经济周期</h3><ul>
-<li>几个概念：<ul>
-<li><strong><u>总产出(aggregate output)</u></strong>：经济中商品与服务的生产总量。（如何度量？）<ul>
-<li><strong><u>国内生产总值(gross domestic product, GDP)</u></strong>，指的是一个国家在一年内所生产的所有最终产品和服务的市场价值（中间产品不算在内，因为其在生产最终产品的过程中已经被消耗殆尽）。<strong>是最常使用的总产出的指标</strong>。<ul>
-<li>名义量与实际量的区别：以现行价格水平计算GDP时，称为名义GDP，当所有价格都上升了1倍，则名义GDP也上升1倍，没什么用；一般用<strong><u>基年（通常为2005年，中国成为基期，目前2023年以2015年为基期）</u></strong>的价格计算，称为<strong><u>实际GDP</u></strong>。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>总收入(aggregate income)</strong>：在一年内<strong>生产要素(factors of production, 土地、劳动力和资本)</strong>在生产产品和服务的过程中所获得的全部收入。<ul>
-<li>总产出和总收入是相等的。</li>
-</ul>
-</li>
-<li><strong>失业率(unemployment rate)</strong>：可供雇佣的劳动力中未就业的比率。</li>
-</ul>
-</li>
-<li>货币在经济周期的形成过程中扮演了十分重要的角色。<ul>
-<li>第19~25章介绍<strong>货币供给</strong>和<strong>货币政策</strong>如何作用于总产出的。</li>
-<li>什么是<strong><u>货币增长率</u></strong>？</li>
-</ul>
-</li>
-</ul>
-<h3 id="3-2-货币与通货膨胀"><a href="#3-2-货币与通货膨胀" class="headerlink" title="3.2. 货币与通货膨胀"></a>3.2. 货币与通货膨胀</h3><p><strong><u>结论：货币的持续增长与通货膨胀之间存在密切的关系（不能断言为因果）。</u></strong></p>
-<p>以下描述通货膨胀（第一章附录）</p>
-<h4 id="3-2-1-物价总水平"><a href="#3-2-1-物价总水平" class="headerlink" title="3.2.1. 物价总水平"></a>3.2.1. 物价总水平</h4><p>本章中定义为经济社会中平均价格的指标，一般有三种指标：</p>
-<ul>
-<li>一是<strong><u>GDP平减指数(GDP deflator)</u></strong>，定义为名义GDP除以实际GDP。<ul>
-<li>平减，或者deflator，意味着可比性，以同样的基准进行修正。</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>二是<strong><u>个人消费支出平减指数(PCE deflator)</u></strong>，定义为名义个人消费支出除以实际个人消费支出，是美联储官员通常关注的指标，为什么？。</li>
-<li>三是<strong><u>消费者物价指数(consumer price index, CPI)</u></strong>，是轩轩之前留下并且填起的坑，通过给一个典型城市家庭所购买的一揽子（一篮子？）产品和服务定价，可以得到消费者物价指数。</li>
-</ul>
-<p>三个物价总水平的表示方法本质上都是相同数量和质量产品下，购买之需要花费的货币数量与基期的比值，区别<strong><u>在于尺度的不同，GDP尺度是宏观尺度（某种意义上可以理解为平均尺度），PCE尺度是微观尺度（个人），CPI尺度是家庭或者中观尺度。</u></strong></p>
-<ul>
-<li>同样相反地，物价总水平可以将名义和实际变量相互转换。</li>
-</ul>
-<h4 id="3-2-2-增长率与通货膨胀率"><a href="#3-2-2-增长率与通货膨胀率" class="headerlink" title="3.2.2. 增长率与通货膨胀率"></a>3.2.2. 增长率与通货膨胀率</h4><ul>
-<li>增长率好理解，就是一个变量（如GDP）变动的百分比。</li>
-</ul>
-<script type="math/tex; mode=display">
-x_{growth\space rate}=\frac{x_t-x_{t-1}}{x_{t-1}}\times100\%</script><ul>
-<li><strong><u>通货膨胀率</u></strong>，被定义为物价总水平的增长率。</li>
-<li>计算不到一年的增长率，通常会将其转化为年化的数据，即按照当前的发展势头，今年最终的增长率。</li>
-</ul>
-<h4 id="3-2-3-计算我国的物价总水平指数（以GDP-deflator和CPI为例）和M2货币供应量之间的关系"><a href="#3-2-3-计算我国的物价总水平指数（以GDP-deflator和CPI为例）和M2货币供应量之间的关系" class="headerlink" title="3.2.3. 计算我国的物价总水平指数（以GDP deflator和CPI为例）和M2货币供应量之间的关系"></a>3.2.3. 计算我国的物价总水平指数（以GDP deflator和CPI为例）和M2货币供应量之间的关系</h4><p><img src="/2023/03/29/%E3%80%8A%E8%B4%A7%E5%B8%81%E9%87%91%E8%9E%8D%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%B8%80%E7%AB%A0/m2gdpdeflatorcpi.png" alt="m2gdpdeflatorcpi"></p>
-<ul>
-<li><strong>注意：国家统计局的“国内生产总值”数据为名义数据，“国内生产总值指数”应该为实际量。</strong></li>
-</ul>
-<h3 id="3-3-货币与利率"><a href="#3-3-货币与利率" class="headerlink" title="3.3. 货币与利率"></a>3.3. 货币与利率</h3><ul>
-<li>密切相关，但是关系看起来不是很明确。</li>
-</ul>
-<p><img src="/2023/03/29/%E3%80%8A%E8%B4%A7%E5%B8%81%E9%87%91%E8%9E%8D%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%B8%80%E7%AB%A0/M2和利率.png" alt="M2和利率"></p>
-<h3 id="3-4-货币政策的实施"><a href="#3-4-货币政策的实施" class="headerlink" title="3.4. 货币政策的实施"></a>3.4. 货币政策的实施</h3><p><strong>货币政策(monetary policy)</strong>是对货币和利率的管理，世界上所有的政治家和政策制定者都十分关注之。</p>
-<ul>
-<li>美国<strong>中央银行</strong>是<strong>联邦储蓄体系，简称美联储(Federal Reserve System, <em>The Fed</em> for short)</strong>。</li>
-<li>第13~16章中，探讨美联储等中央银行如何影响经济中的货币数量和利率。</li>
-</ul>
-<h3 id="3-5-财政政策与货币政策"><a href="#3-5-财政政策与货币政策" class="headerlink" title="3.5. 财政政策与货币政策"></a>3.5. 财政政策与货币政策</h3><p><strong>财政政策(fiscal policy)</strong>是有关政府支出和税收的决策。</p>
-<ul>
-<li><strong>预算赤字(budget deficit)</strong>，是指在一个特定的时间段内，通常是一年，政府支出超过税收收入的差额。</li>
-<li><strong>预算盈余(budget surplus)</strong>，反之。</li>
-<li>书中给出了美国自1950年来的预算盈余或赤字栈国内生产总值的比率，中国的数据在统计年鉴中的财政板块，占GDP比重在下图中给出。</li>
-</ul>
-<p><img src="/2023/03/29/%E3%80%8A%E8%B4%A7%E5%B8%81%E9%87%91%E8%9E%8D%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%B8%80%E7%AB%A0/Budget.png" alt="Budget surplus or deficit"></p>
-<h2 id="4-为什么研究国际金融"><a href="#4-为什么研究国际金融" class="headerlink" title="4. 为什么研究国际金融"></a>4. 为什么研究国际金融</h2><h3 id="4-1-外汇市场"><a href="#4-1-外汇市场" class="headerlink" title="4.1. 外汇市场"></a>4.1. 外汇市场</h3><ul>
-<li>跨国转移的资金必须由流出国的货币兑换为流入国的货币。</li>
-</ul>
-<p><strong>外汇市场(foreign exchange)</strong>，是货币兑换的场所，因此是资金跨国转移的中介市场。（又出现中介了）</p>
-<ul>
-<li>它是<strong>汇率(foreign exchange rate)</strong>的决定场所。</li>
-</ul>
-<p>汇率的波动会影响什么？</p>
-<ul>
-<li>汇率的变动会影响<strong>进口成本</strong>，对消费者影响是十分直接的：</li>
-<li><strong>美元汇率的下降意味着外国商品更加昂贵，出国度假的成本更高，削弱公众消费外国商品和服务的欲望，同时增加对本国商品的消费。</strong></li>
-<li><strong>美元汇率上升一位美国出口的商品在国际市场上更加昂贵，减少国外消费者的购买。强势的美元通过降低进口外国商品的价格，提高了美国消费者的福利，但同时冲击美国企业在国内和国际市场的产品销售，从而影响到国内就业。</strong></li>
-</ul>
-<h3 id="4-2-国际金融体系"><a href="#4-2-国际金融体系" class="headerlink" title="4.2. 国际金融体系"></a>4.2. 国际金融体系</h3><p>全球范围内巨额资本的跨国流动增强了国际金融体系对国内经济的影响。</p>
-]]></content>
-      <categories>
-        <category>经济金融</category>
-        <category>货币金融</category>
-        <category>读书笔记</category>
-        <category>Frederic Stanley Mishkin 《货币金融学》</category>
-      </categories>
-      <tags>
-        <tag>金融</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>巴拉巴西《网络科学》第二章</title>
     <url>/2023/04/04/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0/</url>
     <content><![CDATA[<p><a href="http://networksciencebook.com/chapter/2">Albert-László Barabási, Network Science, Chapter 2</a></p>
@@ -554,6 +274,286 @@ A_{ij}=
       </categories>
       <tags>
         <tag>金融</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>《货币金融学》第一章</title>
+    <url>/2023/03/29/%E3%80%8A%E8%B4%A7%E5%B8%81%E9%87%91%E8%9E%8D%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%B8%80%E7%AB%A0/</url>
+    <content><![CDATA[<h1 id="《货币金融学》第一章——为什么研究货币、银行与金融市场"><a href="#《货币金融学》第一章——为什么研究货币、银行与金融市场" class="headerlink" title="《货币金融学》第一章——为什么研究货币、银行与金融市场"></a>《货币金融学》第一章——为什么研究货币、银行与金融市场</h1><p>第一章主要从“为什么”的角度讲一些基本概念。</p>
+<h2 id="1-为什么研究金融市场"><a href="#1-为什么研究金融市场" class="headerlink" title="1. 为什么研究金融市场"></a>1. 为什么研究金融市场</h2><h3 id="1-1-金融市场"><a href="#1-1-金融市场" class="headerlink" title="1.1. 金融市场"></a>1.1. 金融市场</h3><p><strong><u>金融市场</u></strong>(financial markets)，通俗地讲，在金融市场中，资金从有闲置货币的人手中转移到资金短缺的人手中；本质地讲，金融市场将资金从没有生产用途的人转移至有生产用途的人，<strong>从而提升了经济效率</strong>。</p>
+<p><strong><u>债券市场</u></strong>与<strong><u>股票市场</u></strong>都属于金融市场，但金融市场不仅包含这俩。</p>
+<h3 id="1-2-债券市场与利率"><a href="#1-2-债券市场与利率" class="headerlink" title="1.2. 债券市场与利率"></a>1.2. 债券市场与利率</h3><p><strong><u>证券</u></strong>(security，又称金融工具)是对发行人未来收入与<strong>资产</strong>(asset，金融索取权或隶属于所有权的财产权)。</p>
+<ul>
+<li><strong><u>债券</u></strong>是债务证券，它承诺在一个特定的时间段中进行定期支付，通俗地讲就是借钱。<ul>
+<li>债券市场可以帮助政府和企业筹集到所需要的资金，并且是决定利率的场所。</li>
+<li><strong><u>利率</u></strong>好懂，通常用年利率表示。<ul>
+<li>对个人而言，①一方面提高融资成本，从而迟缓个人的购买决策；②另一方面鼓励个人增加储蓄，因为可以获得更多的利息收入。</li>
+<li>从宏观角度，①利率影响消费者支出和储蓄的意愿，②也影响企业的投资决策。</li>
+<li>比如企业在高利率的情况下可能会选择推迟建设新工厂，从而对就业产生影响。</li>
+<li>书上希望<strong><em>解释过去35年间利率的重大变动，研究其趋势，可以作为一个小话题研究一下</em></strong>。</li>
+<li>不同种类的债券利率不同，有很大差别。</li>
+<li>联想到2023年上半年美联储加息导致银行破产，是否与这个概念有关。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-3-股票市场"><a href="#1-3-股票市场" class="headerlink" title="1.3. 股票市场"></a>1.3. 股票市场</h3><p><strong><u>普通股</u></strong>(common stock)，简称股票(stock)，代表持有者对公司的<strong>所有权</strong>，对公司收益和资产有索取权。</p>
+<ul>
+<li>企业通过发行股票来对其业务进行<strong>筹资</strong>。</li>
+<li>股票价格很重要，它可以让人发财和破产，书中采用道琼斯工业平均指数衡量股票价格。</li>
+</ul>
+<p><img src="/2023/03/29/%E3%80%8A%E8%B4%A7%E5%B8%81%E9%87%91%E8%9E%8D%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%B8%80%E7%AB%A0/Dow_Jones_Industrial_Average.png" alt="DJIA"></p>
+<ul>
+<li><p><strong><u>道琼斯工业指数</u></strong>(Dow Jones Industrial Average, DJIA)是由华尔街日报和道琼斯公司创建者查尔斯·道创造的几种股票市场指数之一。这个指数作为测量美国股票市场上工业构成的发展，是最悠久的美国市场指数之一。 平均指数包括美国30家最大、最知名的上市公司，具体名单可参见<a href="https://en.wikipedia.org/wiki/Dow_Jones_Industrial_Average">wiki</a>。</p>
+</li>
+<li><p>股票价格所带来的影响：</p>
+<ul>
+<li><p><strong>对个人来说：</strong>股票价格的巨大波动通过影响投资者的财富规模而作用于他们的支出意愿，<em>这句话是说股票涨了人们消费意愿更高吗？</em></p>
+</li>
+<li><p><strong>对企业来说：</strong>股票价格能够影响企业通过发行股票<strong>筹集到的资金规模</strong>，<strong>决定了他们用于投资的支出</strong>。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-为什么研究金融机构和银行"><a href="#2-为什么研究金融机构和银行" class="headerlink" title="2. 为什么研究金融机构和银行"></a>2. 为什么研究金融机构和银行</h2><p><strong>银行和其它金融机构</strong>是金融市场能够运行的关键所在，他们将资金从储蓄者向有生产性投资机会的人转移。</p>
+<h3 id="2-1-金融体系的结构"><a href="#2-1-金融体系的结构" class="headerlink" title="2.1. 金融体系的结构"></a>2.1. 金融体系的结构</h3><ul>
+<li>金融体系是由<strong><u>银行、保险公司、共同基金、财务公司、投资银行</u></strong>等不同类型的<strong>私人金融机构</strong>构成的复杂系统，换句话说，金融体系由若干金融机构组成。<ul>
+<li>金融机构需要被政府严格监管，也体现了政治与金融体系最直接的联系。</li>
+</ul>
+</li>
+<li>这里提到了<strong><u>金融中介(financial intermediaries)</u></strong>。<ul>
+<li>金融中介很关键，第八章会有详细介绍。</li>
+<li>看后文好像金融机构就是金融中介？这两个概念有点纠缠，留个坑。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-2-银行与其它金融机构"><a href="#2-2-银行与其它金融机构" class="headerlink" title="2.2. 银行与其它金融机构"></a>2.2. 银行与其它金融机构</h3><ul>
+<li><strong>银行(bank)</strong>是<strong><u>吸收存款</u></strong>和<strong><u>发放贷款</u></strong>的金融机构。<ul>
+<li>细分为：<strong>商业银行</strong>、<strong>储蓄与贷款协会</strong>、<strong>互助储蓄银行</strong>与<strong>信用社</strong>。</li>
+<li>银行是经济中<strong>规模最大</strong>的金融中介机构（①中介？②规模？）。</li>
+</ul>
+</li>
+<li><p>其它金融机构也很重要，比如：<strong>保险公司</strong>、<strong>财务公司</strong>、<strong>养老基金</strong>、<strong>共同基金</strong>和<strong>投资银行</strong>（投资银行和银行有什么区别？），甚至发展势头远超银行。</p>
+</li>
+<li><p>第9章会介绍银行和金融机构为了获取利润是如何管理它们的资产和负债的。</p>
+</li>
+</ul>
+<h3 id="2-3-金融创新"><a href="#2-3-金融创新" class="headerlink" title="2.3. 金融创新"></a>2.3. 金融创新</h3><ul>
+<li><strong>金融创新(financial innovation)</strong>，指新的金融产品和服务的发展。<ul>
+<li><strong>电子金融(e-financial)</strong>，关注信息技术如何激发出新的金融产品，并促进金融服务以电子化设备的方式提供给广大客户。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-4-金融危机"><a href="#2-4-金融危机" class="headerlink" title="2.4. 金融危机"></a>2.4. 金融危机</h3><ul>
+<li><p><strong>金融危机(financial crisis)</strong>，是指金融市场出现混乱，伴随着<strong><u>资产价格的暴跌</u></strong>以及<strong><u>众多金融机构和非金融机构的破产</u></strong>，<strong><u>经济周期下滑会随之而来</u></strong>。</p>
+<ul>
+<li>是资本主义经济体的重要特征。</li>
+<li>2007年8月开始，美国爆发了大萧条以来最严重的金融危机。</li>
+</ul>
+</li>
+<li><p>补充：<strong>经济周期(business cycle, 又称商业周期、经济循环，台湾称景气循环)</strong></p>
+<ul>
+<li><a href="https://zh.wikipedia.org/zh-cn/景氣循環">中文维基</a>：是国内生产总值（GDP）在其长期增长趋势附近的上下移动。经济周期的长度是指包含一次繁荣和收缩的时间段。这些波动通常包含相对快速的经济增长时期（扩张或繁荣）和相对停滞或下降时期（收缩或衰退）之间的变化。</li>
+<li><a href="https://en.wikipedia.org/wiki/Business_cycle">英文维基</a>：Business cycles are intervals of <strong><u>expansion</u></strong> followed by <strong><u>recession</u></strong> in economic activity.</li>
+<li>讲货币的时候提到：<strong>产出上升时，找工作相对容易；产出下滑时，找工作则会比较困难</strong>。</li>
+<li>这一理论不一定符合实际，且有一定的历史背景，被众多学者探讨过，在此不展开，留作坑。</li>
+<li><img src="/2023/03/29/%E3%80%8A%E8%B4%A7%E5%B8%81%E9%87%91%E8%9E%8D%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%B8%80%E7%AB%A0/Business_cycle.jpg" alt="经济周期的各个阶段"></li>
+<li><img src="/2023/03/29/%E3%80%8A%E8%B4%A7%E5%B8%81%E9%87%91%E8%9E%8D%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%B8%80%E7%AB%A0/1920px-The_Forces_of_the_Business_Cycle,_1922.jpg" alt="根据马尔科姆·罗蒂划分的1922年的商业周期中的四个阶段"></li>
+</ul>
+</li>
+</ul>
+<h2 id="3-为什么研究货币和货币政策"><a href="#3-为什么研究货币和货币政策" class="headerlink" title="3. 为什么研究货币和货币政策"></a>3. 为什么研究货币和货币政策</h2><ul>
+<li><strong>货币(money)</strong>，也称<strong>货币供给(money supply)</strong>，是在商品或服务支付以及债务偿还中被广泛接受的东西。</li>
+</ul>
+<h3 id="3-1-货币与经济周期"><a href="#3-1-货币与经济周期" class="headerlink" title="3.1. 货币与经济周期"></a>3.1. 货币与经济周期</h3><ul>
+<li>几个概念：<ul>
+<li><strong><u>总产出(aggregate output)</u></strong>：经济中商品与服务的生产总量。（如何度量？）<ul>
+<li><strong><u>国内生产总值(gross domestic product, GDP)</u></strong>，指的是一个国家在一年内所生产的所有最终产品和服务的市场价值（中间产品不算在内，因为其在生产最终产品的过程中已经被消耗殆尽）。<strong>是最常使用的总产出的指标</strong>。<ul>
+<li>名义量与实际量的区别：以现行价格水平计算GDP时，称为名义GDP，当所有价格都上升了1倍，则名义GDP也上升1倍，没什么用；一般用<strong><u>基年（通常为2005年，中国成为基期，目前2023年以2015年为基期）</u></strong>的价格计算，称为<strong><u>实际GDP</u></strong>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>总收入(aggregate income)</strong>：在一年内<strong>生产要素(factors of production, 土地、劳动力和资本)</strong>在生产产品和服务的过程中所获得的全部收入。<ul>
+<li>总产出和总收入是相等的。</li>
+</ul>
+</li>
+<li><strong>失业率(unemployment rate)</strong>：可供雇佣的劳动力中未就业的比率。</li>
+</ul>
+</li>
+<li>货币在经济周期的形成过程中扮演了十分重要的角色。<ul>
+<li>第19~25章介绍<strong>货币供给</strong>和<strong>货币政策</strong>如何作用于总产出的。</li>
+<li>什么是<strong><u>货币增长率</u></strong>？</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-2-货币与通货膨胀"><a href="#3-2-货币与通货膨胀" class="headerlink" title="3.2. 货币与通货膨胀"></a>3.2. 货币与通货膨胀</h3><p><strong><u>结论：货币的持续增长与通货膨胀之间存在密切的关系（不能断言为因果）。</u></strong></p>
+<p>以下描述通货膨胀（第一章附录）</p>
+<h4 id="3-2-1-物价总水平"><a href="#3-2-1-物价总水平" class="headerlink" title="3.2.1. 物价总水平"></a>3.2.1. 物价总水平</h4><p>本章中定义为经济社会中平均价格的指标，一般有三种指标：</p>
+<ul>
+<li>一是<strong><u>GDP平减指数(GDP deflator)</u></strong>，定义为名义GDP除以实际GDP。<ul>
+<li>平减，或者deflator，意味着可比性，以同样的基准进行修正。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>二是<strong><u>个人消费支出平减指数(PCE deflator)</u></strong>，定义为名义个人消费支出除以实际个人消费支出，是美联储官员通常关注的指标，为什么？。</li>
+<li>三是<strong><u>消费者物价指数(consumer price index, CPI)</u></strong>，是轩轩之前留下并且填起的坑，通过给一个典型城市家庭所购买的一揽子（一篮子？）产品和服务定价，可以得到消费者物价指数。</li>
+</ul>
+<p>三个物价总水平的表示方法本质上都是相同数量和质量产品下，购买之需要花费的货币数量与基期的比值，区别<strong><u>在于尺度的不同，GDP尺度是宏观尺度（某种意义上可以理解为平均尺度），PCE尺度是微观尺度（个人），CPI尺度是家庭或者中观尺度。</u></strong></p>
+<ul>
+<li>同样相反地，物价总水平可以将名义和实际变量相互转换。</li>
+</ul>
+<h4 id="3-2-2-增长率与通货膨胀率"><a href="#3-2-2-增长率与通货膨胀率" class="headerlink" title="3.2.2. 增长率与通货膨胀率"></a>3.2.2. 增长率与通货膨胀率</h4><ul>
+<li>增长率好理解，就是一个变量（如GDP）变动的百分比。</li>
+</ul>
+<script type="math/tex; mode=display">
+x_{growth\space rate}=\frac{x_t-x_{t-1}}{x_{t-1}}\times100\%</script><ul>
+<li><strong><u>通货膨胀率</u></strong>，被定义为物价总水平的增长率。</li>
+<li>计算不到一年的增长率，通常会将其转化为年化的数据，即按照当前的发展势头，今年最终的增长率。</li>
+</ul>
+<h4 id="3-2-3-计算我国的物价总水平指数（以GDP-deflator和CPI为例）和M2货币供应量之间的关系"><a href="#3-2-3-计算我国的物价总水平指数（以GDP-deflator和CPI为例）和M2货币供应量之间的关系" class="headerlink" title="3.2.3. 计算我国的物价总水平指数（以GDP deflator和CPI为例）和M2货币供应量之间的关系"></a>3.2.3. 计算我国的物价总水平指数（以GDP deflator和CPI为例）和M2货币供应量之间的关系</h4><p><img src="/2023/03/29/%E3%80%8A%E8%B4%A7%E5%B8%81%E9%87%91%E8%9E%8D%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%B8%80%E7%AB%A0/m2gdpdeflatorcpi.png" alt="m2gdpdeflatorcpi"></p>
+<ul>
+<li><strong>注意：国家统计局的“国内生产总值”数据为名义数据，“国内生产总值指数”应该为实际量。</strong></li>
+</ul>
+<h3 id="3-3-货币与利率"><a href="#3-3-货币与利率" class="headerlink" title="3.3. 货币与利率"></a>3.3. 货币与利率</h3><ul>
+<li>密切相关，但是关系看起来不是很明确。</li>
+</ul>
+<p><img src="/2023/03/29/%E3%80%8A%E8%B4%A7%E5%B8%81%E9%87%91%E8%9E%8D%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%B8%80%E7%AB%A0/M2和利率.png" alt="M2和利率"></p>
+<h3 id="3-4-货币政策的实施"><a href="#3-4-货币政策的实施" class="headerlink" title="3.4. 货币政策的实施"></a>3.4. 货币政策的实施</h3><p><strong>货币政策(monetary policy)</strong>是对货币和利率的管理，世界上所有的政治家和政策制定者都十分关注之。</p>
+<ul>
+<li>美国<strong>中央银行</strong>是<strong>联邦储蓄体系，简称美联储(Federal Reserve System, <em>The Fed</em> for short)</strong>。</li>
+<li>第13~16章中，探讨美联储等中央银行如何影响经济中的货币数量和利率。</li>
+</ul>
+<h3 id="3-5-财政政策与货币政策"><a href="#3-5-财政政策与货币政策" class="headerlink" title="3.5. 财政政策与货币政策"></a>3.5. 财政政策与货币政策</h3><p><strong>财政政策(fiscal policy)</strong>是有关政府支出和税收的决策。</p>
+<ul>
+<li><strong>预算赤字(budget deficit)</strong>，是指在一个特定的时间段内，通常是一年，政府支出超过税收收入的差额。</li>
+<li><strong>预算盈余(budget surplus)</strong>，反之。</li>
+<li>书中给出了美国自1950年来的预算盈余或赤字栈国内生产总值的比率，中国的数据在统计年鉴中的财政板块，占GDP比重在下图中给出。</li>
+</ul>
+<p><img src="/2023/03/29/%E3%80%8A%E8%B4%A7%E5%B8%81%E9%87%91%E8%9E%8D%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%B8%80%E7%AB%A0/Budget.png" alt="Budget surplus or deficit"></p>
+<h2 id="4-为什么研究国际金融"><a href="#4-为什么研究国际金融" class="headerlink" title="4. 为什么研究国际金融"></a>4. 为什么研究国际金融</h2><h3 id="4-1-外汇市场"><a href="#4-1-外汇市场" class="headerlink" title="4.1. 外汇市场"></a>4.1. 外汇市场</h3><ul>
+<li>跨国转移的资金必须由流出国的货币兑换为流入国的货币。</li>
+</ul>
+<p><strong>外汇市场(foreign exchange)</strong>，是货币兑换的场所，因此是资金跨国转移的中介市场。（又出现中介了）</p>
+<ul>
+<li>它是<strong>汇率(foreign exchange rate)</strong>的决定场所。</li>
+</ul>
+<p>汇率的波动会影响什么？</p>
+<ul>
+<li>汇率的变动会影响<strong>进口成本</strong>，对消费者影响是十分直接的：</li>
+<li><strong>美元汇率的下降意味着外国商品更加昂贵，出国度假的成本更高，削弱公众消费外国商品和服务的欲望，同时增加对本国商品的消费。</strong></li>
+<li><strong>美元汇率上升一位美国出口的商品在国际市场上更加昂贵，减少国外消费者的购买。强势的美元通过降低进口外国商品的价格，提高了美国消费者的福利，但同时冲击美国企业在国内和国际市场的产品销售，从而影响到国内就业。</strong></li>
+</ul>
+<h3 id="4-2-国际金融体系"><a href="#4-2-国际金融体系" class="headerlink" title="4.2. 国际金融体系"></a>4.2. 国际金融体系</h3><p>全球范围内巨额资本的跨国流动增强了国际金融体系对国内经济的影响。</p>
+]]></content>
+      <categories>
+        <category>经济金融</category>
+        <category>货币金融</category>
+        <category>读书笔记</category>
+        <category>Frederic Stanley Mishkin 《货币金融学》</category>
+      </categories>
+      <tags>
+        <tag>金融</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>《机器学习》第四章-决策树</title>
+    <url>/2022/05/27/%E3%80%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%8B%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%86%B3%E7%AD%96%E6%A0%91/</url>
+    <content><![CDATA[<h1 id="第四章-决策树"><a href="#第四章-决策树" class="headerlink" title="第四章 决策树"></a>第四章 决策树</h1><h2 id="4-1-决策树算法流程"><a href="#4-1-决策树算法流程" class="headerlink" title="4.1 决策树算法流程"></a>4.1 决策树算法流程</h2><p><img src="/2022/05/27/%E3%80%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%8B%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%86%B3%E7%AD%96%E6%A0%91/决策树算法.png" alt="决策树算法"></p>
+<p>说明：</p>
+<ul>
+<li>第12行应该是continue？属性a*的每一个值都要生成子节点吧！</li>
+<li>关键是第8行，从A中选择最优划分属性。</li>
+</ul>
+<h2 id="4-2-划分选择"><a href="#4-2-划分选择" class="headerlink" title="4.2 划分选择"></a>4.2 划分选择</h2><p>总目标：提高节点的纯度，本质上也反映了奥卡姆剃刀原则，即越简单的越好。</p>
+<h3 id="4-2-1-方案一：基于信息增益"><a href="#4-2-1-方案一：基于信息增益" class="headerlink" title="4.2.1 方案一：基于信息增益"></a>4.2.1 方案一：基于信息增益</h3><h4 id="信息熵："><a href="#信息熵：" class="headerlink" title="信息熵："></a>信息熵：</h4><script type="math/tex; mode=display">
+Ent(D)=-\sum_{k=1}^{|y|}p_klog_2p_k</script><p>其中，D代表当前样本，第k类样本所占的比例为$p_k$，若所有$p_k$都小于1，则$Ent(D)$取正数，假设只有一类样本，即至纯，那么信息熵为0，最小，因此也说明了信息熵越大则越杂乱越不纯。</p>
+<h4 id="信息增益："><a href="#信息增益：" class="headerlink" title="信息增益："></a>信息增益：</h4><script type="math/tex; mode=display">
+Gain(D,a) = Ent(D)-\sum_{v=1}^{V}\frac{|D^v|}{|D|}Ent(D^v)</script><p>其中，a表示用属性a对样本集D进行划分，假设属性a的取值为$a^1,a^2,…,a^V$，$D^v$表示样本D中属性a取$a^v$的样本。</p>
+<p>说明：</p>
+<ul>
+<li>信息增益对可取值较多的属性有偏好，增益率可以将一定程度上消除这种偏好。</li>
+</ul>
+<h4 id="ID3决策树："><a href="#ID3决策树：" class="headerlink" title="ID3决策树："></a>ID3决策树：</h4><p>该决策树就是用最大化信息增益为准则选取最优划分属性，然后用<a href="#4-1">4.1</a>生成决策树。</p>
+<p>ID3，Iterative Dichotomiser，迭代二分类器</p>
+<h4 id="增益率："><a href="#增益率：" class="headerlink" title="增益率："></a>增益率：</h4><script type="math/tex; mode=display">
+Gain\_ratio(D,a)=\frac{Gain(D,a)}{IV(a)}\\
+\\
+IV(a)=-\sum^V_{v=1}\frac{|D^v|}{|D|}log_2\frac{|D^v|}{|D|}</script><p>其中IV表示intrinsic value，固有值的意思，可取值较多时，IV值也较大，IV值直观上看是属性a划分的信息熵。</p>
+<h4 id="C4-5决策树："><a href="#C4-5决策树：" class="headerlink" title="C4.5决策树："></a>C4.5决策树：</h4><p>该决策树利用了增益率来消除单纯信息增益带来的多取值属性的偏好，但也不是直接使用信息增益率，因为增益率毕竟只表示增益率，消除了增益本身的影响。</p>
+<p>该决策树先从候选划分属性中找出信息增益高于平均的属性，再从总选择增益率最高的。</p>
+<p>该决策树还进行了缺失值处理，<a href="#4-4-2">4.4.2</a></p>
+<h4 id="基尼指数："><a href="#基尼指数：" class="headerlink" title="基尼指数："></a>基尼指数：</h4><script type="math/tex; mode=display">
+\begin{align}
+Gini(D)&=\sum_{k=1}^{|y|}\sum_{k'\neq k}p_kp_{k'}\\
+&=1-\sum_{k=1}^{|y|}p_k^2
+\end{align}</script><p>直观上看，Gini反映了从样本中随机抽取两个样本，其标签不一致的概率，因此Gini越小，样本集纯度越高。</p>
+<p>类似信息增益，定义基尼指数：</p>
+<script type="math/tex; mode=display">
+Gini\_index(D,a)=\sum_{v=1}^V\frac{|D^v|}{|D|}Gini(D^v)</script><h4 id="CART决策树："><a href="#CART决策树：" class="headerlink" title="CART决策树："></a>CART决策树：</h4><p>该决策树就用了基尼指数作为选择最优划分属性的标注，然后用<a href="#4-1">4.1</a>的算法生成决策树。</p>
+<h2 id="4-3-剪枝处理-pruning"><a href="#4-3-剪枝处理-pruning" class="headerlink" title="4.3 剪枝处理(pruning)"></a>4.3 剪枝处理(pruning)</h2><p>目的：划分过细导致过拟合，因此剪枝用来避免过拟合。</p>
+<h3 id="4-3-1-预剪枝-prepruning"><a href="#4-3-1-预剪枝-prepruning" class="headerlink" title="4.3.1 预剪枝(prepruning):"></a>4.3.1 预剪枝(prepruning):</h3><p>一句话描述：正式生成分支之前，可以先使用测试集来测试一下生成分支之前和之后（将分支节点当作叶节点处理，标签用占比最大的标签）的性能，有提升则进行划分，否则不划分。</p>
+<p>说明：</p>
+<ul>
+<li>优点：可以提高运算效率，节省计算资源，一定程度可以避免过拟合；</li>
+<li>缺点：“试一下”的具体操作实际为贪心策略，无法保证继续划分下去之后性能一定下降。</li>
+</ul>
+<h3 id="4-3-2-后剪枝-postpruning"><a href="#4-3-2-后剪枝-postpruning" class="headerlink" title="4.3.2 后剪枝(postpruning)"></a>4.3.2 后剪枝(postpruning)</h3><p>一句话描述：在按照规则生成决策树后，按照节点生成的反向顺序，逐一判断节点取消分支是否能提高性能，直至根节点。</p>
+<p>说明：</p>
+<ul>
+<li>优点：欠拟合风险小，泛化性能优于预剪枝（从过程上看似乎不那么贪心）。</li>
+<li>缺点：慢。</li>
+</ul>
+<h2 id="4-4-连续值与缺失值"><a href="#4-4-连续值与缺失值" class="headerlink" title="4.4 连续值与缺失值"></a>4.4 连续值与缺失值</h2><h3 id="4-4-1-连续值"><a href="#4-4-1-连续值" class="headerlink" title="4.4.1 连续值"></a>4.4.1 连续值</h3><p>即连续属性而不是离散属性。</p>
+<h4 id="基本策略——二分法"><a href="#基本策略——二分法" class="headerlink" title="基本策略——二分法:"></a>基本策略——二分法:</h4><p>将样本集中的连续属性按照从小到大的顺序排列，取一个截断点，将样本分为两类，这样就形成了分支节点。问题转化成了截断点如何选取，而这个问题同样可以用最大化信息增益来解决。</p>
+<p>说明：</p>
+<ul>
+<li>与离散属性不同，连续属性可以重复使用。</li>
+</ul>
+<h3 id="4-4-2-缺失值"><a href="#4-4-2-缺失值" class="headerlink" title="4.4.2 缺失值"></a>4.4.2 缺失值</h3><p><span id="4-4-2"> </span>就是一些样本的属性数据不完整。面对这样样本集，有两个问题要解决：①如何选择最优属性；②如何对样本划分。</p>
+<p>基本思路：赋予样本以权值。</p>
+<p>给定训练集D和属性a，令$\widetilde{D}$表示D中在a上没有样本缺失的子集。</p>
+<p>假定a有V个可取值，${a^1,a^2,…,a^V}$，令$\widetilde{D}^v$表$\widetilde{D}$中属性a取$a^v$的样本子集。</p>
+<p>令$\widetilde{D}_k$表示$\widetilde{D}$中属于第k类的样本子集。</p>
+<p>定义:</p>
+<script type="math/tex; mode=display">
+\begin{align}
+
+\rho&=\frac{\sum_{\boldsymbol{x}\in\widetilde{D}}w_{\boldsymbol{x}}}{\sum_{\boldsymbol{x}\in D}w_{\boldsymbol{x}}}\\
+\widetilde{p}_k&=\frac{\sum_{\boldsymbol{x}\in\widetilde{D}_k}w_{\boldsymbol{x}}}{\sum_{\boldsymbol{x}\in \widetilde{D}}w_{\boldsymbol{x}}},1\le k\le|y|\\
+\widetilde{r}_v&=\frac{\sum_{\boldsymbol{x}\in\widetilde{D}^v}w_{\boldsymbol{x}}}{\sum_{\boldsymbol{x}\in \widetilde{D}}w_{\boldsymbol{x}}},1\le v\le V
+
+\end{align}</script><h4 id="4-4-2-1-最优属性的选择"><a href="#4-4-2-1-最优属性的选择" class="headerlink" title="4.4.2.1 最优属性的选择"></a>4.4.2.1 最优属性的选择</h4><p>同样基于信息增益:</p>
+<script type="math/tex; mode=display">
+\begin{align}
+
+Gain(D,a)&=\rho\times Gain(\widetilde{D},a)\\
+&=\rho\times (Ent(\widetilde{D})-\sum_{v=1}^{V}\widetilde{r}_vEnt(\widetilde{D}^v))
+\end{align}</script><p>其中</p>
+<script type="math/tex; mode=display">
+Ent(\widetilde{D}) = -\sum_{k=1}^{|y|}\widetilde{p}_klog_2\widetilde{p}_k</script><h4 id="4-4-2-2-样本划分"><a href="#4-4-2-2-样本划分" class="headerlink" title="4.4.2.2 样本划分"></a>4.4.2.2 样本划分</h4><p>对有缺失值的样本，则将样本划入所有子节点，且样本权值在属性值$a^v$对应的子节点中调整为$\widetilde{r}_v$。就是相当于以不同的概率划分到对应的属性值节点中，后续选择最优属性时，$\rho$值会变大。</p>
+<h2 id="4-5-多变量决策树"><a href="#4-5-多变量决策树" class="headerlink" title="4.5 多变量决策树"></a>4.5 多变量决策树</h2><p>对决策树的思想理解很重要，是从几何的观点出发。</p>
+<p>即决策树的每一个非叶节点，都对应坐标空间的一个或多个（分支≥3时）超平面。</p>
+<p>因此有了“斜决策树”（oblique decision tree），每个非叶节点是一个形如$\sum_{i=1}^dw_ia_t=t$的线性分类器，其中权重和常数可以通过学习而得。</p>
+<h3 id="4-5-1-典型多变量决策树"><a href="#4-5-1-典型多变量决策树" class="headerlink" title="4.5.1 典型多变量决策树"></a>4.5.1 典型多变量决策树</h3><p>OC1、感知机树</p>
+<h2 id="4-6-阅读材料"><a href="#4-6-阅读材料" class="headerlink" title="4.6 阅读材料"></a>4.6 阅读材料</h2><ul>
+<li>可以拓展阅读C4.5Rule。</li>
+<li>用信息增益、增益率和基尼指数就够了，其它改进的程度不大。</li>
+<li>多变量决策树可以和神经网络、感知机结合。</li>
+<li>决策树的增量学习算法：ID4、ID5R、ITI，增量学习可以有效地降低新样本加入后的训练时间开销，适合工业化，但是多步增量学习后的模型会与基于全部数据训练而得的模型有较大差别。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>计算机技术</category>
+        <category>机器学习</category>
+        <category>读书笔记</category>
+        <category>周志华：《机器学习》</category>
+      </categories>
+      <tags>
+        <tag>机器学习</tag>
+        <tag>计算机技术</tag>
       </tags>
   </entry>
 </search>
