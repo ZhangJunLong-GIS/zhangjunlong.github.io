@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.2.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -472,19 +472,19 @@ A_{ij}=
 </ul>
 <p>根据邻接矩阵，我们可以将度的性质表示出来：</p>
 <ul>
-<li>节点的度：$k<em>i=\sum</em>{j=1}^{N}A_{ij}$<ul>
+<li>节点的度：$k_i=\sum_{j=1}^{N}A_{ij}$<ul>
 <li>对于有向图而言：<ul>
-<li>$k<em>i^{out}=\sum</em>{j=1}^{N}A_{ji}$</li>
-<li>$k<em>i^{in}=\sum</em>{j=1}^{N}A_{ij}$</li>
+<li>$k_i^{out}=\sum_{j=1}^{N}A_{ji}$</li>
+<li>$k_i^{in}=\sum_{j=1}^{N}A_{ij}$</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>总连接数：$2L=2\sum<em>{i=1}^{N}k_i^{in}=2\sum</em>{i=1}^{N}k<em>i^{out}=\sum</em>{ij}^{N}A_{ij}$</li>
+<li>总连接数：$2L=2\sum_{i=1}^{N}k_i^{in}=2\sum_{i=1}^{N}k_i^{out}=\sum_{ij}^{N}A_{ij}$</li>
 </ul>
 <p><em>邻接矩阵更重要！</em></p>
 <h1 id="2-5-真实的网络是稀疏的（Real-Networks-are-Sparse）"><a href="#2-5-真实的网络是稀疏的（Real-Networks-are-Sparse）" class="headerlink" title="2.5. 真实的网络是稀疏的（Real Networks are Sparse）"></a>2.5. 真实的网络是稀疏的（Real Networks are Sparse）</h1><p>对于一个含有$N$个节点的网络来说，如果其有向，则最大连边数为$N(N-1)$，如果其无向，则最大连边数为$\frac{N(N-1)}2$。<br>对于万维网（WWW）来说，其拥有325,729个页面，完全图需要$10^{12}$个连接，而实际上只有1,497,134个，只有不到0.000001%。</p>
-<h1 id="2-6-加权网络（Weighted-Networks）"><a href="#2-6-加权网络（Weighted-Networks）" class="headerlink" title="2.6. 加权网络（Weighted Networks）"></a>2.6. 加权网络（Weighted Networks）</h1><p>连边带权：$A<em>{ij}=w</em>{ij}$。</p>
+<h1 id="2-6-加权网络（Weighted-Networks）"><a href="#2-6-加权网络（Weighted-Networks）" class="headerlink" title="2.6. 加权网络（Weighted Networks）"></a>2.6. 加权网络（Weighted Networks）</h1><p>连边带权：$A_{ij}=w_{ij}$。</p>
 <blockquote>
 <p>麦特卡菲定律（Metcalfe’s Law）：网络构建的成本随着节点的数目线性增长，而收益却是二次曲线。<br>有一定道理，不过大多数网络是稀疏的，所以收益是线性的；同时网络中并非所有的连接都是等同的，大多数的连接很少被使用，也就是权重较低。</p>
 </blockquote>
@@ -504,11 +504,11 @@ A_{ij}=
 <li>哈密顿路径（Hamiltonian Path）指的是经过每个节点一次。<br>最短路径如何计算？</li>
 <li>路径的计算可以使用BFS广度优先算法计算；</li>
 <li>路径的数目可以通过对邻接矩阵进行乘方运算：<blockquote>
-<p><strong>命题</strong>：从节点$i$到节点$j$的距离为$d$的路径数目为$A^d<em>{ij}$，表示邻接矩阵$A$的$d$次方的第$ij$元素。<br><strong>证明：</strong><br>令$N</em>{ij}^{(d)}$表示从$i$到$j$的长度为$d$的路径数目，只需证明：$N<em>{ij}^{(d)}=A</em>{ij}^{d}$。<br>对距离$d$采用数学归纳法：<br>首先对于$d=1$，$A<em>{ij}$定义即为证明，固有$N</em>{ij}^{(1)}=A<em>{ij}^{1}$。<br>以下考虑$d\ge 2$：<br>考虑从节点$i$到节点$j$的长度为$d$的路径的最后一步，根据加法原理和乘法原理：<br>$N</em>{ij}^{(d)}=\sum<em>{k=1}^N N</em>{ik}^{(d-1)}N<em>{jk}^{(1)}=\sum</em>{k=1}^N A<em>{ik}^{d-1}A</em>{jk}^{1}=A_{ij}^{d}$<br>证毕。</p>
+<p><strong>命题</strong>：从节点$i$到节点$j$的距离为$d$的路径数目为$A^d_{ij}$，表示邻接矩阵$A$的$d$次方的第$ij$元素。<br><strong>证明：</strong><br>令$N_{ij}^{(d)}$表示从$i$到$j$的长度为$d$的路径数目，只需证明：$N_{ij}^{(d)}=A_{ij}^{d}$。<br>对距离$d$采用数学归纳法：<br>首先对于$d=1$，$A_{ij}$定义即为证明，固有$N_{ij}^{(1)}=A_{ij}^{1}$。<br>以下考虑$d\ge 2$：<br>考虑从节点$i$到节点$j$的长度为$d$的路径的最后一步，根据加法原理和乘法原理：<br>$N_{ij}^{(d)}=\sum_{k=1}^N N_{ik}^{(d-1)}N_{jk}^{(1)}=\sum_{k=1}^N A_{ik}^{d-1}A_{jk}^{1}=A_{ij}^{d}$<br>证毕。</p>
 </blockquote>
 </li>
 </ul>
-<p><strong>网络的直径（Network Diameter）</strong>：网络中两节点最短距离的最大值。<br><strong>网络的平均距离（Average Path Length）</strong>：网络中两两节点最短距离的平均值：$\langle d \rangle=\frac 1 {N(N-1)}\sum<em>{i,j=1,N;i\neq j}d</em>{ij}$<br><strong>网络的距离分布（Distance Distribution）</strong>：距离为$d$的点对的概率。</p>
+<p><strong>网络的直径（Network Diameter）</strong>：网络中两节点最短距离的最大值。<br><strong>网络的平均距离（Average Path Length）</strong>：网络中两两节点最短距离的平均值：$\langle d \rangle=\frac 1 {N(N-1)}\sum_{i,j=1,N;i\neq j}d_{ij}$<br><strong>网络的距离分布（Distance Distribution）</strong>：距离为$d$的点对的概率。</p>
 <h1 id="2-9-连通性（Connectedness）"><a href="#2-9-连通性（Connectedness）" class="headerlink" title="2.9. 连通性（Connectedness）"></a>2.9. 连通性（Connectedness）</h1><p>关注寻找网络连通分支的算法。</p>
 <h1 id="2-10-集聚系数（Clustering-Coefficient）"><a href="#2-10-集聚系数（Clustering-Coefficient）" class="headerlink" title="2.10. 集聚系数（Clustering Coefficient）"></a>2.10. 集聚系数（Clustering Coefficient）</h1><p><strong>定义</strong>：</p>
 
@@ -1150,7 +1150,7 @@ Gini\_index(D,a)=\sum_{v=1}^V\frac{|D^v|}{|D|}Gini(D^v)</script><h4 id="CART决�
 <h3 id="4-4-2-缺失值"><a href="#4-4-2-缺失值" class="headerlink" title="4.4.2 缺失值"></a>4.4.2 缺失值</h3><p><span id="4-4-2"> </span>就是一些样本的属性数据不完整。面对这样样本集，有两个问题要解决：①如何选择最优属性；②如何对样本划分。</p>
 <p>基本思路：赋予样本以权值。</p>
 <p>给定训练集D和属性a，令$\widetilde{D}$表示D中在a上没有样本缺失的子集。</p>
-<p>假定a有V个可取值，${a^1,a^2,…,a^V}$，令$\widetilde{D}^v$表$\widetilde{D}$中属性a取$a^v$的样本子集。</p>
+<p>假定a有V个可取值，$\{a^1,a^2,…,a^V\}$，令$\widetilde{D}^v$表$\widetilde{D}$中属性a取$a^v$的样本子集。</p>
 <p>令$\widetilde{D}_k$表示$\widetilde{D}$中属于第k类的样本子集。</p>
 <p>定义:</p>
 <script type="math/tex; mode=display">

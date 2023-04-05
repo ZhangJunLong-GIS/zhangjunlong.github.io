@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.2.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -27,14 +27,14 @@
 <meta property="og:site_name" content="潇洒多拉格">
 <meta property="og:description" content="第四章 决策树4.1 决策树算法流程 说明：  第12行应该是continue？属性a*的每一个值都要生成子节点吧！ 关键是第8行，从A中选择最优划分属性。  4.2 划分选择总目标：提高节点的纯度，本质上也反映了奥卡姆剃刀原则，即越简单的越好。 4.2.1 方案一：基于信息增益信息熵： Ent(D)&#x3D;-\sum_{k&#x3D;1}^{|y|}p_klog_2p_k其中，D代表当前样本，第k类样本所占的比">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.cooldragon.top/2022/05/27/%E3%80%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%8B%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%86%B3%E7%AD%96%E6%A0%91/决策树算法.png">
+<meta property="og:image" content="https://blog.cooldragon.top/2022/05/27/%E3%80%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%8B%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%86%B3%E7%AD%96%E6%A0%91/%E5%86%B3%E7%AD%96%E6%A0%91%E7%AE%97%E6%B3%95.png">
 <meta property="article:published_time" content="2022-05-27T12:38:38.000Z">
 <meta property="article:modified_time" content="2023-03-29T02:41:45.533Z">
 <meta property="article:author" content="巍耀">
 <meta property="article:tag" content="机器学习">
 <meta property="article:tag" content="计算机技术">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog.cooldragon.top/2022/05/27/%E3%80%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%8B%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%86%B3%E7%AD%96%E6%A0%91/决策树算法.png">
+<meta name="twitter:image" content="https://blog.cooldragon.top/2022/05/27/%E3%80%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%8B%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%86%B3%E7%AD%96%E6%A0%91/%E5%86%B3%E7%AD%96%E6%A0%91%E7%AE%97%E6%B3%95.png">
 
 <link rel="canonical" href="https://blog.cooldragon.top/2022/05/27/%E3%80%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%8B%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%86%B3%E7%AD%96%E6%A0%91/">
 
@@ -285,7 +285,7 @@ Gini\_index(D,a)=\sum_{v=1}^V\frac{|D^v|}{|D|}Gini(D^v)</script><h4 id="CART决�
 <h3 id="4-4-2-缺失值"><a href="#4-4-2-缺失值" class="headerlink" title="4.4.2 缺失值"></a>4.4.2 缺失值</h3><p><span id="4-4-2"> </span>就是一些样本的属性数据不完整。面对这样样本集，有两个问题要解决：①如何选择最优属性；②如何对样本划分。</p>
 <p>基本思路：赋予样本以权值。</p>
 <p>给定训练集D和属性a，令$\widetilde{D}$表示D中在a上没有样本缺失的子集。</p>
-<p>假定a有V个可取值，${a^1,a^2,…,a^V}$，令$\widetilde{D}^v$表$\widetilde{D}$中属性a取$a^v$的样本子集。</p>
+<p>假定a有V个可取值，$\{a^1,a^2,…,a^V\}$，令$\widetilde{D}^v$表$\widetilde{D}$中属性a取$a^v$的样本子集。</p>
 <p>令$\widetilde{D}_k$表示$\widetilde{D}$中属于第k类的样本子集。</p>
 <p>定义:</p>
 <script type="math/tex; mode=display">
