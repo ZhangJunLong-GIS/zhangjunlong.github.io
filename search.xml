@@ -1,317 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>《机器学习》第四章-决策树</title>
+    <url>/2022/05/27/%E3%80%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%8B%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%86%B3%E7%AD%96%E6%A0%91/</url>
+    <content><![CDATA[<h1 id="第四章-决策树"><a href="#第四章-决策树" class="headerlink" title="第四章 决策树"></a>第四章 决策树</h1><h2 id="4-1-决策树算法流程"><a href="#4-1-决策树算法流程" class="headerlink" title="4.1 决策树算法流程"></a>4.1 决策树算法流程</h2><p><img src="/2022/05/27/%E3%80%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%8B%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%86%B3%E7%AD%96%E6%A0%91/决策树算法.png" alt="决策树算法"></p>
+<p>说明：</p>
+<ul>
+<li>第12行应该是continue？属性a*的每一个值都要生成子节点吧！</li>
+<li>关键是第8行，从A中选择最优划分属性。</li>
+</ul>
+<h2 id="4-2-划分选择"><a href="#4-2-划分选择" class="headerlink" title="4.2 划分选择"></a>4.2 划分选择</h2><p>总目标：提高节点的纯度，本质上也反映了奥卡姆剃刀原则，即越简单的越好。</p>
+<h3 id="4-2-1-方案一：基于信息增益"><a href="#4-2-1-方案一：基于信息增益" class="headerlink" title="4.2.1 方案一：基于信息增益"></a>4.2.1 方案一：基于信息增益</h3><h4 id="信息熵："><a href="#信息熵：" class="headerlink" title="信息熵："></a>信息熵：</h4><script type="math/tex; mode=display">
+Ent(D)=-\sum_{k=1}^{|y|}p_klog_2p_k</script><p>其中，D代表当前样本，第k类样本所占的比例为$p_k$，若所有$p_k$都小于1，则$Ent(D)$取正数，假设只有一类样本，即至纯，那么信息熵为0，最小，因此也说明了信息熵越大则越杂乱越不纯。</p>
+<h4 id="信息增益："><a href="#信息增益：" class="headerlink" title="信息增益："></a>信息增益：</h4><script type="math/tex; mode=display">
+Gain(D,a) = Ent(D)-\sum_{v=1}^{V}\frac{|D^v|}{|D|}Ent(D^v)</script><p>其中，a表示用属性a对样本集D进行划分，假设属性a的取值为$a^1,a^2,…,a^V$，$D^v$表示样本D中属性a取$a^v$的样本。</p>
+<p>说明：</p>
+<ul>
+<li>信息增益对可取值较多的属性有偏好，增益率可以将一定程度上消除这种偏好。</li>
+</ul>
+<h4 id="ID3决策树："><a href="#ID3决策树：" class="headerlink" title="ID3决策树："></a>ID3决策树：</h4><p>该决策树就是用最大化信息增益为准则选取最优划分属性，然后用<a href="#4-1">4.1</a>生成决策树。</p>
+<p>ID3，Iterative Dichotomiser，迭代二分类器</p>
+<h4 id="增益率："><a href="#增益率：" class="headerlink" title="增益率："></a>增益率：</h4><script type="math/tex; mode=display">
+Gain\_ratio(D,a)=\frac{Gain(D,a)}{IV(a)}\\
+\\
+IV(a)=-\sum^V_{v=1}\frac{|D^v|}{|D|}log_2\frac{|D^v|}{|D|}</script><p>其中IV表示intrinsic value，固有值的意思，可取值较多时，IV值也较大，IV值直观上看是属性a划分的信息熵。</p>
+<h4 id="C4-5决策树："><a href="#C4-5决策树：" class="headerlink" title="C4.5决策树："></a>C4.5决策树：</h4><p>该决策树利用了增益率来消除单纯信息增益带来的多取值属性的偏好，但也不是直接使用信息增益率，因为增益率毕竟只表示增益率，消除了增益本身的影响。</p>
+<p>该决策树先从候选划分属性中找出信息增益高于平均的属性，再从总选择增益率最高的。</p>
+<p>该决策树还进行了缺失值处理，<a href="#4-4-2">4.4.2</a></p>
+<h4 id="基尼指数："><a href="#基尼指数：" class="headerlink" title="基尼指数："></a>基尼指数：</h4><script type="math/tex; mode=display">
+\begin{align}
+Gini(D)&=\sum_{k=1}^{|y|}\sum_{k'\neq k}p_kp_{k'}\\
+&=1-\sum_{k=1}^{|y|}p_k^2
+\end{align}</script><p>直观上看，Gini反映了从样本中随机抽取两个样本，其标签不一致的概率，因此Gini越小，样本集纯度越高。</p>
+<p>类似信息增益，定义基尼指数：</p>
+<script type="math/tex; mode=display">
+Gini\_index(D,a)=\sum_{v=1}^V\frac{|D^v|}{|D|}Gini(D^v)</script><h4 id="CART决策树："><a href="#CART决策树：" class="headerlink" title="CART决策树："></a>CART决策树：</h4><p>该决策树就用了基尼指数作为选择最优划分属性的标注，然后用<a href="#4-1">4.1</a>的算法生成决策树。</p>
+<h2 id="4-3-剪枝处理-pruning"><a href="#4-3-剪枝处理-pruning" class="headerlink" title="4.3 剪枝处理(pruning)"></a>4.3 剪枝处理(pruning)</h2><p>目的：划分过细导致过拟合，因此剪枝用来避免过拟合。</p>
+<h3 id="4-3-1-预剪枝-prepruning"><a href="#4-3-1-预剪枝-prepruning" class="headerlink" title="4.3.1 预剪枝(prepruning):"></a>4.3.1 预剪枝(prepruning):</h3><p>一句话描述：正式生成分支之前，可以先使用测试集来测试一下生成分支之前和之后（将分支节点当作叶节点处理，标签用占比最大的标签）的性能，有提升则进行划分，否则不划分。</p>
+<p>说明：</p>
+<ul>
+<li>优点：可以提高运算效率，节省计算资源，一定程度可以避免过拟合；</li>
+<li>缺点：“试一下”的具体操作实际为贪心策略，无法保证继续划分下去之后性能一定下降。</li>
+</ul>
+<h3 id="4-3-2-后剪枝-postpruning"><a href="#4-3-2-后剪枝-postpruning" class="headerlink" title="4.3.2 后剪枝(postpruning)"></a>4.3.2 后剪枝(postpruning)</h3><p>一句话描述：在按照规则生成决策树后，按照节点生成的反向顺序，逐一判断节点取消分支是否能提高性能，直至根节点。</p>
+<p>说明：</p>
+<ul>
+<li>优点：欠拟合风险小，泛化性能优于预剪枝（从过程上看似乎不那么贪心）。</li>
+<li>缺点：慢。</li>
+</ul>
+<h2 id="4-4-连续值与缺失值"><a href="#4-4-连续值与缺失值" class="headerlink" title="4.4 连续值与缺失值"></a>4.4 连续值与缺失值</h2><h3 id="4-4-1-连续值"><a href="#4-4-1-连续值" class="headerlink" title="4.4.1 连续值"></a>4.4.1 连续值</h3><p>即连续属性而不是离散属性。</p>
+<h4 id="基本策略——二分法"><a href="#基本策略——二分法" class="headerlink" title="基本策略——二分法:"></a>基本策略——二分法:</h4><p>将样本集中的连续属性按照从小到大的顺序排列，取一个截断点，将样本分为两类，这样就形成了分支节点。问题转化成了截断点如何选取，而这个问题同样可以用最大化信息增益来解决。</p>
+<p>说明：</p>
+<ul>
+<li>与离散属性不同，连续属性可以重复使用。</li>
+</ul>
+<h3 id="4-4-2-缺失值"><a href="#4-4-2-缺失值" class="headerlink" title="4.4.2 缺失值"></a>4.4.2 缺失值</h3><p><span id="4-4-2"> </span>就是一些样本的属性数据不完整。面对这样样本集，有两个问题要解决：①如何选择最优属性；②如何对样本划分。</p>
+<p>基本思路：赋予样本以权值。</p>
+<p>给定训练集D和属性a，令$\widetilde{D}$表示D中在a上没有样本缺失的子集。</p>
+<p>假定a有V个可取值，$\{a^1,a^2,…,a^V\}$，令$\widetilde{D}^v$表$\widetilde{D}$中属性a取$a^v$的样本子集。</p>
+<p>令$\widetilde{D}_k$表示$\widetilde{D}$中属于第k类的样本子集。</p>
+<p>定义:</p>
+<script type="math/tex; mode=display">
+\begin{align}
+
+\rho&=\frac{\sum_{\boldsymbol{x}\in\widetilde{D}}w_{\boldsymbol{x}}}{\sum_{\boldsymbol{x}\in D}w_{\boldsymbol{x}}}\\
+\widetilde{p}_k&=\frac{\sum_{\boldsymbol{x}\in\widetilde{D}_k}w_{\boldsymbol{x}}}{\sum_{\boldsymbol{x}\in \widetilde{D}}w_{\boldsymbol{x}}},1\le k\le|y|\\
+\widetilde{r}_v&=\frac{\sum_{\boldsymbol{x}\in\widetilde{D}^v}w_{\boldsymbol{x}}}{\sum_{\boldsymbol{x}\in \widetilde{D}}w_{\boldsymbol{x}}},1\le v\le V
+
+\end{align}</script><h4 id="4-4-2-1-最优属性的选择"><a href="#4-4-2-1-最优属性的选择" class="headerlink" title="4.4.2.1 最优属性的选择"></a>4.4.2.1 最优属性的选择</h4><p>同样基于信息增益:</p>
+<script type="math/tex; mode=display">
+\begin{align}
+
+Gain(D,a)&=\rho\times Gain(\widetilde{D},a)\\
+&=\rho\times (Ent(\widetilde{D})-\sum_{v=1}^{V}\widetilde{r}_vEnt(\widetilde{D}^v))
+\end{align}</script><p>其中</p>
+<script type="math/tex; mode=display">
+Ent(\widetilde{D}) = -\sum_{k=1}^{|y|}\widetilde{p}_klog_2\widetilde{p}_k</script><h4 id="4-4-2-2-样本划分"><a href="#4-4-2-2-样本划分" class="headerlink" title="4.4.2.2 样本划分"></a>4.4.2.2 样本划分</h4><p>对有缺失值的样本，则将样本划入所有子节点，且样本权值在属性值$a^v$对应的子节点中调整为$\widetilde{r}_v$。就是相当于以不同的概率划分到对应的属性值节点中，后续选择最优属性时，$\rho$值会变大。</p>
+<h2 id="4-5-多变量决策树"><a href="#4-5-多变量决策树" class="headerlink" title="4.5 多变量决策树"></a>4.5 多变量决策树</h2><p>对决策树的思想理解很重要，是从几何的观点出发。</p>
+<p>即决策树的每一个非叶节点，都对应坐标空间的一个或多个（分支≥3时）超平面。</p>
+<p>因此有了“斜决策树”（oblique decision tree），每个非叶节点是一个形如$\sum_{i=1}^dw_ia_t=t$的线性分类器，其中权重和常数可以通过学习而得。</p>
+<h3 id="4-5-1-典型多变量决策树"><a href="#4-5-1-典型多变量决策树" class="headerlink" title="4.5.1 典型多变量决策树"></a>4.5.1 典型多变量决策树</h3><p>OC1、感知机树</p>
+<h2 id="4-6-阅读材料"><a href="#4-6-阅读材料" class="headerlink" title="4.6 阅读材料"></a>4.6 阅读材料</h2><ul>
+<li>可以拓展阅读C4.5Rule。</li>
+<li>用信息增益、增益率和基尼指数就够了，其它改进的程度不大。</li>
+<li>多变量决策树可以和神经网络、感知机结合。</li>
+<li>决策树的增量学习算法：ID4、ID5R、ITI，增量学习可以有效地降低新样本加入后的训练时间开销，适合工业化，但是多步增量学习后的模型会与基于全部数据训练而得的模型有较大差别。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>计算机技术</category>
+        <category>机器学习</category>
+        <category>读书笔记</category>
+        <category>周志华：《机器学习》</category>
+      </categories>
+      <tags>
+        <tag>机器学习</tag>
+        <tag>计算机技术</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>欢迎！Welcome！</title>
     <url>/2023/04/04/Welcome/</url>
     <content><![CDATA[<h1 id="欢迎！Welcome！"><a href="#欢迎！Welcome！" class="headerlink" title="欢迎！Welcome！"></a>欢迎！Welcome！</h1><font size="20">哈喽，这个博客用于记录CoolDragon的一些读书笔记和浅薄思考。</font>]]></content>
-  </entry>
-  <entry>
-    <title>关于配置hexo的一些细枝末节</title>
-    <url>/2023/04/05/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEhexo%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BB%86%E6%9E%9D%E6%9C%AB%E8%8A%82/</url>
-    <content><![CDATA[<h1 id="关于配置HEXO的一些细枝末节"><a href="#关于配置HEXO的一些细枝末节" class="headerlink" title="关于配置HEXO的一些细枝末节"></a>关于配置HEXO的一些细枝末节</h1><h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>在根目录下建deploy.sh文件，里面写：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo c</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-<p>可以简便部署，运行时在git bash中输入：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sh deploy.sh</span><br></pre></td></tr></table></figure>
-<h2 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h2><p>涉及：hexo-renderer-marked包的误读、mathjax开关。</p>
-<p>参考：</p>
-<ul>
-<li><a href="https://blog.csdn.net/qq_44846324/article/details/114582328">https://blog.csdn.net/qq_44846324/article/details/114582328</a></li>
-</ul>
-<h2 id="置顶"><a href="#置顶" class="headerlink" title="置顶"></a>置顶</h2><p>涉及：hexo-generator-index的卸载以及hexo-generator-index-pin-top的安装</p>
-<p>未解决：图标问题</p>
-<p>参考：</p>
-<ul>
-<li><a href="https://www.jianshu.com/p/a9922c3ebb61">https://www.jianshu.com/p/a9922c3ebb61</a></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>HEXO</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>《货币金融学》第三章</title>
-    <url>/2023/04/05/%E3%80%8A%E8%B4%A7%E5%B8%81%E9%87%91%E8%9E%8D%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%B8%89%E7%AB%A0/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>经济金融</category>
-        <category>货币金融</category>
-        <category>读书笔记</category>
-        <category>Frederic Stanley Mishkin 《货币金融学》</category>
-      </categories>
-      <tags>
-        <tag>金融</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>巴拉巴西《网络科学》第二章</title>
-    <url>/2023/04/04/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0/</url>
-    <content><![CDATA[<p><a href="http://networksciencebook.com/chapter/2">Albert-László Barabási, Network Science, Chapter 2</a></p>
-<h1 id="2-1-哥尼斯堡七桥问题（The-Bridges-of-Konigsberg）"><a href="#2-1-哥尼斯堡七桥问题（The-Bridges-of-Konigsberg）" class="headerlink" title="2.1. 哥尼斯堡七桥问题（The Bridges of Königsberg）"></a>2.1. 哥尼斯堡七桥问题（The Bridges of Königsberg）</h1><p>不多说了，很熟悉了，配一张卫星地图，历史上的七桥问题所在的哥尼斯堡现在为俄罗斯加里宁格勒，不是德国的那个。<br><img src="/2023/04/04/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0/七桥问题.png" alt="七桥问题"></p>
-<h1 id="2-2-网络和图（Networks-and-Graphs）"><a href="#2-2-网络和图（Networks-and-Graphs）" class="headerlink" title="2.2. 网络和图（Networks and Graphs）"></a>2.2. 网络和图（Networks and Graphs）</h1><p>也比较熟悉了，二者有概念称呼上的不同：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>Network Science</th>
-<th>Graph Theory</th>
-<th>GIS</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Network</td>
-<td>Graph</td>
-<td>Polygon</td>
-</tr>
-<tr>
-<td>Node</td>
-<td>Vertex</td>
-<td>Point</td>
-</tr>
-<tr>
-<td>Link</td>
-<td>Edge</td>
-<td>Edge</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>常见的网络：</p>
-<p><table>
-    <thead>
-      <tr>
-        <th>Network</th>
-        <th>Nodes</th>
-        <th>Links</th>
-        <th>Directed / Undirected</th>
-        <th>N</th>
-        <th>L</th>
-        <th>‹K›</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Internet</td><td>Routers</td><td>Internet connections</td><td>Undirected</td><td>192,244</td><td>609,066</td><td>6.34</td>
-      </tr>
-      <tr>
-        <td>WWW</td><td>Webpages</td><td>Links</td><td>Directed</td><td>325,729</td><td>1,497,134</td><td>4.60</td>
-      </tr>
-      <tr>
-        <td>Power Grid</td><td>Power plants, transformers</td><td>Cables</td><td>Undirected</td><td>4,941</td><td>6,594</td><td>2.67</td>
-      </tr>
-      <tr>
-        <td>Mobile-Phone Calls</td><td>Subscribers</td><td>Calls</td><td>Directed</td><td>36,595</td><td>91,826</td><td>2.51</td>
-      </tr>
-      <tr>
-        <td>Email</td><td>Email addresses</td><td>Emails</td><td>Directed</td><td>57,194</td><td>103,731</td><td>1.81</td>
-      </tr>
-      <tr>
-        <td>Science Collaboration</td><td>Scientists</td><td>Co-authorships</td><td>Undirected</td><td>23,133</td><td>93,437</td><td>8.08</td>
-      </tr>
-      <tr>
-        <td>Actor Network</td><td>Actors</td><td>Co-acting</td><td>Undirected</td><td>702,388</td><td>29,397,908</td><td>83.71</td>
-      </tr>
-      <tr>
-        <td>Citation Network</td><td>Papers</td><td>Citations</td><td>Directed</td><td>449,673</td><td>4,689,479</td><td>10.43</td>
-      </tr>
-      <tr>
-        <td>E. Coli Metabolism</td><td>Metabolites</td><td>Chemical reactions</td><td>Directed</td><td>1,039</td><td>5,802</td><td>5.58</td>
-      </tr>
-      <tr>
-        <td>Protein Interactions</td><td>Proteins</td><td>Binding interactions</td><td>Undirected</td><td>2,018</td><td>2,930</td><td>2.90</td>
-      </tr>
-    </tbody>
-  </table></p>
-<h1 id="2-3-度、平均度和度分布（Degree-Average-Degree-and-Degree-Distribution）"><a href="#2-3-度、平均度和度分布（Degree-Average-Degree-and-Degree-Distribution）" class="headerlink" title="2.3. 度、平均度和度分布（Degree, Average Degree and Degree Distribution）"></a>2.3. 度、平均度和度分布（Degree, Average Degree and Degree Distribution）</h1><p>$k_i$为第$i$个节点的度。<br><strong>连接数</strong>：</p>
-<script type="math/tex; mode=display">
-L=\frac12\sum_{i=1}^Nk_i</script><p><strong>平均度</strong>：</p>
-<script type="math/tex; mode=display">
-\langle k \rangle=\frac1N\sum_{i=1}^Nk_i=\frac{2L}{N}</script><p><strong>对于有向图</strong>：</p>
-<script type="math/tex; mode=display">
-\begin{align}
-k_i=k_i^{in}+k_i^{out}\\
-L=\sum_{i=1}^Nk_i^{in}=\sum_{i=1}^Nk_i^{out}\\
-\langle k_i^{in} \rangle = \langle k_i^{out} \rangle=\frac L N
-\end{align}</script><p><strong>度分布</strong>：<br>$p_k$表示随机在网络中随机选取一个节点，它的度为$k$的概率，则满足：</p>
-<script type="math/tex; mode=display">
-\sum_{k=0}^{\infty}p_k=1</script><p><strong>则度为$k$的节点个数为</strong>：</p>
-<script type="math/tex; mode=display">
-N_k=p_kN</script><p><strong>平均度可以表示为</strong>：</p>
-<script type="math/tex; mode=display">
-\langle k \rangle=\sum_{k=0}^{\infty}kp_k</script><p><em>度分布很重要</em></p>
-<h1 id="2-4-邻接矩阵（Adjacency-Matrix）"><a href="#2-4-邻接矩阵（Adjacency-Matrix）" class="headerlink" title="2.4. 邻接矩阵（Adjacency Matrix）"></a>2.4. 邻接矩阵（Adjacency Matrix）</h1><p><strong>定义</strong>：一个图的邻接矩阵是指这样一个$N\times N$的矩阵$\pmb A$，其元素$A_{ij}$满足：</p>
-<script type="math/tex; mode=display">
-A_{ij}=
-\left \{ 
-\begin{aligned}
-1&, \space if \space there \space is \space a \space link\space  pointing\space  \pmb{from\space  node \space j \space to \space node \space i}.\\
-0&,\space if\space  nodes\space  i\space  and\space  j\space  are\space  not\space  connected\space  to\space  each\space  other.
-\end{aligned}
-\right.</script><ul>
-<li>无向图的邻接矩阵是对称的；</li>
-<li>有向图不是对称的；</li>
-<li>无自环图的邻接矩阵对角线为0。</li>
-</ul>
-<p>根据邻接矩阵，我们可以将度的性质表示出来：</p>
-<ul>
-<li>节点的度：$k_i=\sum_{j=1}^{N}A_{ij}$<ul>
-<li>对于有向图而言：<ul>
-<li>$k_i^{out}=\sum_{j=1}^{N}A_{ji}$</li>
-<li>$k_i^{in}=\sum_{j=1}^{N}A_{ij}$</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>总连接数：$2L=2\sum_{i=1}^{N}k_i^{in}=2\sum_{i=1}^{N}k_i^{out}=\sum_{ij}^{N}A_{ij}$</li>
-</ul>
-<p><em>邻接矩阵更重要！</em></p>
-<h1 id="2-5-真实的网络是稀疏的（Real-Networks-are-Sparse）"><a href="#2-5-真实的网络是稀疏的（Real-Networks-are-Sparse）" class="headerlink" title="2.5. 真实的网络是稀疏的（Real Networks are Sparse）"></a>2.5. 真实的网络是稀疏的（Real Networks are Sparse）</h1><p>对于一个含有$N$个节点的网络来说，如果其有向，则最大连边数为$N(N-1)$，如果其无向，则最大连边数为$\frac{N(N-1)}2$。<br>对于万维网（WWW）来说，其拥有325,729个页面，完全图需要$10^{12}$个连接，而实际上只有1,497,134个，只有不到0.000001%。</p>
-<h1 id="2-6-加权网络（Weighted-Networks）"><a href="#2-6-加权网络（Weighted-Networks）" class="headerlink" title="2.6. 加权网络（Weighted Networks）"></a>2.6. 加权网络（Weighted Networks）</h1><p>连边带权：$A_{ij}=w_{ij}$。</p>
-<blockquote>
-<p>麦特卡菲定律（Metcalfe’s Law）：网络构建的成本随着节点的数目线性增长，而收益却是二次曲线。<br>有一定道理，不过大多数网络是稀疏的，所以收益是线性的；同时网络中并非所有的连接都是等同的，大多数的连接很少被使用，也就是权重较低。</p>
-</blockquote>
-<h1 id="2-7-二部图（Bipartite-Networks）"><a href="#2-7-二部图（Bipartite-Networks）" class="headerlink" title="2.7. 二部图（Bipartite Networks）"></a>2.7. 二部图（Bipartite Networks）</h1><p><strong>定义</strong>：二部图是指这样的图，可以将其节点集合划分为两个不重叠的非空子集$U$和$V$，其中同一集合内的节点之间没有边相连，只有属于不同集合的节点之间可能存在边相连。</p>
-<ul>
-<li><strong>二部图的投影</strong>：二部图的投影是针对其中的一个集合的一张图，若该集合中的两个点在二部图中有公共的邻居，那么在投影中这两个点相连。</li>
-<li><img src="/2023/04/04/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0/二部图投影.jpg" alt="二部图投影"><br>人类疾病图（Human Disease Network, or deseaseome)：</li>
-<li>人类疾病图是一个二部图，两个子集分别为疾病和基因，可以投影为两个图：<ul>
-<li>疾病图：节点为疾病，两个疾病如果有边相连，就说明它们有共同的影响基因。</li>
-<li>基因图：节点为基因，如果两个基因与同一个疾病有关，则有边相连。<br><img src="/2023/04/04/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0/HumanDiseaseNetwork.jpeg" alt="HumanDiseaseNetwork"><br>类似地，可以定义<strong>多部图（multipartite networks)</strong>，比如“食谱—原料—成分”图。</li>
-</ul>
-</li>
-</ul>
-<h1 id="2-8-路径和距离"><a href="#2-8-路径和距离" class="headerlink" title="2.8. 路径和距离"></a>2.8. 路径和距离</h1><p>注意区分欧拉路径和哈密顿路径：</p>
-<ul>
-<li>欧拉路径（Eulerian Path）指的是经过每个边一次；</li>
-<li>哈密顿路径（Hamiltonian Path）指的是经过每个节点一次。<br>最短路径如何计算？</li>
-<li>路径的计算可以使用BFS广度优先算法计算；</li>
-<li>路径的数目可以通过对邻接矩阵进行乘方运算：<blockquote>
-<p><strong>命题</strong>：从节点$i$到节点$j$的距离为$d$的路径数目为$A^d_{ij}$，表示邻接矩阵$A$的$d$次方的第$ij$元素。<br><strong>证明：</strong><br>令$N_{ij}^{(d)}$表示从$i$到$j$的长度为$d$的路径数目，只需证明：$N_{ij}^{(d)}=A_{ij}^{d}$。<br>对距离$d$采用数学归纳法：<br>首先对于$d=1$，$A_{ij}$定义即为证明，固有$N_{ij}^{(1)}=A_{ij}^{1}$。<br>以下考虑$d\ge 2$：<br>考虑从节点$i$到节点$j$的长度为$d$的路径的最后一步，根据加法原理和乘法原理：<br>$N_{ij}^{(d)}=\sum_{k=1}^N N_{ik}^{(d-1)}N_{jk}^{(1)}=\sum_{k=1}^N A_{ik}^{d-1}A_{jk}^{1}=A_{ij}^{d}$<br>证毕。</p>
-</blockquote>
-</li>
-</ul>
-<p><strong>网络的直径（Network Diameter）</strong>：网络中两节点最短距离的最大值。<br><strong>网络的平均距离（Average Path Length）</strong>：网络中两两节点最短距离的平均值：$\langle d \rangle=\frac 1 {N(N-1)}\sum_{i,j=1,N;i\neq j}d_{ij}$<br><strong>网络的距离分布（Distance Distribution）</strong>：距离为$d$的点对的概率。</p>
-<h1 id="2-9-连通性（Connectedness）"><a href="#2-9-连通性（Connectedness）" class="headerlink" title="2.9. 连通性（Connectedness）"></a>2.9. 连通性（Connectedness）</h1><p>关注寻找网络连通分支的算法。</p>
-<h1 id="2-10-集聚系数（Clustering-Coefficient）"><a href="#2-10-集聚系数（Clustering-Coefficient）" class="headerlink" title="2.10. 集聚系数（Clustering Coefficient）"></a>2.10. 集聚系数（Clustering Coefficient）</h1><p><strong>定义</strong>：</p>
-]]></content>
-      <categories>
-        <category>复杂性科学</category>
-        <category>复杂网络</category>
-        <category>读书笔记</category>
-        <category>Albert-László Barabási, Network Science</category>
-      </categories>
-      <tags>
-        <tag>复杂性科学</tag>
-        <tag>复杂网络</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>巴拉巴西《网络科学》第〇章</title>
-    <url>/2023/04/03/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%B8%80%E7%AB%A0/</url>
-    <content><![CDATA[<h1 id="1-4-网络科学的特性"><a href="#1-4-网络科学的特性" class="headerlink" title="1.4. 网络科学的特性"></a>1.4. 网络科学的特性</h1><ol>
-<li><strong>多学科特性</strong>：多学科关注点不同可以催发网络科学的不同分支，如社会网络领域关注“介数中心度”；同时不同网络领域所采用的方法可以共享，如计算机网络中的图划分问题算法被应用于医药领域的疾病模块识别和大规模社会网络的社区识别。</li>
-<li><strong>数据驱动的实证特性</strong>：网络科学源于图论，但区别于之，在于网络科学的实证特性，关注的是数据、功能和效用，不满足于描述某个网络性质的抽象数学工具，而是要用真实数据进行测试，依据它在揭示系统性质和行为方面提供的洞察力来判断其价值。</li>
-<li><strong>定量和数学特性</strong>：网络科学借助了图论的形式化方法来研究网络，借助了统计物理学的概念化框架来应对随机型和追求普适的指导原则。除此之外还借助了控制论（网络的控制原理）、信息论（从不完整和有噪声的数据集中抽取信息）。</li>
-<li><strong>计算特性</strong>：借助算法、数据库管理和数据挖掘等的方法。</li>
-</ol>
-<h1 id="1-5-社会影响"><a href="#1-5-社会影响" class="headerlink" title="1.5. 社会影响"></a>1.5. 社会影响</h1><ul>
-<li>经济：从网络搜索到社交网络。</li>
-<li>健康：从药物设计到代谢工程。<ul>
-<li>描绘基因、蛋白质、代谢体和其它细胞组成成分之间相互作用的地图。</li>
-<li>网络生物学、网络医药学。</li>
-<li>细胞网络用于研制药物。<ul>
-<li>GeneGo和Genomatica</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>安全：打击犯罪<ul>
-<li>利用社交网络寻找萨达姆·侯赛因。</li>
-<li>利用手机通话网络寻找嫌疑人。</li>
-<li>军事行动背后也是网络。</li>
-<li>第一个网络课程开设在<strong>美国军事学院（西点军校）</strong>。</li>
-<li>FBI利用网络监视所有人。</li>
-</ul>
-</li>
-<li><p>传染病：从预测到对抗致命病毒</p>
-<ul>
-<li>2009对禽流感成功预测。</li>
-<li>包括社会病毒、手机病毒等也能用网络来预测。<blockquote>
-<p>Seasonal transmission potential and activity peaks of the new influenza A(H1N1): a Monte Carlo likelihood analysis based on human mobility - BMC Medicine - 2009 </p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>神经科学：绘制大脑地图</p>
-<ul>
-<li>美国国家卫生研究院在2010年启动了Connectome计划，旨在研制能够绘制哺乳动物大脑神经元级的地图。<ul>
-<li>看看nia美国，敢于挑战真正有价值的难题，我们就很少有人或者有决策者能拍板去做这些，可能是科研环境的问题吧。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>管理：揭示组织机构的内部结构<ul>
-<li>管理主要依靠正式的行政管理系统，但是人与人之间通过交流关系行程的非正式网络对于一个组织的成功起着重要的作用。</li>
-<li>准确绘制出组织内部的关系网络可以暴露出关键单元之间的潜在的交互确实，也有助于识别出将不同部门和产品连接起来的重要的任务，同时也能发现组织内部存在的管理问题。<ul>
-<li>网络的思维在管理和社交中能够让我们清晰地认识并把握全局。</li>
-</ul>
-</li>
-<li>Maven 7、Activate Networks、Orgnet等许多公司提供工具和方法来绘制出组织的真实结构。<ul>
-<li>Maven 7开发了一个Orgmapper软件，用于管理公司人员关系，分析领导力、影响力、枢纽节点、桥节点等等，感觉很高级啊，<u>留个坑</u>，之后有空了研究研究这个软件的功能。</li>
-<li><a href="https://orgmapper.com/">OrgMapper官网</a><br><img src="/2023/04/03/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%B8%80%E7%AB%A0/OrgMapper.png" alt="OrgMapper示意图"></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h1 id="1-6-科学影响"><a href="#1-6-科学影响" class="headerlink" title="1.6. 科学影响"></a>1.6. 科学影响</h1><p>在复杂性科学中的地位：</p>
-<ul>
-<li>扯远点：<ul>
-<li>20世纪六七十年代，复杂系统由三篇论文主导，分别是：<ul>
-<li>①Edward Lorenz于1963年在混沌方面的工作；</li>
-<li>②Kenneth G. Wilson提出的重整化群；</li>
-<li>③Samuel F. Edwards在自旋玻璃方面的工作。</li>
-</ul>
-</li>
-<li>20世纪八十年带，复杂系统的研究焦点转移到了模式行程上面，以下为关键工作：<ul>
-<li>①Benoit Mandelbrot发表了关于分形的著作；</li>
-<li>②Thomas Witten和Len Sander提出的受限扩散凝聚模型；</li>
-<li>③John Hopfield在神经网络方面的工作；</li>
-<li>④Per Bak、汤超和Kurt Wisenfeld在自组织临界性方面的工作。</li>
-</ul>
-</li>
-<li><u>以上的经典工作论文已经存入zotero中，闲暇时可以看看，不作为工作重点，只用来拓宽思路。</u></li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>复杂性科学</category>
-        <category>复杂网络</category>
-        <category>读书笔记</category>
-        <category>Albert-László Barabási, Network Science</category>
-      </categories>
-      <tags>
-        <tag>复杂性科学</tag>
-        <tag>复杂网络</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>《货币金融学》第二章</title>
-    <url>/2023/04/01/%E3%80%8A%E8%B4%A7%E5%B8%81%E9%87%91%E8%9E%8D%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0/</url>
-    <content><![CDATA[<h1 id="《货币金融学》第二章——"><a href="#《货币金融学》第二章——" class="headerlink" title="《货币金融学》第二章——"></a>《货币金融学》第二章——</h1><p>哈哈哈哈哈哈 hda d</p>
-<p>底阀</p>
-<p>s</p>
-]]></content>
-      <categories>
-        <category>经济金融</category>
-        <category>货币金融</category>
-        <category>读书笔记</category>
-        <category>Frederic Stanley Mishkin 《货币金融学》</category>
-      </categories>
-      <tags>
-        <tag>金融</tag>
-      </tags>
   </entry>
   <entry>
     <title>《货币金融学》第一章</title>
@@ -496,101 +286,315 @@ x_{growth\space rate}=\frac{x_t-x_{t-1}}{x_{t-1}}\times100\%</script><ul>
       </tags>
   </entry>
   <entry>
-    <title>《机器学习》第四章-决策树</title>
-    <url>/2022/05/27/%E3%80%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%8B%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%86%B3%E7%AD%96%E6%A0%91/</url>
-    <content><![CDATA[<h1 id="第四章-决策树"><a href="#第四章-决策树" class="headerlink" title="第四章 决策树"></a>第四章 决策树</h1><h2 id="4-1-决策树算法流程"><a href="#4-1-决策树算法流程" class="headerlink" title="4.1 决策树算法流程"></a>4.1 决策树算法流程</h2><p><img src="/2022/05/27/%E3%80%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%8B%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%86%B3%E7%AD%96%E6%A0%91/决策树算法.png" alt="决策树算法"></p>
-<p>说明：</p>
-<ul>
-<li>第12行应该是continue？属性a*的每一个值都要生成子节点吧！</li>
-<li>关键是第8行，从A中选择最优划分属性。</li>
+    <title>《货币金融学》第三章</title>
+    <url>/2023/04/05/%E3%80%8A%E8%B4%A7%E5%B8%81%E9%87%91%E8%9E%8D%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%B8%89%E7%AB%A0/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>经济金融</category>
+        <category>货币金融</category>
+        <category>读书笔记</category>
+        <category>Frederic Stanley Mishkin 《货币金融学》</category>
+      </categories>
+      <tags>
+        <tag>金融</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>巴拉巴西《网络科学》第〇章</title>
+    <url>/2023/04/03/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%B8%80%E7%AB%A0/</url>
+    <content><![CDATA[<h1 id="1-4-网络科学的特性"><a href="#1-4-网络科学的特性" class="headerlink" title="1.4. 网络科学的特性"></a>1.4. 网络科学的特性</h1><ol>
+<li><strong>多学科特性</strong>：多学科关注点不同可以催发网络科学的不同分支，如社会网络领域关注“介数中心度”；同时不同网络领域所采用的方法可以共享，如计算机网络中的图划分问题算法被应用于医药领域的疾病模块识别和大规模社会网络的社区识别。</li>
+<li><strong>数据驱动的实证特性</strong>：网络科学源于图论，但区别于之，在于网络科学的实证特性，关注的是数据、功能和效用，不满足于描述某个网络性质的抽象数学工具，而是要用真实数据进行测试，依据它在揭示系统性质和行为方面提供的洞察力来判断其价值。</li>
+<li><strong>定量和数学特性</strong>：网络科学借助了图论的形式化方法来研究网络，借助了统计物理学的概念化框架来应对随机型和追求普适的指导原则。除此之外还借助了控制论（网络的控制原理）、信息论（从不完整和有噪声的数据集中抽取信息）。</li>
+<li><strong>计算特性</strong>：借助算法、数据库管理和数据挖掘等的方法。</li>
+</ol>
+<h1 id="1-5-社会影响"><a href="#1-5-社会影响" class="headerlink" title="1.5. 社会影响"></a>1.5. 社会影响</h1><ul>
+<li>经济：从网络搜索到社交网络。</li>
+<li>健康：从药物设计到代谢工程。<ul>
+<li>描绘基因、蛋白质、代谢体和其它细胞组成成分之间相互作用的地图。</li>
+<li>网络生物学、网络医药学。</li>
+<li>细胞网络用于研制药物。<ul>
+<li>GeneGo和Genomatica</li>
 </ul>
-<h2 id="4-2-划分选择"><a href="#4-2-划分选择" class="headerlink" title="4.2 划分选择"></a>4.2 划分选择</h2><p>总目标：提高节点的纯度，本质上也反映了奥卡姆剃刀原则，即越简单的越好。</p>
-<h3 id="4-2-1-方案一：基于信息增益"><a href="#4-2-1-方案一：基于信息增益" class="headerlink" title="4.2.1 方案一：基于信息增益"></a>4.2.1 方案一：基于信息增益</h3><h4 id="信息熵："><a href="#信息熵：" class="headerlink" title="信息熵："></a>信息熵：</h4><script type="math/tex; mode=display">
-Ent(D)=-\sum_{k=1}^{|y|}p_klog_2p_k</script><p>其中，D代表当前样本，第k类样本所占的比例为$p_k$，若所有$p_k$都小于1，则$Ent(D)$取正数，假设只有一类样本，即至纯，那么信息熵为0，最小，因此也说明了信息熵越大则越杂乱越不纯。</p>
-<h4 id="信息增益："><a href="#信息增益：" class="headerlink" title="信息增益："></a>信息增益：</h4><script type="math/tex; mode=display">
-Gain(D,a) = Ent(D)-\sum_{v=1}^{V}\frac{|D^v|}{|D|}Ent(D^v)</script><p>其中，a表示用属性a对样本集D进行划分，假设属性a的取值为$a^1,a^2,…,a^V$，$D^v$表示样本D中属性a取$a^v$的样本。</p>
-<p>说明：</p>
-<ul>
-<li>信息增益对可取值较多的属性有偏好，增益率可以将一定程度上消除这种偏好。</li>
+</li>
 </ul>
-<h4 id="ID3决策树："><a href="#ID3决策树：" class="headerlink" title="ID3决策树："></a>ID3决策树：</h4><p>该决策树就是用最大化信息增益为准则选取最优划分属性，然后用<a href="#4-1">4.1</a>生成决策树。</p>
-<p>ID3，Iterative Dichotomiser，迭代二分类器</p>
-<h4 id="增益率："><a href="#增益率：" class="headerlink" title="增益率："></a>增益率：</h4><script type="math/tex; mode=display">
-Gain\_ratio(D,a)=\frac{Gain(D,a)}{IV(a)}\\
-\\
-IV(a)=-\sum^V_{v=1}\frac{|D^v|}{|D|}log_2\frac{|D^v|}{|D|}</script><p>其中IV表示intrinsic value，固有值的意思，可取值较多时，IV值也较大，IV值直观上看是属性a划分的信息熵。</p>
-<h4 id="C4-5决策树："><a href="#C4-5决策树：" class="headerlink" title="C4.5决策树："></a>C4.5决策树：</h4><p>该决策树利用了增益率来消除单纯信息增益带来的多取值属性的偏好，但也不是直接使用信息增益率，因为增益率毕竟只表示增益率，消除了增益本身的影响。</p>
-<p>该决策树先从候选划分属性中找出信息增益高于平均的属性，再从总选择增益率最高的。</p>
-<p>该决策树还进行了缺失值处理，<a href="#4-4-2">4.4.2</a></p>
-<h4 id="基尼指数："><a href="#基尼指数：" class="headerlink" title="基尼指数："></a>基尼指数：</h4><script type="math/tex; mode=display">
-\begin{align}
-Gini(D)&=\sum_{k=1}^{|y|}\sum_{k'\neq k}p_kp_{k'}\\
-&=1-\sum_{k=1}^{|y|}p_k^2
-\end{align}</script><p>直观上看，Gini反映了从样本中随机抽取两个样本，其标签不一致的概率，因此Gini越小，样本集纯度越高。</p>
-<p>类似信息增益，定义基尼指数：</p>
-<script type="math/tex; mode=display">
-Gini\_index(D,a)=\sum_{v=1}^V\frac{|D^v|}{|D|}Gini(D^v)</script><h4 id="CART决策树："><a href="#CART决策树：" class="headerlink" title="CART决策树："></a>CART决策树：</h4><p>该决策树就用了基尼指数作为选择最优划分属性的标注，然后用<a href="#4-1">4.1</a>的算法生成决策树。</p>
-<h2 id="4-3-剪枝处理-pruning"><a href="#4-3-剪枝处理-pruning" class="headerlink" title="4.3 剪枝处理(pruning)"></a>4.3 剪枝处理(pruning)</h2><p>目的：划分过细导致过拟合，因此剪枝用来避免过拟合。</p>
-<h3 id="4-3-1-预剪枝-prepruning"><a href="#4-3-1-预剪枝-prepruning" class="headerlink" title="4.3.1 预剪枝(prepruning):"></a>4.3.1 预剪枝(prepruning):</h3><p>一句话描述：正式生成分支之前，可以先使用测试集来测试一下生成分支之前和之后（将分支节点当作叶节点处理，标签用占比最大的标签）的性能，有提升则进行划分，否则不划分。</p>
-<p>说明：</p>
-<ul>
-<li>优点：可以提高运算效率，节省计算资源，一定程度可以避免过拟合；</li>
-<li>缺点：“试一下”的具体操作实际为贪心策略，无法保证继续划分下去之后性能一定下降。</li>
+</li>
+<li>安全：打击犯罪<ul>
+<li>利用社交网络寻找萨达姆·侯赛因。</li>
+<li>利用手机通话网络寻找嫌疑人。</li>
+<li>军事行动背后也是网络。</li>
+<li>第一个网络课程开设在<strong>美国军事学院（西点军校）</strong>。</li>
+<li>FBI利用网络监视所有人。</li>
 </ul>
-<h3 id="4-3-2-后剪枝-postpruning"><a href="#4-3-2-后剪枝-postpruning" class="headerlink" title="4.3.2 后剪枝(postpruning)"></a>4.3.2 后剪枝(postpruning)</h3><p>一句话描述：在按照规则生成决策树后，按照节点生成的反向顺序，逐一判断节点取消分支是否能提高性能，直至根节点。</p>
-<p>说明：</p>
+</li>
+<li><p>传染病：从预测到对抗致命病毒</p>
 <ul>
-<li>优点：欠拟合风险小，泛化性能优于预剪枝（从过程上看似乎不那么贪心）。</li>
-<li>缺点：慢。</li>
+<li>2009对禽流感成功预测。</li>
+<li>包括社会病毒、手机病毒等也能用网络来预测。<blockquote>
+<p>Seasonal transmission potential and activity peaks of the new influenza A(H1N1): a Monte Carlo likelihood analysis based on human mobility - BMC Medicine - 2009 </p>
+</blockquote>
+</li>
 </ul>
-<h2 id="4-4-连续值与缺失值"><a href="#4-4-连续值与缺失值" class="headerlink" title="4.4 连续值与缺失值"></a>4.4 连续值与缺失值</h2><h3 id="4-4-1-连续值"><a href="#4-4-1-连续值" class="headerlink" title="4.4.1 连续值"></a>4.4.1 连续值</h3><p>即连续属性而不是离散属性。</p>
-<h4 id="基本策略——二分法"><a href="#基本策略——二分法" class="headerlink" title="基本策略——二分法:"></a>基本策略——二分法:</h4><p>将样本集中的连续属性按照从小到大的顺序排列，取一个截断点，将样本分为两类，这样就形成了分支节点。问题转化成了截断点如何选取，而这个问题同样可以用最大化信息增益来解决。</p>
-<p>说明：</p>
+</li>
+<li><p>神经科学：绘制大脑地图</p>
 <ul>
-<li>与离散属性不同，连续属性可以重复使用。</li>
+<li>美国国家卫生研究院在2010年启动了Connectome计划，旨在研制能够绘制哺乳动物大脑神经元级的地图。<ul>
+<li>看看nia美国，敢于挑战真正有价值的难题，我们就很少有人或者有决策者能拍板去做这些，可能是科研环境的问题吧。</li>
 </ul>
-<h3 id="4-4-2-缺失值"><a href="#4-4-2-缺失值" class="headerlink" title="4.4.2 缺失值"></a>4.4.2 缺失值</h3><p><span id="4-4-2"> </span>就是一些样本的属性数据不完整。面对这样样本集，有两个问题要解决：①如何选择最优属性；②如何对样本划分。</p>
-<p>基本思路：赋予样本以权值。</p>
-<p>给定训练集D和属性a，令$\widetilde{D}$表示D中在a上没有样本缺失的子集。</p>
-<p>假定a有V个可取值，$\{a^1,a^2,…,a^V\}$，令$\widetilde{D}^v$表$\widetilde{D}$中属性a取$a^v$的样本子集。</p>
-<p>令$\widetilde{D}_k$表示$\widetilde{D}$中属于第k类的样本子集。</p>
-<p>定义:</p>
-<script type="math/tex; mode=display">
-\begin{align}
-
-\rho&=\frac{\sum_{\boldsymbol{x}\in\widetilde{D}}w_{\boldsymbol{x}}}{\sum_{\boldsymbol{x}\in D}w_{\boldsymbol{x}}}\\
-\widetilde{p}_k&=\frac{\sum_{\boldsymbol{x}\in\widetilde{D}_k}w_{\boldsymbol{x}}}{\sum_{\boldsymbol{x}\in \widetilde{D}}w_{\boldsymbol{x}}},1\le k\le|y|\\
-\widetilde{r}_v&=\frac{\sum_{\boldsymbol{x}\in\widetilde{D}^v}w_{\boldsymbol{x}}}{\sum_{\boldsymbol{x}\in \widetilde{D}}w_{\boldsymbol{x}}},1\le v\le V
-
-\end{align}</script><h4 id="4-4-2-1-最优属性的选择"><a href="#4-4-2-1-最优属性的选择" class="headerlink" title="4.4.2.1 最优属性的选择"></a>4.4.2.1 最优属性的选择</h4><p>同样基于信息增益:</p>
-<script type="math/tex; mode=display">
-\begin{align}
-
-Gain(D,a)&=\rho\times Gain(\widetilde{D},a)\\
-&=\rho\times (Ent(\widetilde{D})-\sum_{v=1}^{V}\widetilde{r}_vEnt(\widetilde{D}^v))
-\end{align}</script><p>其中</p>
-<script type="math/tex; mode=display">
-Ent(\widetilde{D}) = -\sum_{k=1}^{|y|}\widetilde{p}_klog_2\widetilde{p}_k</script><h4 id="4-4-2-2-样本划分"><a href="#4-4-2-2-样本划分" class="headerlink" title="4.4.2.2 样本划分"></a>4.4.2.2 样本划分</h4><p>对有缺失值的样本，则将样本划入所有子节点，且样本权值在属性值$a^v$对应的子节点中调整为$\widetilde{r}_v$。就是相当于以不同的概率划分到对应的属性值节点中，后续选择最优属性时，$\rho$值会变大。</p>
-<h2 id="4-5-多变量决策树"><a href="#4-5-多变量决策树" class="headerlink" title="4.5 多变量决策树"></a>4.5 多变量决策树</h2><p>对决策树的思想理解很重要，是从几何的观点出发。</p>
-<p>即决策树的每一个非叶节点，都对应坐标空间的一个或多个（分支≥3时）超平面。</p>
-<p>因此有了“斜决策树”（oblique decision tree），每个非叶节点是一个形如$\sum_{i=1}^dw_ia_t=t$的线性分类器，其中权重和常数可以通过学习而得。</p>
-<h3 id="4-5-1-典型多变量决策树"><a href="#4-5-1-典型多变量决策树" class="headerlink" title="4.5.1 典型多变量决策树"></a>4.5.1 典型多变量决策树</h3><p>OC1、感知机树</p>
-<h2 id="4-6-阅读材料"><a href="#4-6-阅读材料" class="headerlink" title="4.6 阅读材料"></a>4.6 阅读材料</h2><ul>
-<li>可以拓展阅读C4.5Rule。</li>
-<li>用信息增益、增益率和基尼指数就够了，其它改进的程度不大。</li>
-<li>多变量决策树可以和神经网络、感知机结合。</li>
-<li>决策树的增量学习算法：ID4、ID5R、ITI，增量学习可以有效地降低新样本加入后的训练时间开销，适合工业化，但是多步增量学习后的模型会与基于全部数据训练而得的模型有较大差别。</li>
+</li>
+</ul>
+</li>
+<li>管理：揭示组织机构的内部结构<ul>
+<li>管理主要依靠正式的行政管理系统，但是人与人之间通过交流关系行程的非正式网络对于一个组织的成功起着重要的作用。</li>
+<li>准确绘制出组织内部的关系网络可以暴露出关键单元之间的潜在的交互确实，也有助于识别出将不同部门和产品连接起来的重要的任务，同时也能发现组织内部存在的管理问题。<ul>
+<li>网络的思维在管理和社交中能够让我们清晰地认识并把握全局。</li>
+</ul>
+</li>
+<li>Maven 7、Activate Networks、Orgnet等许多公司提供工具和方法来绘制出组织的真实结构。<ul>
+<li>Maven 7开发了一个Orgmapper软件，用于管理公司人员关系，分析领导力、影响力、枢纽节点、桥节点等等，感觉很高级啊，<u>留个坑</u>，之后有空了研究研究这个软件的功能。</li>
+<li><a href="https://orgmapper.com/">OrgMapper官网</a><br><img src="/2023/04/03/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%B8%80%E7%AB%A0/OrgMapper.png" alt="OrgMapper示意图"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="1-6-科学影响"><a href="#1-6-科学影响" class="headerlink" title="1.6. 科学影响"></a>1.6. 科学影响</h1><p>在复杂性科学中的地位：</p>
+<ul>
+<li>扯远点：<ul>
+<li>20世纪六七十年代，复杂系统由三篇论文主导，分别是：<ul>
+<li>①Edward Lorenz于1963年在混沌方面的工作；</li>
+<li>②Kenneth G. Wilson提出的重整化群；</li>
+<li>③Samuel F. Edwards在自旋玻璃方面的工作。</li>
+</ul>
+</li>
+<li>20世纪八十年带，复杂系统的研究焦点转移到了模式行程上面，以下为关键工作：<ul>
+<li>①Benoit Mandelbrot发表了关于分形的著作；</li>
+<li>②Thomas Witten和Len Sander提出的受限扩散凝聚模型；</li>
+<li>③John Hopfield在神经网络方面的工作；</li>
+<li>④Per Bak、汤超和Kurt Wisenfeld在自组织临界性方面的工作。</li>
+</ul>
+</li>
+<li><u>以上的经典工作论文已经存入zotero中，闲暇时可以看看，不作为工作重点，只用来拓宽思路。</u></li>
+</ul>
+</li>
 </ul>
 ]]></content>
       <categories>
-        <category>计算机技术</category>
-        <category>机器学习</category>
+        <category>复杂性科学</category>
+        <category>复杂网络</category>
         <category>读书笔记</category>
-        <category>周志华：《机器学习》</category>
+        <category>Albert-László Barabási, Network Science</category>
       </categories>
       <tags>
-        <tag>机器学习</tag>
-        <tag>计算机技术</tag>
+        <tag>复杂性科学</tag>
+        <tag>复杂网络</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>《货币金融学》第二章</title>
+    <url>/2023/04/01/%E3%80%8A%E8%B4%A7%E5%B8%81%E9%87%91%E8%9E%8D%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0/</url>
+    <content><![CDATA[<h1 id="《货币金融学》第二章——"><a href="#《货币金融学》第二章——" class="headerlink" title="《货币金融学》第二章——"></a>《货币金融学》第二章——</h1><p>哈哈哈哈哈哈 hda d</p>
+<p>底阀</p>
+<p>s</p>
+]]></content>
+      <categories>
+        <category>经济金融</category>
+        <category>货币金融</category>
+        <category>读书笔记</category>
+        <category>Frederic Stanley Mishkin 《货币金融学》</category>
+      </categories>
+      <tags>
+        <tag>金融</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于配置hexo的一些细枝末节</title>
+    <url>/2023/04/05/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEhexo%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BB%86%E6%9E%9D%E6%9C%AB%E8%8A%82/</url>
+    <content><![CDATA[<h1 id="关于配置HEXO的一些细枝末节"><a href="#关于配置HEXO的一些细枝末节" class="headerlink" title="关于配置HEXO的一些细枝末节"></a>关于配置HEXO的一些细枝末节</h1><h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>在根目录下建deploy.sh文件，里面写：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo c</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<p>可以简便部署，运行时在git bash中输入：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sh deploy.sh</span><br></pre></td></tr></table></figure>
+<h2 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h2><p>涉及：hexo-renderer-marked包的误读、mathjax开关。</p>
+<p>参考：</p>
+<ul>
+<li><a href="https://blog.csdn.net/qq_44846324/article/details/114582328">https://blog.csdn.net/qq_44846324/article/details/114582328</a></li>
+</ul>
+<h2 id="置顶"><a href="#置顶" class="headerlink" title="置顶"></a>置顶</h2><p>涉及：</p>
+<ul>
+<li>hexo-generator-index的卸载以及hexo-generator-index-pin-top的安装</li>
+<li>图标问题：从\themes\next\source\lib\font-awesome\css\all.min.css中找</li>
+</ul>
+<p>未解决：图标问题</p>
+<p>参考：</p>
+<ul>
+<li><a href="https://www.jianshu.com/p/a9922c3ebb61">https://www.jianshu.com/p/a9922c3ebb61</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>HEXO</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>巴拉巴西《网络科学》第二章</title>
+    <url>/2023/04/04/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0/</url>
+    <content><![CDATA[<p><a href="http://networksciencebook.com/chapter/2">Albert-László Barabási, Network Science, Chapter 2</a></p>
+<h1 id="2-1-哥尼斯堡七桥问题（The-Bridges-of-Konigsberg）"><a href="#2-1-哥尼斯堡七桥问题（The-Bridges-of-Konigsberg）" class="headerlink" title="2.1. 哥尼斯堡七桥问题（The Bridges of Königsberg）"></a>2.1. 哥尼斯堡七桥问题（The Bridges of Königsberg）</h1><p>不多说了，很熟悉了，配一张卫星地图，历史上的七桥问题所在的哥尼斯堡现在为俄罗斯加里宁格勒，不是德国的那个。<br><img src="/2023/04/04/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0/七桥问题.png" alt="七桥问题"></p>
+<h1 id="2-2-网络和图（Networks-and-Graphs）"><a href="#2-2-网络和图（Networks-and-Graphs）" class="headerlink" title="2.2. 网络和图（Networks and Graphs）"></a>2.2. 网络和图（Networks and Graphs）</h1><p>也比较熟悉了，二者有概念称呼上的不同：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Network Science</th>
+<th>Graph Theory</th>
+<th>GIS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Network</td>
+<td>Graph</td>
+<td>Polygon</td>
+</tr>
+<tr>
+<td>Node</td>
+<td>Vertex</td>
+<td>Point</td>
+</tr>
+<tr>
+<td>Link</td>
+<td>Edge</td>
+<td>Edge</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>常见的网络：</p>
+<p><table>
+    <thead>
+      <tr>
+        <th>Network</th>
+        <th>Nodes</th>
+        <th>Links</th>
+        <th>Directed / Undirected</th>
+        <th>N</th>
+        <th>L</th>
+        <th>‹K›</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Internet</td><td>Routers</td><td>Internet connections</td><td>Undirected</td><td>192,244</td><td>609,066</td><td>6.34</td>
+      </tr>
+      <tr>
+        <td>WWW</td><td>Webpages</td><td>Links</td><td>Directed</td><td>325,729</td><td>1,497,134</td><td>4.60</td>
+      </tr>
+      <tr>
+        <td>Power Grid</td><td>Power plants, transformers</td><td>Cables</td><td>Undirected</td><td>4,941</td><td>6,594</td><td>2.67</td>
+      </tr>
+      <tr>
+        <td>Mobile-Phone Calls</td><td>Subscribers</td><td>Calls</td><td>Directed</td><td>36,595</td><td>91,826</td><td>2.51</td>
+      </tr>
+      <tr>
+        <td>Email</td><td>Email addresses</td><td>Emails</td><td>Directed</td><td>57,194</td><td>103,731</td><td>1.81</td>
+      </tr>
+      <tr>
+        <td>Science Collaboration</td><td>Scientists</td><td>Co-authorships</td><td>Undirected</td><td>23,133</td><td>93,437</td><td>8.08</td>
+      </tr>
+      <tr>
+        <td>Actor Network</td><td>Actors</td><td>Co-acting</td><td>Undirected</td><td>702,388</td><td>29,397,908</td><td>83.71</td>
+      </tr>
+      <tr>
+        <td>Citation Network</td><td>Papers</td><td>Citations</td><td>Directed</td><td>449,673</td><td>4,689,479</td><td>10.43</td>
+      </tr>
+      <tr>
+        <td>E. Coli Metabolism</td><td>Metabolites</td><td>Chemical reactions</td><td>Directed</td><td>1,039</td><td>5,802</td><td>5.58</td>
+      </tr>
+      <tr>
+        <td>Protein Interactions</td><td>Proteins</td><td>Binding interactions</td><td>Undirected</td><td>2,018</td><td>2,930</td><td>2.90</td>
+      </tr>
+    </tbody>
+  </table></p>
+<h1 id="2-3-度、平均度和度分布（Degree-Average-Degree-and-Degree-Distribution）"><a href="#2-3-度、平均度和度分布（Degree-Average-Degree-and-Degree-Distribution）" class="headerlink" title="2.3. 度、平均度和度分布（Degree, Average Degree and Degree Distribution）"></a>2.3. 度、平均度和度分布（Degree, Average Degree and Degree Distribution）</h1><p>$k_i$为第$i$个节点的度。<br><strong>连接数</strong>：</p>
+<script type="math/tex; mode=display">
+L=\frac12\sum_{i=1}^Nk_i</script><p><strong>平均度</strong>：</p>
+<script type="math/tex; mode=display">
+\langle k \rangle=\frac1N\sum_{i=1}^Nk_i=\frac{2L}{N}</script><p><strong>对于有向图</strong>：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+k_i=k_i^{in}+k_i^{out}\\
+L=\sum_{i=1}^Nk_i^{in}=\sum_{i=1}^Nk_i^{out}\\
+\langle k_i^{in} \rangle = \langle k_i^{out} \rangle=\frac L N
+\end{align}</script><p><strong>度分布</strong>：<br>$p_k$表示随机在网络中随机选取一个节点，它的度为$k$的概率，则满足：</p>
+<script type="math/tex; mode=display">
+\sum_{k=0}^{\infty}p_k=1</script><p><strong>则度为$k$的节点个数为</strong>：</p>
+<script type="math/tex; mode=display">
+N_k=p_kN</script><p><strong>平均度可以表示为</strong>：</p>
+<script type="math/tex; mode=display">
+\langle k \rangle=\sum_{k=0}^{\infty}kp_k</script><p><em>度分布很重要</em></p>
+<h1 id="2-4-邻接矩阵（Adjacency-Matrix）"><a href="#2-4-邻接矩阵（Adjacency-Matrix）" class="headerlink" title="2.4. 邻接矩阵（Adjacency Matrix）"></a>2.4. 邻接矩阵（Adjacency Matrix）</h1><p><strong>定义</strong>：一个图的邻接矩阵是指这样一个$N\times N$的矩阵$\pmb A$，其元素$A_{ij}$满足：</p>
+<script type="math/tex; mode=display">
+A_{ij}=
+\left \{ 
+\begin{aligned}
+1&, \space if \space there \space is \space a \space link\space  pointing\space  \pmb{from\space  node \space j \space to \space node \space i}.\\
+0&,\space if\space  nodes\space  i\space  and\space  j\space  are\space  not\space  connected\space  to\space  each\space  other.
+\end{aligned}
+\right.</script><ul>
+<li>无向图的邻接矩阵是对称的；</li>
+<li>有向图不是对称的；</li>
+<li>无自环图的邻接矩阵对角线为0。</li>
+</ul>
+<p>根据邻接矩阵，我们可以将度的性质表示出来：</p>
+<ul>
+<li>节点的度：$k_i=\sum_{j=1}^{N}A_{ij}$<ul>
+<li>对于有向图而言：<ul>
+<li>$k_i^{out}=\sum_{j=1}^{N}A_{ji}$</li>
+<li>$k_i^{in}=\sum_{j=1}^{N}A_{ij}$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>总连接数：$2L=2\sum_{i=1}^{N}k_i^{in}=2\sum_{i=1}^{N}k_i^{out}=\sum_{ij}^{N}A_{ij}$</li>
+</ul>
+<p><em>邻接矩阵更重要！</em></p>
+<h1 id="2-5-真实的网络是稀疏的（Real-Networks-are-Sparse）"><a href="#2-5-真实的网络是稀疏的（Real-Networks-are-Sparse）" class="headerlink" title="2.5. 真实的网络是稀疏的（Real Networks are Sparse）"></a>2.5. 真实的网络是稀疏的（Real Networks are Sparse）</h1><p>对于一个含有$N$个节点的网络来说，如果其有向，则最大连边数为$N(N-1)$，如果其无向，则最大连边数为$\frac{N(N-1)}2$。<br>对于万维网（WWW）来说，其拥有325,729个页面，完全图需要$10^{12}$个连接，而实际上只有1,497,134个，只有不到0.000001%。</p>
+<h1 id="2-6-加权网络（Weighted-Networks）"><a href="#2-6-加权网络（Weighted-Networks）" class="headerlink" title="2.6. 加权网络（Weighted Networks）"></a>2.6. 加权网络（Weighted Networks）</h1><p>连边带权：$A_{ij}=w_{ij}$。</p>
+<blockquote>
+<p>麦特卡菲定律（Metcalfe’s Law）：网络构建的成本随着节点的数目线性增长，而收益却是二次曲线。<br>有一定道理，不过大多数网络是稀疏的，所以收益是线性的；同时网络中并非所有的连接都是等同的，大多数的连接很少被使用，也就是权重较低。</p>
+</blockquote>
+<h1 id="2-7-二部图（Bipartite-Networks）"><a href="#2-7-二部图（Bipartite-Networks）" class="headerlink" title="2.7. 二部图（Bipartite Networks）"></a>2.7. 二部图（Bipartite Networks）</h1><p><strong>定义</strong>：二部图是指这样的图，可以将其节点集合划分为两个不重叠的非空子集$U$和$V$，其中同一集合内的节点之间没有边相连，只有属于不同集合的节点之间可能存在边相连。</p>
+<ul>
+<li><strong>二部图的投影</strong>：二部图的投影是针对其中的一个集合的一张图，若该集合中的两个点在二部图中有公共的邻居，那么在投影中这两个点相连。</li>
+<li><img src="/2023/04/04/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0/二部图投影.jpg" alt="二部图投影"><br>人类疾病图（Human Disease Network, or deseaseome)：</li>
+<li>人类疾病图是一个二部图，两个子集分别为疾病和基因，可以投影为两个图：<ul>
+<li>疾病图：节点为疾病，两个疾病如果有边相连，就说明它们有共同的影响基因。</li>
+<li>基因图：节点为基因，如果两个基因与同一个疾病有关，则有边相连。<br><img src="/2023/04/04/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0/HumanDiseaseNetwork.jpeg" alt="HumanDiseaseNetwork"><br>类似地，可以定义<strong>多部图（multipartite networks)</strong>，比如“食谱—原料—成分”图。</li>
+</ul>
+</li>
+</ul>
+<h1 id="2-8-路径和距离"><a href="#2-8-路径和距离" class="headerlink" title="2.8. 路径和距离"></a>2.8. 路径和距离</h1><p>注意区分欧拉路径和哈密顿路径：</p>
+<ul>
+<li>欧拉路径（Eulerian Path）指的是经过每个边一次；</li>
+<li>哈密顿路径（Hamiltonian Path）指的是经过每个节点一次。<br>最短路径如何计算？</li>
+<li>路径的计算可以使用BFS广度优先算法计算；</li>
+<li>路径的数目可以通过对邻接矩阵进行乘方运算：<blockquote>
+<p><strong>命题</strong>：从节点$i$到节点$j$的距离为$d$的路径数目为$A^d_{ij}$，表示邻接矩阵$A$的$d$次方的第$ij$元素。<br><strong>证明：</strong><br>令$N_{ij}^{(d)}$表示从$i$到$j$的长度为$d$的路径数目，只需证明：$N_{ij}^{(d)}=A_{ij}^{d}$。<br>对距离$d$采用数学归纳法：<br>首先对于$d=1$，$A_{ij}$定义即为证明，固有$N_{ij}^{(1)}=A_{ij}^{1}$。<br>以下考虑$d\ge 2$：<br>考虑从节点$i$到节点$j$的长度为$d$的路径的最后一步，根据加法原理和乘法原理：<br>$N_{ij}^{(d)}=\sum_{k=1}^N N_{ik}^{(d-1)}N_{jk}^{(1)}=\sum_{k=1}^N A_{ik}^{d-1}A_{jk}^{1}=A_{ij}^{d}$<br>证毕。</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>网络的直径（Network Diameter）</strong>：网络中两节点最短距离的最大值。<br><strong>网络的平均距离（Average Path Length）</strong>：网络中两两节点最短距离的平均值：$\langle d \rangle=\frac 1 {N(N-1)}\sum_{i,j=1,N;i\neq j}d_{ij}$<br><strong>网络的距离分布（Distance Distribution）</strong>：距离为$d$的点对的概率。</p>
+<h1 id="2-9-连通性（Connectedness）"><a href="#2-9-连通性（Connectedness）" class="headerlink" title="2.9. 连通性（Connectedness）"></a>2.9. 连通性（Connectedness）</h1><p>关注寻找网络连通分支的算法。</p>
+<h1 id="2-10-集聚系数（Clustering-Coefficient）"><a href="#2-10-集聚系数（Clustering-Coefficient）" class="headerlink" title="2.10. 集聚系数（Clustering Coefficient）"></a>2.10. 集聚系数（Clustering Coefficient）</h1><p><strong>定义</strong>：</p>
+]]></content>
+      <categories>
+        <category>复杂性科学</category>
+        <category>复杂网络</category>
+        <category>读书笔记</category>
+        <category>Albert-László Barabási, Network Science</category>
+      </categories>
+      <tags>
+        <tag>复杂性科学</tag>
+        <tag>复杂网络</tag>
       </tags>
   </entry>
 </search>
