@@ -8,7 +8,9 @@
   <entry>
     <title>关于配置hexo的一些细枝末节</title>
     <url>/2023/04/05/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEhexo%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BB%86%E6%9E%9D%E6%9C%AB%E8%8A%82/</url>
-    <content><![CDATA[<h1 id="关于配置HEXO的一些细枝末节"><a href="#关于配置HEXO的一些细枝末节" class="headerlink" title="关于配置HEXO的一些细枝末节"></a>关于配置HEXO的一些细枝末节</h1><h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>在根目录下建deploy.sh文件，里面写：</p>
+    <content><![CDATA[<h1 id="关于配置HEXO的一些细枝末节"><a href="#关于配置HEXO的一些细枝末节" class="headerlink" title="关于配置HEXO的一些细枝末节"></a>关于配置HEXO的一些细枝末节</h1><p>配置Hexo时出现了若干细致的小问题，这里记录一下，之后在新机器上配置可以参考。</p>
+<span id="more"></span>
+<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>在根目录下建deploy.sh文件，里面写：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo c</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
 <p>可以简便部署，运行时在git bash中输入：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sh deploy.sh</span><br></pre></td></tr></table></figure>
@@ -35,7 +37,8 @@
   <entry>
     <title>《货币金融学》第三章</title>
     <url>/2023/04/05/%E3%80%8A%E8%B4%A7%E5%B8%81%E9%87%91%E8%9E%8D%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%B8%89%E7%AB%A0/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<h1 id="《货币金融学》第三章"><a href="#《货币金融学》第三章" class="headerlink" title="《货币金融学》第三章"></a>《货币金融学》第三章</h1><span id="more"></span>
+]]></content>
       <categories>
         <category>经济金融</category>
         <category>货币金融</category>
@@ -49,9 +52,11 @@
   <entry>
     <title>巴拉巴西《网络科学》第二章</title>
     <url>/2023/04/04/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0/</url>
-    <content><![CDATA[<p><a href="http://networksciencebook.com/chapter/2">Albert-László Barabási, Network Science, Chapter 2</a></p>
-<h1 id="2-1-哥尼斯堡七桥问题（The-Bridges-of-Konigsberg）"><a href="#2-1-哥尼斯堡七桥问题（The-Bridges-of-Konigsberg）" class="headerlink" title="2.1. 哥尼斯堡七桥问题（The Bridges of Königsberg）"></a>2.1. 哥尼斯堡七桥问题（The Bridges of Königsberg）</h1><p>不多说了，很熟悉了，配一张卫星地图，历史上的七桥问题所在的哥尼斯堡现在为俄罗斯加里宁格勒，不是德国的那个。<br><img src="/2023/04/04/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0/七桥问题.png" alt="七桥问题"></p>
-<h1 id="2-2-网络和图（Networks-and-Graphs）"><a href="#2-2-网络和图（Networks-and-Graphs）" class="headerlink" title="2.2. 网络和图（Networks and Graphs）"></a>2.2. 网络和图（Networks and Graphs）</h1><p>也比较熟悉了，二者有概念称呼上的不同：</p>
+    <content><![CDATA[<h1 id="巴拉巴西《网络科学》第二章"><a href="#巴拉巴西《网络科学》第二章" class="headerlink" title="巴拉巴西《网络科学》第二章"></a>巴拉巴西《网络科学》第二章</h1><p><a href="http://networksciencebook.com/chapter/2">Albert-László Barabási, Network Science, Chapter 2</a></p>
+<p>第二章介绍图论，明确一些基本概念和方法，如度专题（度、平均度和度分布）、路径专题（最短路径、直径等）、邻接矩阵（很重要）和网络属性（连通性、集聚系数等）。</p>
+<span id="more"></span>
+<h2 id="2-1-哥尼斯堡七桥问题（The-Bridges-of-Konigsberg）"><a href="#2-1-哥尼斯堡七桥问题（The-Bridges-of-Konigsberg）" class="headerlink" title="2.1. 哥尼斯堡七桥问题（The Bridges of Königsberg）"></a>2.1. 哥尼斯堡七桥问题（The Bridges of Königsberg）</h2><p>不多说了，很熟悉了，配一张卫星地图，历史上的七桥问题所在的哥尼斯堡现在为俄罗斯加里宁格勒，不是德国的那个。<br><img src="/2023/04/04/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0/七桥问题.png" alt="七桥问题"></p>
+<h2 id="2-2-网络和图（Networks-and-Graphs）"><a href="#2-2-网络和图（Networks-and-Graphs）" class="headerlink" title="2.2. 网络和图（Networks and Graphs）"></a>2.2. 网络和图（Networks and Graphs）</h2><p>也比较熟悉了，二者有概念称呼上的不同：</p>
 <div class="table-container">
 <table>
 <thead>
@@ -126,7 +131,7 @@
       </tr>
     </tbody>
   </table></p>
-<h1 id="2-3-度、平均度和度分布（Degree-Average-Degree-and-Degree-Distribution）"><a href="#2-3-度、平均度和度分布（Degree-Average-Degree-and-Degree-Distribution）" class="headerlink" title="2.3. 度、平均度和度分布（Degree, Average Degree and Degree Distribution）"></a>2.3. 度、平均度和度分布（Degree, Average Degree and Degree Distribution）</h1><p>$k_i$为第$i$个节点的度。<br><strong>连接数</strong>：</p>
+<h2 id="2-3-度、平均度和度分布（Degree-Average-Degree-and-Degree-Distribution）"><a href="#2-3-度、平均度和度分布（Degree-Average-Degree-and-Degree-Distribution）" class="headerlink" title="2.3. 度、平均度和度分布（Degree, Average Degree and Degree Distribution）"></a>2.3. 度、平均度和度分布（Degree, Average Degree and Degree Distribution）</h2><p>$k_i$为第$i$个节点的度。<br><strong>连接数</strong>：</p>
 <script type="math/tex; mode=display">
 L=\frac12\sum_{i=1}^Nk_i</script><p><strong>平均度</strong>：</p>
 <script type="math/tex; mode=display">
@@ -143,7 +148,7 @@ L=\sum_{i=1}^Nk_i^{in}=\sum_{i=1}^Nk_i^{out}\\
 N_k=p_kN</script><p><strong>平均度可以表示为</strong>：</p>
 <script type="math/tex; mode=display">
 \langle k \rangle=\sum_{k=0}^{\infty}kp_k</script><p><em>度分布很重要</em></p>
-<h1 id="2-4-邻接矩阵（Adjacency-Matrix）"><a href="#2-4-邻接矩阵（Adjacency-Matrix）" class="headerlink" title="2.4. 邻接矩阵（Adjacency Matrix）"></a>2.4. 邻接矩阵（Adjacency Matrix）</h1><p><strong>定义</strong>：一个图的邻接矩阵是指这样一个$N\times N$的矩阵$\pmb A$，其元素$A_{ij}$满足：</p>
+<h2 id="2-4-邻接矩阵（Adjacency-Matrix）"><a href="#2-4-邻接矩阵（Adjacency-Matrix）" class="headerlink" title="2.4. 邻接矩阵（Adjacency Matrix）"></a>2.4. 邻接矩阵（Adjacency Matrix）</h2><p><strong>定义</strong>：一个图的邻接矩阵是指这样一个$N\times N$的矩阵$\pmb A$，其元素$A_{ij}$满足：</p>
 <script type="math/tex; mode=display">
 A_{ij}=
 \left \{ 
@@ -169,12 +174,12 @@ A_{ij}=
 <li>总连接数：$2L=2\sum_{i=1}^{N}k_i^{in}=2\sum_{i=1}^{N}k_i^{out}=\sum_{ij}^{N}A_{ij}$</li>
 </ul>
 <p><em>邻接矩阵更重要！</em></p>
-<h1 id="2-5-真实的网络是稀疏的（Real-Networks-are-Sparse）"><a href="#2-5-真实的网络是稀疏的（Real-Networks-are-Sparse）" class="headerlink" title="2.5. 真实的网络是稀疏的（Real Networks are Sparse）"></a>2.5. 真实的网络是稀疏的（Real Networks are Sparse）</h1><p>对于一个含有$N$个节点的网络来说，如果其有向，则最大连边数为$N(N-1)$，如果其无向，则最大连边数为$\frac{N(N-1)}2$。<br>对于万维网（WWW）来说，其拥有325,729个页面，完全图需要$10^{12}$个连接，而实际上只有1,497,134个，只有不到0.000001%。</p>
-<h1 id="2-6-加权网络（Weighted-Networks）"><a href="#2-6-加权网络（Weighted-Networks）" class="headerlink" title="2.6. 加权网络（Weighted Networks）"></a>2.6. 加权网络（Weighted Networks）</h1><p>连边带权：$A_{ij}=w_{ij}$。</p>
+<h2 id="2-5-真实的网络是稀疏的（Real-Networks-are-Sparse）"><a href="#2-5-真实的网络是稀疏的（Real-Networks-are-Sparse）" class="headerlink" title="2.5. 真实的网络是稀疏的（Real Networks are Sparse）"></a>2.5. 真实的网络是稀疏的（Real Networks are Sparse）</h2><p>对于一个含有$N$个节点的网络来说，如果其有向，则最大连边数为$N(N-1)$，如果其无向，则最大连边数为$\frac{N(N-1)}2$。<br>对于万维网（WWW）来说，其拥有325,729个页面，完全图需要$10^{12}$个连接，而实际上只有1,497,134个，只有不到0.000001%。</p>
+<h2 id="2-6-加权网络（Weighted-Networks）"><a href="#2-6-加权网络（Weighted-Networks）" class="headerlink" title="2.6. 加权网络（Weighted Networks）"></a>2.6. 加权网络（Weighted Networks）</h2><p>连边带权：$A_{ij}=w_{ij}$。</p>
 <blockquote>
 <p>麦特卡菲定律（Metcalfe’s Law）：网络构建的成本随着节点的数目线性增长，而收益却是二次曲线。<br>有一定道理，不过大多数网络是稀疏的，所以收益是线性的；同时网络中并非所有的连接都是等同的，大多数的连接很少被使用，也就是权重较低。</p>
 </blockquote>
-<h1 id="2-7-二部图（Bipartite-Networks）"><a href="#2-7-二部图（Bipartite-Networks）" class="headerlink" title="2.7. 二部图（Bipartite Networks）"></a>2.7. 二部图（Bipartite Networks）</h1><p><strong>定义</strong>：二部图是指这样的图，可以将其节点集合划分为两个不重叠的非空子集$U$和$V$，其中同一集合内的节点之间没有边相连，只有属于不同集合的节点之间可能存在边相连。</p>
+<h2 id="2-7-二部图（Bipartite-Networks）"><a href="#2-7-二部图（Bipartite-Networks）" class="headerlink" title="2.7. 二部图（Bipartite Networks）"></a>2.7. 二部图（Bipartite Networks）</h2><p><strong>定义</strong>：二部图是指这样的图，可以将其节点集合划分为两个不重叠的非空子集$U$和$V$，其中同一集合内的节点之间没有边相连，只有属于不同集合的节点之间可能存在边相连。</p>
 <ul>
 <li><strong>二部图的投影</strong>：二部图的投影是针对其中的一个集合的一张图，若该集合中的两个点在二部图中有公共的邻居，那么在投影中这两个点相连。</li>
 <li><img src="/2023/04/04/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0/二部图投影.jpg" alt="二部图投影"><br>人类疾病图（Human Disease Network, or deseaseome)：</li>
@@ -184,7 +189,7 @@ A_{ij}=
 </ul>
 </li>
 </ul>
-<h1 id="2-8-路径和距离"><a href="#2-8-路径和距离" class="headerlink" title="2.8. 路径和距离"></a>2.8. 路径和距离</h1><p>注意区分欧拉路径和哈密顿路径：</p>
+<h2 id="2-8-路径和距离"><a href="#2-8-路径和距离" class="headerlink" title="2.8. 路径和距离"></a>2.8. 路径和距离</h2><p>注意区分欧拉路径和哈密顿路径：</p>
 <ul>
 <li>欧拉路径（Eulerian Path）指的是经过每个边一次；</li>
 <li>哈密顿路径（Hamiltonian Path）指的是经过每个节点一次。<br>最短路径如何计算？</li>
@@ -195,8 +200,8 @@ A_{ij}=
 </li>
 </ul>
 <p><strong>网络的直径（Network Diameter）</strong>：网络中两节点最短距离的最大值。<br><strong>网络的平均距离（Average Path Length）</strong>：网络中两两节点最短距离的平均值：$\langle d \rangle=\frac 1 {N(N-1)}\sum_{i,j=1,N;i\neq j}d_{ij}$<br><strong>网络的距离分布（Distance Distribution）</strong>：距离为$d$的点对的概率。</p>
-<h1 id="2-9-连通性（Connectedness）"><a href="#2-9-连通性（Connectedness）" class="headerlink" title="2.9. 连通性（Connectedness）"></a>2.9. 连通性（Connectedness）</h1><p>关注寻找网络连通分支的算法。</p>
-<h1 id="2-10-集聚系数（Clustering-Coefficient）"><a href="#2-10-集聚系数（Clustering-Coefficient）" class="headerlink" title="2.10. 集聚系数（Clustering Coefficient）"></a>2.10. 集聚系数（Clustering Coefficient）</h1><p><strong>定义</strong>：</p>
+<h2 id="2-9-连通性（Connectedness）"><a href="#2-9-连通性（Connectedness）" class="headerlink" title="2.9. 连通性（Connectedness）"></a>2.9. 连通性（Connectedness）</h2><p>关注寻找网络连通分支的算法。</p>
+<h2 id="2-10-集聚系数（Clustering-Coefficient）"><a href="#2-10-集聚系数（Clustering-Coefficient）" class="headerlink" title="2.10. 集聚系数（Clustering Coefficient）"></a>2.10. 集聚系数（Clustering Coefficient）</h2><p><strong>定义</strong>：</p>
 ]]></content>
       <categories>
         <category>复杂性科学</category>
@@ -210,15 +215,18 @@ A_{ij}=
       </tags>
   </entry>
   <entry>
-    <title>巴拉巴西《网络科学》第〇章</title>
+    <title>巴拉巴西《网络科学》第一章</title>
     <url>/2023/04/03/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%B8%80%E7%AB%A0/</url>
-    <content><![CDATA[<h1 id="1-4-网络科学的特性"><a href="#1-4-网络科学的特性" class="headerlink" title="1.4. 网络科学的特性"></a>1.4. 网络科学的特性</h1><ol>
+    <content><![CDATA[<h1 id="巴拉巴西《网络科学》第一章"><a href="#巴拉巴西《网络科学》第一章" class="headerlink" title="巴拉巴西《网络科学》第一章"></a>巴拉巴西《网络科学》第一章</h1><p>先说下第〇章，第〇章介绍了巴拉巴西构建构建网络科学时的阻碍与历史，科研不易，做出突破性的成果，开辟开创性的工作都需要勇气和魄力，要兼备深入本质的眼光和破除万难的魄力。</p>
+<p>第一章介绍了网络科学的<strong>基本属性</strong>，以及其<strong>社会影响</strong>、<strong>科学影响</strong>等，这个学课的应用很有想象力。</p>
+<span id="more"></span>
+<h2 id="1-4-网络科学的特性"><a href="#1-4-网络科学的特性" class="headerlink" title="1.4. 网络科学的特性"></a>1.4. 网络科学的特性</h2><ol>
 <li><strong>多学科特性</strong>：多学科关注点不同可以催发网络科学的不同分支，如社会网络领域关注“介数中心度”；同时不同网络领域所采用的方法可以共享，如计算机网络中的图划分问题算法被应用于医药领域的疾病模块识别和大规模社会网络的社区识别。</li>
 <li><strong>数据驱动的实证特性</strong>：网络科学源于图论，但区别于之，在于网络科学的实证特性，关注的是数据、功能和效用，不满足于描述某个网络性质的抽象数学工具，而是要用真实数据进行测试，依据它在揭示系统性质和行为方面提供的洞察力来判断其价值。</li>
 <li><strong>定量和数学特性</strong>：网络科学借助了图论的形式化方法来研究网络，借助了统计物理学的概念化框架来应对随机型和追求普适的指导原则。除此之外还借助了控制论（网络的控制原理）、信息论（从不完整和有噪声的数据集中抽取信息）。</li>
 <li><strong>计算特性</strong>：借助算法、数据库管理和数据挖掘等的方法。</li>
 </ol>
-<h1 id="1-5-社会影响"><a href="#1-5-社会影响" class="headerlink" title="1.5. 社会影响"></a>1.5. 社会影响</h1><ul>
+<h2 id="1-5-社会影响"><a href="#1-5-社会影响" class="headerlink" title="1.5. 社会影响"></a>1.5. 社会影响</h2><ul>
 <li>经济：从网络搜索到社交网络。</li>
 <li>健康：从药物设计到代谢工程。<ul>
 <li>描绘基因、蛋白质、代谢体和其它细胞组成成分之间相互作用的地图。</li>
@@ -268,7 +276,7 @@ A_{ij}=
 </ul>
 </li>
 </ul>
-<h1 id="1-6-科学影响"><a href="#1-6-科学影响" class="headerlink" title="1.6. 科学影响"></a>1.6. 科学影响</h1><p>在复杂性科学中的地位：</p>
+<h2 id="1-6-科学影响"><a href="#1-6-科学影响" class="headerlink" title="1.6. 科学影响"></a>1.6. 科学影响</h2><p>在复杂性科学中的地位：</p>
 <ul>
 <li>扯远点：<ul>
 <li>20世纪六七十年代，复杂系统由三篇论文主导，分别是：<ul>
@@ -303,9 +311,7 @@ A_{ij}=
   <entry>
     <title>《货币金融学》第二章</title>
     <url>/2023/04/01/%E3%80%8A%E8%B4%A7%E5%B8%81%E9%87%91%E8%9E%8D%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0/</url>
-    <content><![CDATA[<h1 id="《货币金融学》第二章——"><a href="#《货币金融学》第二章——" class="headerlink" title="《货币金融学》第二章——"></a>《货币金融学》第二章——</h1><p>哈哈哈哈哈哈 hda d</p>
-<p>底阀</p>
-<p>s</p>
+    <content><![CDATA[<h1 id="《货币金融学》第二章——"><a href="#《货币金融学》第二章——" class="headerlink" title="《货币金融学》第二章——"></a>《货币金融学》第二章——</h1><span id="more"></span>
 ]]></content>
       <categories>
         <category>经济金融</category>
@@ -503,7 +509,9 @@ x_{growth\space rate}=\frac{x_t-x_{t-1}}{x_{t-1}}\times100\%</script><ul>
   <entry>
     <title>《机器学习》第四章-决策树</title>
     <url>/2022/05/27/%E3%80%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%8B%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%86%B3%E7%AD%96%E6%A0%91/</url>
-    <content><![CDATA[<h1 id="第四章-决策树"><a href="#第四章-决策树" class="headerlink" title="第四章 决策树"></a>第四章 决策树</h1><h2 id="4-1-决策树算法流程"><a href="#4-1-决策树算法流程" class="headerlink" title="4.1 决策树算法流程"></a>4.1 决策树算法流程</h2><p><img src="/2022/05/27/%E3%80%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%8B%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%86%B3%E7%AD%96%E6%A0%91/决策树算法.png" alt="决策树算法"></p>
+    <content><![CDATA[<h1 id="第四章-决策树"><a href="#第四章-决策树" class="headerlink" title="第四章 决策树"></a>第四章 决策树</h1><p>决策树是符合人类决策直觉的一种机器学习算法，直觉上很简单，但是有些自动选择的操作比较精妙。</p>
+<span id="more"></span>
+<h2 id="4-1-决策树算法流程"><a href="#4-1-决策树算法流程" class="headerlink" title="4.1 决策树算法流程"></a>4.1 决策树算法流程</h2><p><img src="/2022/05/27/%E3%80%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%8B%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%86%B3%E7%AD%96%E6%A0%91/决策树算法.png" alt="决策树算法"></p>
 <p>说明：</p>
 <ul>
 <li>第12行应该是continue？属性a*的每一个值都要生成子节点吧！</li>

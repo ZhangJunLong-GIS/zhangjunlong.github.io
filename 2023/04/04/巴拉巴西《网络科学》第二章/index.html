@@ -20,18 +20,18 @@
     var CONFIG = {"hostname":"blog.cooldragon.top","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Albert-László Barabási, Network Science, Chapter 2 2.1. 哥尼斯堡七桥问题（The Bridges of Königsberg）不多说了，很熟悉了，配一张卫星地图，历史上的七桥问题所在的哥尼斯堡现在为俄罗斯加里宁格勒，不是德国的那个。 2.2. 网络和图（Networks and Graphs）也比较熟悉了，二者有概念称呼上的不同：     N">
+  <meta name="description" content="巴拉巴西《网络科学》第二章Albert-László Barabási, Network Science, Chapter 2 第二章介绍图论，明确一些基本概念和方法，如度专题（度、平均度和度分布）、路径专题（最短路径、直径等）、邻接矩阵（很重要）和网络属性（连通性、集聚系数等）。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="巴拉巴西《网络科学》第二章">
 <meta property="og:url" content="https://blog.cooldragon.top/2023/04/04/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0/index.html">
 <meta property="og:site_name" content="潇洒多拉格">
-<meta property="og:description" content="Albert-László Barabási, Network Science, Chapter 2 2.1. 哥尼斯堡七桥问题（The Bridges of Königsberg）不多说了，很熟悉了，配一张卫星地图，历史上的七桥问题所在的哥尼斯堡现在为俄罗斯加里宁格勒，不是德国的那个。 2.2. 网络和图（Networks and Graphs）也比较熟悉了，二者有概念称呼上的不同：     N">
+<meta property="og:description" content="巴拉巴西《网络科学》第二章Albert-László Barabási, Network Science, Chapter 2 第二章介绍图论，明确一些基本概念和方法，如度专题（度、平均度和度分布）、路径专题（最短路径、直径等）、邻接矩阵（很重要）和网络属性（连通性、集聚系数等）。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog.cooldragon.top/2023/04/04/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0/%E4%B8%83%E6%A1%A5%E9%97%AE%E9%A2%98.png">
 <meta property="og:image" content="https://blog.cooldragon.top/2023/04/04/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0/%E4%BA%8C%E9%83%A8%E5%9B%BE%E6%8A%95%E5%BD%B1.jpg">
 <meta property="og:image" content="https://blog.cooldragon.top/2023/04/04/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0/HumanDiseaseNetwork.jpeg">
 <meta property="article:published_time" content="2023-04-04T13:41:00.000Z">
-<meta property="article:modified_time" content="2023-04-04T13:52:25.784Z">
+<meta property="article:modified_time" content="2023-04-05T09:42:50.187Z">
 <meta property="article:author" content="巍耀">
 <meta property="article:tag" content="复杂性科学">
 <meta property="article:tag" content="复杂网络">
@@ -190,10 +190,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2023-04-04 21:41:00 / 修改时间：21:52:25" itemprop="dateCreated datePublished" datetime="2023-04-04T21:41:00+08:00">2023-04-04</time>
+              <time title="创建时间：2023-04-04 21:41:00" itemprop="dateCreated datePublished" datetime="2023-04-04T21:41:00+08:00">2023-04-04</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-05 17:42:50" itemprop="dateModified" datetime="2023-04-05T17:42:50+08:00">2023-04-05</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -227,9 +233,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><a target="_blank" rel="noopener" href="http://networksciencebook.com/chapter/2">Albert-László Barabási, Network Science, Chapter 2</a></p>
-<h1 id="2-1-哥尼斯堡七桥问题（The-Bridges-of-Konigsberg）"><a href="#2-1-哥尼斯堡七桥问题（The-Bridges-of-Konigsberg）" class="headerlink" title="2.1. 哥尼斯堡七桥问题（The Bridges of Königsberg）"></a>2.1. 哥尼斯堡七桥问题（The Bridges of Königsberg）</h1><p>不多说了，很熟悉了，配一张卫星地图，历史上的七桥问题所在的哥尼斯堡现在为俄罗斯加里宁格勒，不是德国的那个。<br><img src="/2023/04/04/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0/七桥问题.png" alt="七桥问题"></p>
-<h1 id="2-2-网络和图（Networks-and-Graphs）"><a href="#2-2-网络和图（Networks-and-Graphs）" class="headerlink" title="2.2. 网络和图（Networks and Graphs）"></a>2.2. 网络和图（Networks and Graphs）</h1><p>也比较熟悉了，二者有概念称呼上的不同：</p>
+        <h1 id="巴拉巴西《网络科学》第二章"><a href="#巴拉巴西《网络科学》第二章" class="headerlink" title="巴拉巴西《网络科学》第二章"></a>巴拉巴西《网络科学》第二章</h1><p><a target="_blank" rel="noopener" href="http://networksciencebook.com/chapter/2">Albert-László Barabási, Network Science, Chapter 2</a></p>
+<p>第二章介绍图论，明确一些基本概念和方法，如度专题（度、平均度和度分布）、路径专题（最短路径、直径等）、邻接矩阵（很重要）和网络属性（连通性、集聚系数等）。</p>
+<span id="more"></span>
+<h2 id="2-1-哥尼斯堡七桥问题（The-Bridges-of-Konigsberg）"><a href="#2-1-哥尼斯堡七桥问题（The-Bridges-of-Konigsberg）" class="headerlink" title="2.1. 哥尼斯堡七桥问题（The Bridges of Königsberg）"></a>2.1. 哥尼斯堡七桥问题（The Bridges of Königsberg）</h2><p>不多说了，很熟悉了，配一张卫星地图，历史上的七桥问题所在的哥尼斯堡现在为俄罗斯加里宁格勒，不是德国的那个。<br><img src="/2023/04/04/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0/七桥问题.png" alt="七桥问题"></p>
+<h2 id="2-2-网络和图（Networks-and-Graphs）"><a href="#2-2-网络和图（Networks-and-Graphs）" class="headerlink" title="2.2. 网络和图（Networks and Graphs）"></a>2.2. 网络和图（Networks and Graphs）</h2><p>也比较熟悉了，二者有概念称呼上的不同：</p>
 <div class="table-container">
 <table>
 <thead>
@@ -304,7 +312,7 @@
       </tr>
     </tbody>
   </table></p>
-<h1 id="2-3-度、平均度和度分布（Degree-Average-Degree-and-Degree-Distribution）"><a href="#2-3-度、平均度和度分布（Degree-Average-Degree-and-Degree-Distribution）" class="headerlink" title="2.3. 度、平均度和度分布（Degree, Average Degree and Degree Distribution）"></a>2.3. 度、平均度和度分布（Degree, Average Degree and Degree Distribution）</h1><p>$k_i$为第$i$个节点的度。<br><strong>连接数</strong>：</p>
+<h2 id="2-3-度、平均度和度分布（Degree-Average-Degree-and-Degree-Distribution）"><a href="#2-3-度、平均度和度分布（Degree-Average-Degree-and-Degree-Distribution）" class="headerlink" title="2.3. 度、平均度和度分布（Degree, Average Degree and Degree Distribution）"></a>2.3. 度、平均度和度分布（Degree, Average Degree and Degree Distribution）</h2><p>$k_i$为第$i$个节点的度。<br><strong>连接数</strong>：</p>
 <script type="math/tex; mode=display">
 L=\frac12\sum_{i=1}^Nk_i</script><p><strong>平均度</strong>：</p>
 <script type="math/tex; mode=display">
@@ -321,7 +329,7 @@ L=\sum_{i=1}^Nk_i^{in}=\sum_{i=1}^Nk_i^{out}\\
 N_k=p_kN</script><p><strong>平均度可以表示为</strong>：</p>
 <script type="math/tex; mode=display">
 \langle k \rangle=\sum_{k=0}^{\infty}kp_k</script><p><em>度分布很重要</em></p>
-<h1 id="2-4-邻接矩阵（Adjacency-Matrix）"><a href="#2-4-邻接矩阵（Adjacency-Matrix）" class="headerlink" title="2.4. 邻接矩阵（Adjacency Matrix）"></a>2.4. 邻接矩阵（Adjacency Matrix）</h1><p><strong>定义</strong>：一个图的邻接矩阵是指这样一个$N\times N$的矩阵$\pmb A$，其元素$A_{ij}$满足：</p>
+<h2 id="2-4-邻接矩阵（Adjacency-Matrix）"><a href="#2-4-邻接矩阵（Adjacency-Matrix）" class="headerlink" title="2.4. 邻接矩阵（Adjacency Matrix）"></a>2.4. 邻接矩阵（Adjacency Matrix）</h2><p><strong>定义</strong>：一个图的邻接矩阵是指这样一个$N\times N$的矩阵$\pmb A$，其元素$A_{ij}$满足：</p>
 <script type="math/tex; mode=display">
 A_{ij}=
 \left \{ 
@@ -347,12 +355,12 @@ A_{ij}=
 <li>总连接数：$2L=2\sum_{i=1}^{N}k_i^{in}=2\sum_{i=1}^{N}k_i^{out}=\sum_{ij}^{N}A_{ij}$</li>
 </ul>
 <p><em>邻接矩阵更重要！</em></p>
-<h1 id="2-5-真实的网络是稀疏的（Real-Networks-are-Sparse）"><a href="#2-5-真实的网络是稀疏的（Real-Networks-are-Sparse）" class="headerlink" title="2.5. 真实的网络是稀疏的（Real Networks are Sparse）"></a>2.5. 真实的网络是稀疏的（Real Networks are Sparse）</h1><p>对于一个含有$N$个节点的网络来说，如果其有向，则最大连边数为$N(N-1)$，如果其无向，则最大连边数为$\frac{N(N-1)}2$。<br>对于万维网（WWW）来说，其拥有325,729个页面，完全图需要$10^{12}$个连接，而实际上只有1,497,134个，只有不到0.000001%。</p>
-<h1 id="2-6-加权网络（Weighted-Networks）"><a href="#2-6-加权网络（Weighted-Networks）" class="headerlink" title="2.6. 加权网络（Weighted Networks）"></a>2.6. 加权网络（Weighted Networks）</h1><p>连边带权：$A_{ij}=w_{ij}$。</p>
+<h2 id="2-5-真实的网络是稀疏的（Real-Networks-are-Sparse）"><a href="#2-5-真实的网络是稀疏的（Real-Networks-are-Sparse）" class="headerlink" title="2.5. 真实的网络是稀疏的（Real Networks are Sparse）"></a>2.5. 真实的网络是稀疏的（Real Networks are Sparse）</h2><p>对于一个含有$N$个节点的网络来说，如果其有向，则最大连边数为$N(N-1)$，如果其无向，则最大连边数为$\frac{N(N-1)}2$。<br>对于万维网（WWW）来说，其拥有325,729个页面，完全图需要$10^{12}$个连接，而实际上只有1,497,134个，只有不到0.000001%。</p>
+<h2 id="2-6-加权网络（Weighted-Networks）"><a href="#2-6-加权网络（Weighted-Networks）" class="headerlink" title="2.6. 加权网络（Weighted Networks）"></a>2.6. 加权网络（Weighted Networks）</h2><p>连边带权：$A_{ij}=w_{ij}$。</p>
 <blockquote>
 <p>麦特卡菲定律（Metcalfe’s Law）：网络构建的成本随着节点的数目线性增长，而收益却是二次曲线。<br>有一定道理，不过大多数网络是稀疏的，所以收益是线性的；同时网络中并非所有的连接都是等同的，大多数的连接很少被使用，也就是权重较低。</p>
 </blockquote>
-<h1 id="2-7-二部图（Bipartite-Networks）"><a href="#2-7-二部图（Bipartite-Networks）" class="headerlink" title="2.7. 二部图（Bipartite Networks）"></a>2.7. 二部图（Bipartite Networks）</h1><p><strong>定义</strong>：二部图是指这样的图，可以将其节点集合划分为两个不重叠的非空子集$U$和$V$，其中同一集合内的节点之间没有边相连，只有属于不同集合的节点之间可能存在边相连。</p>
+<h2 id="2-7-二部图（Bipartite-Networks）"><a href="#2-7-二部图（Bipartite-Networks）" class="headerlink" title="2.7. 二部图（Bipartite Networks）"></a>2.7. 二部图（Bipartite Networks）</h2><p><strong>定义</strong>：二部图是指这样的图，可以将其节点集合划分为两个不重叠的非空子集$U$和$V$，其中同一集合内的节点之间没有边相连，只有属于不同集合的节点之间可能存在边相连。</p>
 <ul>
 <li><strong>二部图的投影</strong>：二部图的投影是针对其中的一个集合的一张图，若该集合中的两个点在二部图中有公共的邻居，那么在投影中这两个点相连。</li>
 <li><img src="/2023/04/04/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0/二部图投影.jpg" alt="二部图投影"><br>人类疾病图（Human Disease Network, or deseaseome)：</li>
@@ -362,7 +370,7 @@ A_{ij}=
 </ul>
 </li>
 </ul>
-<h1 id="2-8-路径和距离"><a href="#2-8-路径和距离" class="headerlink" title="2.8. 路径和距离"></a>2.8. 路径和距离</h1><p>注意区分欧拉路径和哈密顿路径：</p>
+<h2 id="2-8-路径和距离"><a href="#2-8-路径和距离" class="headerlink" title="2.8. 路径和距离"></a>2.8. 路径和距离</h2><p>注意区分欧拉路径和哈密顿路径：</p>
 <ul>
 <li>欧拉路径（Eulerian Path）指的是经过每个边一次；</li>
 <li>哈密顿路径（Hamiltonian Path）指的是经过每个节点一次。<br>最短路径如何计算？</li>
@@ -373,8 +381,8 @@ A_{ij}=
 </li>
 </ul>
 <p><strong>网络的直径（Network Diameter）</strong>：网络中两节点最短距离的最大值。<br><strong>网络的平均距离（Average Path Length）</strong>：网络中两两节点最短距离的平均值：$\langle d \rangle=\frac 1 {N(N-1)}\sum_{i,j=1,N;i\neq j}d_{ij}$<br><strong>网络的距离分布（Distance Distribution）</strong>：距离为$d$的点对的概率。</p>
-<h1 id="2-9-连通性（Connectedness）"><a href="#2-9-连通性（Connectedness）" class="headerlink" title="2.9. 连通性（Connectedness）"></a>2.9. 连通性（Connectedness）</h1><p>关注寻找网络连通分支的算法。</p>
-<h1 id="2-10-集聚系数（Clustering-Coefficient）"><a href="#2-10-集聚系数（Clustering-Coefficient）" class="headerlink" title="2.10. 集聚系数（Clustering Coefficient）"></a>2.10. 集聚系数（Clustering Coefficient）</h1><p><strong>定义</strong>：</p>
+<h2 id="2-9-连通性（Connectedness）"><a href="#2-9-连通性（Connectedness）" class="headerlink" title="2.9. 连通性（Connectedness）"></a>2.9. 连通性（Connectedness）</h2><p>关注寻找网络连通分支的算法。</p>
+<h2 id="2-10-集聚系数（Clustering-Coefficient）"><a href="#2-10-集聚系数（Clustering-Coefficient）" class="headerlink" title="2.10. 集聚系数（Clustering Coefficient）"></a>2.10. 集聚系数（Clustering Coefficient）</h2><p><strong>定义</strong>：</p>
 
     </div>
 
@@ -394,8 +402,8 @@ A_{ij}=
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/04/03/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%B8%80%E7%AB%A0/" rel="prev" title="巴拉巴西《网络科学》第〇章">
-      <i class="fa fa-chevron-left"></i> 巴拉巴西《网络科学》第〇章
+    <a href="/2023/04/03/%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%B8%80%E7%AB%A0/" rel="prev" title="巴拉巴西《网络科学》第一章">
+      <i class="fa fa-chevron-left"></i> 巴拉巴西《网络科学》第一章
     </a></div>
       <div class="post-nav-item">
     <a href="/2023/04/04/Welcome/" rel="next" title="欢迎！Welcome！">
@@ -459,7 +467,7 @@ A_{ij}=
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2-1-%E5%93%A5%E5%B0%BC%E6%96%AF%E5%A0%A1%E4%B8%83%E6%A1%A5%E9%97%AE%E9%A2%98%EF%BC%88The-Bridges-of-Konigsberg%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">2.1. 哥尼斯堡七桥问题（The Bridges of Königsberg）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-2-%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%BE%EF%BC%88Networks-and-Graphs%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">2.2. 网络和图（Networks and Graphs）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-3-%E5%BA%A6%E3%80%81%E5%B9%B3%E5%9D%87%E5%BA%A6%E5%92%8C%E5%BA%A6%E5%88%86%E5%B8%83%EF%BC%88Degree-Average-Degree-and-Degree-Distribution%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">2.3. 度、平均度和度分布（Degree, Average Degree and Degree Distribution）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-4-%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5%EF%BC%88Adjacency-Matrix%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">2.4. 邻接矩阵（Adjacency Matrix）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-5-%E7%9C%9F%E5%AE%9E%E7%9A%84%E7%BD%91%E7%BB%9C%E6%98%AF%E7%A8%80%E7%96%8F%E7%9A%84%EF%BC%88Real-Networks-are-Sparse%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">2.5. 真实的网络是稀疏的（Real Networks are Sparse）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-6-%E5%8A%A0%E6%9D%83%E7%BD%91%E7%BB%9C%EF%BC%88Weighted-Networks%EF%BC%89"><span class="nav-number">6.</span> <span class="nav-text">2.6. 加权网络（Weighted Networks）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-7-%E4%BA%8C%E9%83%A8%E5%9B%BE%EF%BC%88Bipartite-Networks%EF%BC%89"><span class="nav-number">7.</span> <span class="nav-text">2.7. 二部图（Bipartite Networks）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-8-%E8%B7%AF%E5%BE%84%E5%92%8C%E8%B7%9D%E7%A6%BB"><span class="nav-number">8.</span> <span class="nav-text">2.8. 路径和距离</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-9-%E8%BF%9E%E9%80%9A%E6%80%A7%EF%BC%88Connectedness%EF%BC%89"><span class="nav-number">9.</span> <span class="nav-text">2.9. 连通性（Connectedness）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-10-%E9%9B%86%E8%81%9A%E7%B3%BB%E6%95%B0%EF%BC%88Clustering-Coefficient%EF%BC%89"><span class="nav-number">10.</span> <span class="nav-text">2.10. 集聚系数（Clustering Coefficient）</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B7%B4%E6%8B%89%E5%B7%B4%E8%A5%BF%E3%80%8A%E7%BD%91%E7%BB%9C%E7%A7%91%E5%AD%A6%E3%80%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0"><span class="nav-number">1.</span> <span class="nav-text">巴拉巴西《网络科学》第二章</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E5%93%A5%E5%B0%BC%E6%96%AF%E5%A0%A1%E4%B8%83%E6%A1%A5%E9%97%AE%E9%A2%98%EF%BC%88The-Bridges-of-Konigsberg%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">2.1. 哥尼斯堡七桥问题（The Bridges of Königsberg）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%BE%EF%BC%88Networks-and-Graphs%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">2.2. 网络和图（Networks and Graphs）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-%E5%BA%A6%E3%80%81%E5%B9%B3%E5%9D%87%E5%BA%A6%E5%92%8C%E5%BA%A6%E5%88%86%E5%B8%83%EF%BC%88Degree-Average-Degree-and-Degree-Distribution%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">2.3. 度、平均度和度分布（Degree, Average Degree and Degree Distribution）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5%EF%BC%88Adjacency-Matrix%EF%BC%89"><span class="nav-number">1.4.</span> <span class="nav-text">2.4. 邻接矩阵（Adjacency Matrix）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-%E7%9C%9F%E5%AE%9E%E7%9A%84%E7%BD%91%E7%BB%9C%E6%98%AF%E7%A8%80%E7%96%8F%E7%9A%84%EF%BC%88Real-Networks-are-Sparse%EF%BC%89"><span class="nav-number">1.5.</span> <span class="nav-text">2.5. 真实的网络是稀疏的（Real Networks are Sparse）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-6-%E5%8A%A0%E6%9D%83%E7%BD%91%E7%BB%9C%EF%BC%88Weighted-Networks%EF%BC%89"><span class="nav-number">1.6.</span> <span class="nav-text">2.6. 加权网络（Weighted Networks）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-7-%E4%BA%8C%E9%83%A8%E5%9B%BE%EF%BC%88Bipartite-Networks%EF%BC%89"><span class="nav-number">1.7.</span> <span class="nav-text">2.7. 二部图（Bipartite Networks）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-8-%E8%B7%AF%E5%BE%84%E5%92%8C%E8%B7%9D%E7%A6%BB"><span class="nav-number">1.8.</span> <span class="nav-text">2.8. 路径和距离</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-9-%E8%BF%9E%E9%80%9A%E6%80%A7%EF%BC%88Connectedness%EF%BC%89"><span class="nav-number">1.9.</span> <span class="nav-text">2.9. 连通性（Connectedness）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-10-%E9%9B%86%E8%81%9A%E7%B3%BB%E6%95%B0%EF%BC%88Clustering-Coefficient%EF%BC%89"><span class="nav-number">1.10.</span> <span class="nav-text">2.10. 集聚系数（Clustering Coefficient）</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
